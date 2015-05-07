@@ -16,7 +16,7 @@ public class Main {
             thread=factory.newThread(task);
             thread.start();
         }
-        System.out.printf("Factory stats:\n"); System.out.printf("%s\n",factory.getStats());
-
+        System.out.printf("Factory stats:\n");
+        System.out.printf("%s\n",factory.getStats());
     }
 }
