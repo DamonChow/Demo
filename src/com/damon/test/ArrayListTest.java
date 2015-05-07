@@ -1,5 +1,8 @@
 package com.damon.test;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,5 +25,12 @@ public class ArrayListTest {
         System.out.println("nothing");
         }
         System.out.println(s);
+
+        try(FileWriter file = new FileWriter(".\\data\\log.txt");
+            PrintWriter pw = new PrintWriter(file);) {
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
