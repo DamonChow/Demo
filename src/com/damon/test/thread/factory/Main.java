@@ -1,7 +1,7 @@
 package com.damon.test.thread.factory;
 
 /**
- * 功能：
+ * 功能：线程工厂
  *
  * Created by ZhouJW on 2015/5/7 14:49.
  */

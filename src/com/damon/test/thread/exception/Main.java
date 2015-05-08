@@ -1,7 +1,7 @@
 package com.damon.test.thread.exception;
 
 /**
- * 功能：
+ * 功能：线程异常
  *
  * Created by ZhouJW on 2015/5/7 14:49.
  */

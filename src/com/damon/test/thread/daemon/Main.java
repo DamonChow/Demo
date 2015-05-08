@@ -5,7 +5,7 @@ import java.util.Deque;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
- * 功能：
+ * 功能：守护线程
  *
  * Created by ZhouJW on 2015/5/7 14:49.
  */
