@@ -2,6 +2,7 @@ package com.damon.test.thread.forkJoin;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
@@ -57,7 +58,8 @@ public class FolderProcessor extends RecursiveTask<List<String>> {
             }
 // 12.如果FolderProcessor子任务的数列超过50个元素，写入一条信息到控制台表明这种情况。
             if (tasks.size() > 50) {
-                System.out.printf("%s: %d tasks ran.\n", file.getAbsolutePath(), tasks.size());
+                System.out.printf("%s: %s: %d tasks ran.\n",
+                        Thread.currentThread().getName(),file.getAbsolutePath(), tasks.size());
             }
 // 13.调用辅助方法addResultsFromTask()，将由这个任务发起的子任务返回的结果添加到文件数列中。
 // 传入参数：字符串数列和FolderProcessor子任务数列。
