@@ -68,7 +68,8 @@ public class PrintQueue2 {
         try {
             lockPrinters.lock();
 
-//12. 然后，在freePrinters array内找到第一个真值并在一个变量中保存这个引索值。修改值为false，因为等会这个打印机就会被使用。
+//12. 然后，在freePrinters array内找到第一个真值并在一个变量中保存这个引索值。
+// 修改值为false，因为等会这个打印机就会被使用。
             for (int i = 0; i < freePrinters.length; i++) {
                 if (freePrinters[i]) {
                     ret = i;

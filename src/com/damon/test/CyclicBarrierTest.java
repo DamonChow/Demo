@@ -16,7 +16,7 @@ public class CyclicBarrierTest {
     @Test
     public void test2324() throws Exception{
         final int N=5;
-        final AtomicInteger counter=new AtomicInteger(25);
+        final AtomicInteger counter=new AtomicInteger(5);
         final CyclicBarrier barrier=new CyclicBarrier(N);
         for(int i=0;i<N;i++)
             new Thread(new Runnable(){
@@ -32,7 +32,7 @@ public class CyclicBarrierTest {
             }).start();
 
         do{
-            System.out.println(Thread.currentThread().getName()+"---2'");
+            System.out.println(Thread.currentThread().getName()+"---'"+counter.get());
         }while(counter.get()>0);
     }
 }
