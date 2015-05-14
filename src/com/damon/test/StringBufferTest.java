@@ -11,7 +11,7 @@ public class StringBufferTest {
         StringBuffer sb = new StringBuffer();
 
         for (int i = 0;i<4;i++) {
-            sb.append("'tt" + i + "',");
+            sb.append("'ttt" + i + "',");
         }
 
         if (sb.length() != 0) {
