@@ -42,8 +42,7 @@ public class Event implements Delayed {
     }
 }
 
-// 6.创建一个实现Runnable接口的Task类。
-
+//6.创建一个实现Runnable接口的Task类。
 class Task implements Runnable {
 
     //7.声明一个私有的、int类型的属性id，用来存储任务的标识数字。
@@ -63,9 +62,9 @@ class Task implements Runnable {
         Date now = new Date();
         Date delay = new Date();
         delay.setTime(now.getTime() + (id * 1000));
-        System.out.printf("Thread %s: %s\n", id, delay);
+        System.out.printf("Task thread %s: ,delay is %s\n", id, delay);
 
-// 11.使用add()方法，在队列中存储100个事件。
+//11.使用add()方法，在队列中存储100个事件。
         for (int i = 0; i < 100; i++) {
             Event event = new Event(delay);
             queue.add(event);
@@ -73,7 +72,7 @@ class Task implements Runnable {
     }
 }
 
-// 12.通过创建Main类，并实现main()方法，来实现这个例子的主类。
+//12.通过创建Main类，并实现main()方法，来实现这个例子的主类。
 class Main {
     public static void main(String[] args) throws Exception {
 

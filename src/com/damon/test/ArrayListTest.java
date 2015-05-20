@@ -26,11 +26,24 @@ public class ArrayListTest {
         }
         System.out.println(s);
 
-        try(FileWriter file = new FileWriter(".\\data\\log.txt");
+        /*try(FileWriter file = new FileWriter(".\\data\\log.txt");
             PrintWriter pw = new PrintWriter(file);) {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+
+        System.out.println("----------------------------ge--------------");
+
+
+        List<String> list3 = new ArrayList<String>();
+        for (String s3 : list3) {
+            System.out.println(s3);
+        }
+        System.out.println("----------------------------ge2--------------");
+        List<String> list2 = null;
+        for (String s2 : list2) {
+            System.out.println(s2);
         }
     }
 }
