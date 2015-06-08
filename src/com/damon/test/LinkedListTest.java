@@ -7,7 +7,7 @@ import java.util.List;
  *
  * Created by ZhouJW on 2015/2/4 17:27.
  */
-public class LinkedList {
+public class LinkedListTest {
     public static void main(String[] args) {
         List<String> list = new java.util.LinkedList<String>();
         list.add("11");
