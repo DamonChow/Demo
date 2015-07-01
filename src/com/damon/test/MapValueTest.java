@@ -13,6 +13,11 @@ import java.util.Map;
 public class MapValueTest {
 
     public static void main(String[] args) {
+        //test1();
+        test2();
+    }
+
+    private static void test1() {
         List<Map<String, String>> list = new LinkedList<Map<String, String>>();
         Map<String, String> map = new HashMap<String,String>();
         map.put("id","2");
@@ -22,8 +27,21 @@ public class MapValueTest {
         Map<String, String> map2 = map;
         map2.put("name","test2");
         list.add(map2);
+        String test = map2.get("name");
+        map2.put("name","test3");
+        System.out.println(test);
 
 
         System.out.println(list);
     }
+
+    private static void test2() {
+        Map<String, String> map2 = new HashMap<String,String>();
+        map2.put("name","test2");
+        String test = map2.get("name");
+        map2.put("name","test3");
+        System.out.println(test);
+    }
+
+
 }
