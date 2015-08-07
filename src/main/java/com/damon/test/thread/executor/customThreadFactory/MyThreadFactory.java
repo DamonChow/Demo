@@ -1,8 +1,6 @@
 package com.damon.test.thread.executor.customThreadFactory;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.*;
 
 /**

@@ -1,9 +1,5 @@
 package com.damon.test.thread.readWriteLock;
 
-import com.damon.test.thread.syncBlock.Cinema;
-import com.damon.test.thread.syncBlock.TicketOffice1;
-import com.damon.test.thread.syncBlock.TicketOffice2;
-
 /**
  * 功能：线程工厂
  *

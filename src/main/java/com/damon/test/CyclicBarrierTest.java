@@ -1,8 +1,6 @@
 package com.damon.test;
 
-import org.junit.Test;
 
-import java.util.Random;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -13,7 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class CyclicBarrierTest {
 
-    @Test
     public void test2324() throws Exception{
         final int N=5;
         final AtomicInteger counter=new AtomicInteger(5);

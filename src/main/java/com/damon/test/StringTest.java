@@ -20,5 +20,7 @@ public class StringTest {
         System.out.println(7>>1);
 
 
+        System.out.println(Integer.parseInt(""));
+
     }
 }

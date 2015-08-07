@@ -1,6 +1,5 @@
 package com.damon.test;
 
-import org.junit.Test;
 
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
@@ -12,7 +11,6 @@ import java.util.concurrent.CountDownLatch;
  */
 public class CountDownLatchTest {
 
-    @Test
     public void test123423() throws Exception {
         final int N=5;
         final CountDownLatch startSignal = new CountDownLatch(1);

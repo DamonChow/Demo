@@ -15,6 +15,16 @@ public class MapValueTest {
     public static void main(String[] args) {
         //test1();
         test2();
+        test3();
+    }
+
+    private static void test3() {
+        Map<String, String> map = new HashMap<String,String>();
+        Object o = "sdf";
+        map.put("1", o.toString());
+        o = "sdf222";
+        map.put("2", o.toString());
+        System.out.println(map);
     }
 
     private static void test1() {

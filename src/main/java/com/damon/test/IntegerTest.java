@@ -37,5 +37,14 @@ public class IntegerTest {
         System.out.println(CAPACITY);
         System.out.println(CAPACITY & 1);
         System.out.println(CAPACITY | 1);
+
+        System.out.println("--------------------------------------");
+
+        Object o = 2;
+        if (o instanceof  Integer) {
+            System.out.println(Integer.parseInt(o.toString()));
+        } else {
+            System.out.println("nothing");
+        }
     }
 }

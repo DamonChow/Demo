@@ -1,8 +1,5 @@
 package com.damon.test.thread.syncBlock;
 
-import com.damon.test.thread.factory.MyThreadFactory;
-import com.damon.test.thread.factory.Task;
-
 /**
  * 功能：线程工厂
  *
