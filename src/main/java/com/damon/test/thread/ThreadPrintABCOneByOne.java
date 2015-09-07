@@ -1,6 +1,8 @@
 package com.damon.test.thread;
 
 
+import org.junit.Test;
+
 /**
  * 功能：
  *
@@ -8,35 +10,38 @@ package com.damon.test.thread;
  */
 public class ThreadPrintABCOneByOne {
 
+    @Test
+    public void test1() throws InterruptedException {
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("A");
+            }
+        });
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("B");
+            }
+        });
+        Thread thread3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("C");
+            }
+        });
 
-    private static void test1() throws InterruptedException {
         while(true){
-            Thread thread1 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("A");
-                }
-            });
             thread1.start();
             thread1.join();
-
-            Thread thread2 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("B");
-                }
-            });
             thread2.start();
             thread2.join();
-
-            Thread thread3 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    System.out.println("C");
-                }
-            });
             thread3.start();
             thread3.join();
         }
+    }
+
+    public void test2() {
+
     }
 }

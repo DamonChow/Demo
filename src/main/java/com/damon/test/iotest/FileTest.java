@@ -59,9 +59,9 @@ public class FileTest {
                 is = new FileInputStream(file);
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } finally {
             if (is != null) {
                 try {
