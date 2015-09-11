@@ -23,7 +23,8 @@ public class RedisTest {
 
 	@Before
 	public void init() {
-		pool = new JedisPool(new JedisPoolConfig(), "172.16.4.177", 6379);
+		//pool = new JedisPool(new JedisPoolConfig(), "172.16.4.177", 6379);
+		pool = new JedisPool(new JedisPoolConfig(), "172.31.1.22", 6379);
 		jedis = pool.getResource();
 		//jedis = new Jedis("localhost");
 	}
@@ -31,6 +32,11 @@ public class RedisTest {
 	@Test
 	public void testPing() {
 		System.out.println("Server is running: "+jedis.ping());
+	}
+
+	@Test
+	public void testKeys() {
+		System.out.println("All key is : "+jedis.keys("*"));
 	}
 
 	@Test
@@ -71,22 +77,24 @@ public class RedisTest {
 	public void testMap() {
 		Map<String, String> user = new HashMap<String, String>();
 		user.put("name", "damon");
+		user.put("number", "123456");
 		user.put("sex", "M");
 		jedis.hmset("map", user);
 
 		//第一个参数是存入redis中map对象的key，后面跟的是放入map中的对象的key，后面的key可以跟多个，是可变参数
 		List<String> rsmap = jedis.hmget("map", "name");//取出map中的name，执行结果:[damon]
 		System.out.println(rsmap);
-		rsmap = jedis.hmget("map", "name", "sex");//[damon, nothing]
+		rsmap = jedis.hmget("map", "name", "sex");//[damon, M]
 		System.out.println(rsmap);
 
 		//删除map中的key
-		jedis.hdel("map","sex");
+		Long hdel = jedis.hdel("map", "sex");
+		System.out.println(hdel);//1
 		System.out.println(jedis.hmget("map", "sex")); //因为删除了，所以返回的是[null]
-		System.out.println(jedis.hlen("map")); //返回key为map的键中存放的值的个数1
+		System.out.println(jedis.hlen("map")); //返回key为map的键中存放的值的个数2
 		System.out.println(jedis.exists("map"));//是否存在key为map的记录 返回true
-		System.out.println(jedis.hkeys("map"));//返回map对象中的所有key  [pwd, name]
-		System.out.println(jedis.hvals("map"));//返回map对象中的所有value  [damon, nothing]
+		System.out.println(jedis.hkeys("map"));//返回map对象中的所有key  [number, name]
+		System.out.println(jedis.hvals("map"));//返回map对象中的所有value  [damon, 123456]
 		Iterator<String> iter = jedis.hkeys("map").iterator();
 		while (iter.hasNext()) {
 			String key = iter.next();
