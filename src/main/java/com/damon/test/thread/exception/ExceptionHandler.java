@@ -3,7 +3,7 @@ package com.damon.test.thread.exception;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/7 15:06.
+ * Created by Domon Chow on 2015/5/7 15:06.
  */
 public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
 

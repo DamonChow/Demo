@@ -3,7 +3,7 @@ package com.damon.test.thread.syncBlock;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/8 15:21.
+ * Created by Domon Chow on 2015/5/8 15:21.
  */
 public class TicketOffice2 implements Runnable {
     //13.声明一个Cinema对象，并实现该类（类TicketOffice2）的构造器用来初始化这个对象。

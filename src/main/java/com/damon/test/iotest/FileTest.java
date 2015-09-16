@@ -6,7 +6,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  * 功能：
- * Created by ZhouJW on 2015/7/6 15:21.
+ * Created by Domon Chow on 2015/7/6 15:21.
  */
 public class FileTest {
     static String operation="~/uploadFile/";

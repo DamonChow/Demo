@@ -5,7 +5,7 @@ import java.util.concurrent.PriorityBlockingQueue;
 /**
  * 功能：线程安全的、带有延迟元素的列表
  *
- * Created by ZhouJW on 2015/5/14 17:58.
+ * Created by Domon Chow on 2015/5/14 17:58.
  */
 
 //1.实现Event类，并指定它实现参数化为Event类的Comparable接口。

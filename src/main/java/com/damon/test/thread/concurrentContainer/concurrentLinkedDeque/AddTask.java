@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
  *
  * 非阻塞线程安全的列表   ConcurrentLinkedDeque
  *
- * Created by ZhouJW on 2015/5/14 17:15.
+ * Created by Domon Chow on 2015/5/14 17:15.
  */
 
 public class AddTask implements Runnable {

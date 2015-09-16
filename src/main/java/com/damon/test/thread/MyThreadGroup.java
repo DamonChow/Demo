@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/7 15:37.
+ * Created by Domon Chow on 2015/5/7 15:37.
  */
 public class MyThreadGroup extends ThreadGroup {
 

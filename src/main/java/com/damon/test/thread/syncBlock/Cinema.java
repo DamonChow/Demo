@@ -3,7 +3,7 @@ package com.damon.test.thread.syncBlock;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/8 15:17.
+ * Created by Domon Chow on 2015/5/8 15:17.
  */
 public class Cinema {
     //1.创建一个Cinema类，添加两个long类型的属性，命名为vacanciesCinema1和vacanciesCinema2。

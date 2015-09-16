@@ -3,7 +3,7 @@ package com.damon.test.thread.syncMethod;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/8 15:05.
+ * Created by Domon Chow on 2015/5/8 15:05.
  */
 public class Bank implements Runnable  {
     private Account account;

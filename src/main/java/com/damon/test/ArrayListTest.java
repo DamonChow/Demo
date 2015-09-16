@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 功能：ArrayList  为空，或者添加一个null
  *
- * Created by ZhouJW on 2015/1/15 9:37.
+ * Created by Domon Chow on 2015/1/15 9:37.
  */
 public class ArrayListTest {
 

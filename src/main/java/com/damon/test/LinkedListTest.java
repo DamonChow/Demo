@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/2/4 17:27.
+ * Created by Domon Chow on 2015/2/4 17:27.
  */
 public class LinkedListTest {
     public static void main(String[] args) {

@@ -3,7 +3,7 @@ package com.damon.test;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/1/23 9:56.
+ * Created by Domon Chow on 2015/1/23 9:56.
  */
 public class TestException {
     public TestException() {

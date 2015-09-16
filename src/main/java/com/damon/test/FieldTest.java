@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/1/29 9:33.
+ * Created by Domon Chow on 2015/1/29 9:33.
  */
 public class FieldTest {
 

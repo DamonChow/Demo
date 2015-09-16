@@ -6,7 +6,7 @@ import java.util.concurrent.ForkJoinTask;
 /**
  * 功能：创建一个类，名为 MyWorkerTask，并特别扩展 ForkJoinTask 类参数化 Void type。
  *
- * Created by ZhouJW on 2015/5/20 15:53.
+ * Created by Domon Chow on 2015/5/20 15:53.
  */
 public abstract class MyWorkerTask extends ForkJoinTask<Void> {
 

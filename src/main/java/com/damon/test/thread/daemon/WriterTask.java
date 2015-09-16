@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/7 14:46.
+ * Created by Domon Chow on 2015/5/7 14:46.
  */
 class WriterTask implements Runnable {
     private Deque<Event> deque;

@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/15 10:51.
+ * Created by Domon Chow on 2015/5/15 10:51.
  */
 //1.创建一个类，名为 Incrementer，并实现 Runnable 接口。
 public class Incrementer implements Runnable {

@@ -6,7 +6,7 @@ import java.util.concurrent.Exchanger;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/11 11:06.
+ * Created by Domon Chow on 2015/5/11 11:06.
  */
 //1. 首先，从实现producer开始吧。创建一个类名为Producer并一定实现 Runnable 接口。
 public class Producer implements Runnable {

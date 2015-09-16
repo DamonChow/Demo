@@ -20,7 +20,7 @@ package com.damon.test.thread.syncMethod;
  我们将有一个银行帐户和两个线程：其中一个线程将钱转移到帐户而另一个线程将从账户中扣款。
  在没有同步方法，我们可能得到不正确的结果。同步机制保证了账户的正确。
  *
- * Created by ZhouJW on 2015/5/7 14:49.
+ * Created by Domon Chow on 2015/5/7 14:49.
  */
 public class Main {
 

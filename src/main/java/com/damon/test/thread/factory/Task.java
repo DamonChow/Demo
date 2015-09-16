@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/7 15:50.
+ * Created by Domon Chow on 2015/5/7 15:50.
  */
 public class Task implements Runnable {
     @Override

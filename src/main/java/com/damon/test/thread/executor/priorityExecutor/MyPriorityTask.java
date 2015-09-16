@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：优先级的Executor类
  *
- * Created by ZhouJW on 2015/5/15 11:20.
+ * Created by Domon Chow on 2015/5/15 11:20.
  */
 
 //1.创建一个MyPriorityTask类，它实现Runnable接口和参数化为MyPriorityTask类的Comparable接口。

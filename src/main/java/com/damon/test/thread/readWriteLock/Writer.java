@@ -3,7 +3,7 @@ package com.damon.test.thread.readWriteLock;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/8 15:39.
+ * Created by Domon Chow on 2015/5/8 15:39.
  */
 public class Writer implements Runnable {
     //12.声明一个PricesInfo对象，并且实现Writer类的构造器来初始化这个对象。

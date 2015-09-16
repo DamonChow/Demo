@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/4/15 11:36.
+ * Created by Domon Chow on 2015/4/15 11:36.
  */
 public class CyclicBarrierTest {
 

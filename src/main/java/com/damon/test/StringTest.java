@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/3/11 10:44.
+ * Created by Domon Chow on 2015/3/11 10:44.
  */
 public class StringTest {
 

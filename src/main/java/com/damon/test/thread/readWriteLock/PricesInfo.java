@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/5/8 15:37.
+ * Created by Domon Chow on 2015/5/8 15:37.
  */
 public class PricesInfo {
     //声明两个double类型的属性，分别命名为price1和price2。

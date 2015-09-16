@@ -3,7 +3,7 @@ package com.damon.test;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/3/2 17:34.
+ * Created by Domon Chow on 2015/3/2 17:34.
  */
 public class StringBufferTest {
 

@@ -1,11 +1,9 @@
 package com.damon.test;
 
-import java.lang.reflect.Array;
-
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/1/15 15:51.
+ * Created by Domon Chow on 2015/1/15 15:51.
  */
 public class ArrayTest {
 

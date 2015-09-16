@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：非阻塞线程安全的列表
  *
- * Created by ZhouJW on 2015/5/14 17:35.
+ * Created by Domon Chow on 2015/5/14 17:35.
  */
 //1.创建一个实现Runnable接口的Client类。
 

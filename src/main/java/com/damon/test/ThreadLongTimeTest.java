@@ -3,7 +3,7 @@ package com.damon.test;
 /**
  * 功能：
  *
- * Created by ZhouJW on 2015/3/20 15:46.
+ * Created by Domon Chow on 2015/3/20 15:46.
  */
 public class ThreadLongTimeTest {
 

@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：线程安全的、带有延迟元素的列表
  *
- * Created by ZhouJW on 2015/5/14 17:58.
+ * Created by Domon Chow on 2015/5/14 17:58.
  */
 
 //1.创建一个实现Delayed接口的Event类。
