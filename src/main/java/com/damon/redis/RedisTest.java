@@ -25,7 +25,9 @@ public class RedisTest {
 
 	@Before
 	public void init() {
-		pool = new JedisPool(new JedisPoolConfig(), "172.16.4.177", 6801);
+		//pool = new JedisPool(new JedisPoolConfig(), "172.16.4.177", 6801);
+		//pool = new JedisPool(new JedisPoolConfig(), "172.16.4.177", 6803);
+		pool = new JedisPool(new JedisPoolConfig(), "172.16.4.177", 6803, Protocol.DEFAULT_TIMEOUT, "redis6803");
 		//pool = new JedisPool(new JedisPoolConfig(), "172.16.4.171", 6379);
 		//pool = new JedisPool(new JedisPoolConfig(), "172.31.1.22", 6379);
 		jedis = pool.getResource();
@@ -34,6 +36,9 @@ public class RedisTest {
 		List<JedisShardInfo> shards = new ArrayList<JedisShardInfo>();
 		shards.add(new JedisShardInfo("172.16.4.177", 6801));
 		shards.add(new JedisShardInfo("172.16.4.177", 6802));
+		JedisShardInfo jedisShardInfo = new JedisShardInfo("172.16.4.177", 6803);
+		jedisShardInfo.setPassword("redis6803");
+		shards.add(jedisShardInfo);
 		shardedJedisPool = new ShardedJedisPool(new JedisPoolConfig(), shards);
 
 		shardedJedis = shardedJedisPool.getResource();
@@ -47,10 +52,10 @@ public class RedisTest {
 			shardedJedis.set("c", "ccc");
 			shardedJedis.set("d", "ddd");
 			shardedJedis.set("e", "eee");
-
+			shardedJedis.set("f", "fff");
 			//根据key获取jedis
 			JedisShardInfo si = shardedJedis.getShardInfo("a");
-			System.out.println(si.getHost());
+			System.out.println(si.getHost() + ":" + si.getPort());
 		} finally {
 			jedis.close();
 			pool.destroy();
