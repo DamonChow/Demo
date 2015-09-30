@@ -14,6 +14,7 @@ import java.net.URL;
 public class SMSTest {
 
 	public static void main(String[] args) {
+
 		String httpUrl = "http://apis.baidu.com/chonry/chonrysms/chonryapi";
 		String httpArg = "content=%E5%88%9B%E7%91%9E%E6%B5%8B%E8%AF%95%E7%9F%AD%E4%BF%A1%E9%AA%8C%E8%AF%81%E7%A0%812015&mobile=13691886209";
 		String jsonResult = request(httpUrl, httpArg);
