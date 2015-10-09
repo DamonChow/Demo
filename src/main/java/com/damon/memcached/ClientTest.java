@@ -1,7 +1,8 @@
 package com.damon.memcached;
 
-import com.danga.MemCached.MemCachedClient;
-import com.danga.MemCached.SockIOPool;
+
+import com.whalin.MemCached.MemCachedClient;
+import com.whalin.MemCached.SockIOPool;
 
 /**
  * 功能：
