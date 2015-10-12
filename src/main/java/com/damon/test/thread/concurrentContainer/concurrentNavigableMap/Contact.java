@@ -65,7 +65,7 @@ class Main {
 
 //                11.创建一个参数化为String类和Contact类的ConcurrentSkipListMap对象map。
         ConcurrentSkipListMap<String, Contact> map;
-        map = new ConcurrentSkipListMap<>();
+        map = new ConcurrentSkipListMap<String, Contact>();
 
 //                12.创建一个有25个Thread对象的数组，用来存储你将要执行的所有任务。
         Thread threads[] = new Thread[25];

@@ -77,7 +77,7 @@ class Main {
     public static void main(String[] args) throws Exception {
 
 //13.创建一个参数化为Event类的DelayedQueue对象。
-        DelayQueue<Event> queue = new DelayQueue<>();
+        DelayQueue<Event> queue = new DelayQueue<Event>();
 
 //14.创建一个有5个Thread对象的数组，用来存储将要执行的任务。
         Thread threads[] = new Thread[5];

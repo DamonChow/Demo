@@ -32,9 +32,9 @@ public class FolderProcessor extends RecursiveTask<List<String>> {
     @Override
     protected List<String> compute() {
 // 7.声明一个String对象的数列，用来保存存储在文件夹中的文件。
-        List<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<String>();
 // 8.声明一个FolderProcessor任务的数列，用来保存将要处理存储在文件夹内的子文件夹的子任务。
-        List<FolderProcessor> tasks = new ArrayList<>();
+        List<FolderProcessor> tasks = new ArrayList<FolderProcessor>();
 // 9.获取文件夹的内容。
         File file = new File(path);
         File content[] = file.listFiles();

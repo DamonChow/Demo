@@ -22,7 +22,7 @@ public class MyExecutor extends ThreadPoolExecutor {
             workQueue) {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit,
                 workQueue);
-        startTimes=new ConcurrentHashMap<>();
+        startTimes=new ConcurrentHashMap<String, Date>();
     }
 
     //4.覆盖shutdown()方法。将关于已执行的任务，正在运行的任务和待处理的任务信息写入到控制台。
@@ -93,7 +93,7 @@ class Main {
                 MILLISECONDS, new LinkedBlockingDeque<Runnable>());
 
         //11.创建一个参数化为String类的Future对象的数列，用于存储你将提交给执行者的任务的结果对象。
-        List<Future<String>> results = new ArrayList<>();
+        List<Future<String>> results = new ArrayList<Future<String>>();
 
         //12.提交10个Task对象。
         for (int i = 0; i < 10; i++) {

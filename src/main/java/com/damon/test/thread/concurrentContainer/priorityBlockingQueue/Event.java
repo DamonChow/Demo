@@ -75,7 +75,7 @@ class Main {
     public static void main(String[] args) {
 
 //14.创建一个参数化为Event类的PriorityBlockingQueue对象。
-        PriorityBlockingQueue<Event> queue = new PriorityBlockingQueue<>();
+        PriorityBlockingQueue<Event> queue = new PriorityBlockingQueue<Event>();
 
 //15.创建一个有5个Thread对象的数组，用来存储执行5个任务的线程。
         Thread taskThreads[] = new Thread[5];

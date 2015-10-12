@@ -55,7 +55,7 @@ class Main {
     public static void main(String[] args) {
 //10.创建一个参数化为String、名为list的ConcurrentLinkedDeque对象。
 
-        ConcurrentLinkedDeque<String> list = new ConcurrentLinkedDeque<>();
+        ConcurrentLinkedDeque<String> list = new ConcurrentLinkedDeque<String>();
 //11.创建一个存储100个Thread对象的数组threads。
 
         Thread threads[] = new Thread[100];
