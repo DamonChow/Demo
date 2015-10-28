@@ -8,6 +8,19 @@ package com.damon.test;
 public class ArrayTest {
 
     public static void main(String[] args) {
+        //校验string的split方法，当没有可分组时，得到的数组不为空，length=1
+        String ss = "sf";
+        String[] split = ss.split("#");
+        System.out.println(split + "---" + split.length);
+
+        String s = "@123#2#22";
+        int lastIndex = s.lastIndexOf("#");
+        System.out.println("the string is " + s);
+        System.out.println("the last # is " + lastIndex);
+        System.out.println("last string is " + s.substring(lastIndex+1));
+        System.out.println("the before except @ is " + s.substring(1, lastIndex));
+
+
         /*Object o = Array.newInstance(String.class, 4);
         String[] a = new String[]{};
         System.out.println(o.getClass());
@@ -20,6 +33,7 @@ public class ArrayTest {
 
 
 		//CPU并不是逐个字节地访问内存。相反，它以（典型的）64字节的块为单位取内存，
+        //http://blog.jobbole.com/89759/
 		// 称作缓存行（cache lines）
 		int[] arr = new int[64 * 1024 * 1024];
 		long start = System.currentTimeMillis();

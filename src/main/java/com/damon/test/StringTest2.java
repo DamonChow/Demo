@@ -1,5 +1,7 @@
 package com.damon.test;
 
+import org.junit.Test;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -30,6 +32,12 @@ public class StringTest2 {
 		System.out.println(resultList.size());
 		//getSinaIP();
 	}
+
+    @Test
+    public void testStringLength() {
+        String s = "什么是我们";
+        System.out.println(s.length());
+    }
 
 	public static List getContext(String html) {
 		List resultList = new ArrayList();
