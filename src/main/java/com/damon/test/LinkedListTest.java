@@ -1,6 +1,8 @@
 package com.damon.test;
 
-import java.util.List;
+import org.junit.Test;
+
+import java.util.*;
 
 /**
  * 功能：
@@ -18,5 +20,62 @@ public class LinkedListTest {
         for(Object o: objects) {
             System.out.println(o);
         }
+    }
+
+    @Test
+    public void testOrder() {
+        //String[] source = {"601","603","602","@22","@11#1","@11"};
+        String[] source = {"601","603","602","22","111","11"};
+        List<Long> needSortList = new ArrayList<Long>();
+        List<String> remainList = new ArrayList<String>();
+        List<String> result = new ArrayList<String>();
+        for (int i=0;i<source.length;i++) {
+            try {
+                if (source[i].contains("@")) {
+                    remainList.add(source[i]);
+                } else {
+                    long id = Long.parseLong(source[i]);
+                    needSortList.add(id);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("error :::" + e.getMessage());
+                return;
+            }
+        }
+
+        Collections.sort(needSortList);
+        for (Long id : needSortList) {
+            result.add(id.toString());
+        }
+        result.addAll(remainList);
+        System.out.println("result ::" + result);
+
+
+       /*List<String> beforeList = new ArrayList<String>(Arrays.asList(source));
+        for (String item : beforeList) {
+            if (item.contains("@")) {
+                index = beforeList.indexOf(item);
+                break;
+            }
+        }
+
+        System.out.println("before :::" + beforeList);
+        List<String> needSortList = null;
+        List<String> remainList = null;
+
+        if (index != 0) {
+            needSortList = beforeList.subList(0, index);
+            remainList = beforeList.subList(index, beforeList.size());
+            System.out.println("needSortList::" + needSortList);
+            System.out.println("remainList::" + remainList);
+        } else {
+            needSortList = beforeList;
+        }
+
+        Collections.sort(needSortList);
+        if (remainList != null) {
+            needSortList.addAll(remainList);
+        }
+        System.out.println("sort list ::" + needSortList);*/
     }
 }

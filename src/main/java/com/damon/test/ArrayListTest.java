@@ -11,7 +11,7 @@ import java.util.List;
 public class ArrayListTest {
 
     public static void main(String[] args) {
-        List<Object> list = new ArrayList<Object>();
+        /*List<Object> list = new ArrayList<Object>();
         list.add(1);
         Object s = list.get(0);
         if(s instanceof String) {
@@ -21,7 +21,7 @@ public class ArrayListTest {
         } else {
         System.out.println("nothing");
         }
-        System.out.println(s);
+        System.out.println(s);*/
 
         /*try(FileWriter file = new FileWriter(".\\data\\log.txt");
             PrintWriter pw = new PrintWriter(file);) {
@@ -38,9 +38,9 @@ public class ArrayListTest {
             System.out.println(s3);
         }
         System.out.println("----------------------------ge2--------------");
-        List<String> list2 = null;
+        /*List<String> list2 = null;
         for (String s2 : list2) {
             System.out.println(s2);
-        }
+        }*/
     }
 }
