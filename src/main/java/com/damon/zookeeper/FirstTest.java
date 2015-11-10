@@ -27,8 +27,10 @@ public class FirstTest {
             zk = new ZooKeeper("localhost:2181", 30000, new Watcher() {
                 // 监控所有被触发的事件
                 public void process(WatchedEvent event) {
-                    System.out.println("状态:" + event.getState() + "，type:" + event.getType() + ",warpper:" +
-                            event.getWrapper() + ",path:" + event.getPath());
+                    System.out.println("状态:" + event.getState()
+                            + "，type:" + event.getType()
+                            + ",warpper:" + event.getWrapper()
+                            + ",path:" + event.getPath());
                 }
             });
         } catch (IOException e) {
