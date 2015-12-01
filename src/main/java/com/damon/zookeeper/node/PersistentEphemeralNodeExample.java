@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：临时节点和持久节点
  *
- * @author Zhoujiwei
+ * @author Damon
  * @since 2015/11/10 14:10
  */
 public class PersistentEphemeralNodeExample {

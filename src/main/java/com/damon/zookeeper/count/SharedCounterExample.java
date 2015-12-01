@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：
  *
- * @author Zhoujiwei
+ * @author Damon
  * @since 2015/11/9 16:33
  */
 public class SharedCounterExample implements SharedCountListener {

@@ -3,7 +3,7 @@ package com.damon.zookeeper.constan;
 /**
  * 功能：
  *
- * @author Zhoujiwei
+ * @author Damon
  * @since 2015/11/10 14:51
  */
 public class Constants {
