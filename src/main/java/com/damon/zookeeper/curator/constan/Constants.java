@@ -1,4 +1,4 @@
-package com.damon.zookeeper.constan;
+package com.damon.zookeeper.curator.constan;
 
 /**
  * 功能：

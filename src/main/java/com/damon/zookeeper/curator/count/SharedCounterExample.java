@@ -1,6 +1,6 @@
-package com.damon.zookeeper.count;
+package com.damon.zookeeper.curator.count;
 
-import com.damon.zookeeper.constan.Constants;
+import com.damon.zookeeper.curator.constan.Constants;
 import com.google.common.collect.Lists;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -9,9 +9,10 @@ import org.apache.curator.framework.recipes.shared.SharedCountListener;
 import org.apache.curator.framework.recipes.shared.SharedCountReader;
 import org.apache.curator.framework.state.ConnectionState;
 import org.apache.curator.retry.ExponentialBackoffRetry;
-import org.apache.curator.test.TestingServer;
+import org.apache.zookeeper.data.Stat;
+import org.junit.Test;
 
-import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Callable;
@@ -38,9 +39,9 @@ public class SharedCounterExample implements SharedCountListener {
                 new ExponentialBackoffRetry(1000, 3));
         client.start();
 
-        SharedCount baseCount = new SharedCount(client, PATH, 0);
-        baseCount.addListener(example);
-        baseCount.start();
+        SharedCount statusCount = new SharedCount(client, PATH, 0);
+        statusCount.addListener(example);
+        statusCount.start();
 
         List<SharedCount> examples = Lists.newArrayList();
         ExecutorService service = Executors.newFixedThreadPool(QTY);
@@ -65,7 +66,21 @@ public class SharedCounterExample implements SharedCountListener {
         for (int i = 0; i < QTY; ++i) {
             examples.get(i).close();
         }
-        baseCount.close();
+        statusCount.close();
+        client.close();
+    }
+
+    @Test
+    public void getData() throws Exception {
+        CuratorFramework client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT,
+                new ExponentialBackoffRetry(1000, 3));
+        client.start();
+
+        byte[] bytes = client.getData().forPath(PATH);
+        System.out.println("bytes Exists is " + (bytes != null));
+        System.out.println("bytes=" + bytes[0] + ",length=" + bytes.length);
+        System.out.println("int=" + ByteBuffer.wrap(bytes).getInt());
+        client.close();
     }
 
 

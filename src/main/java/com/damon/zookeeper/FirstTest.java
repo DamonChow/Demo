@@ -1,7 +1,12 @@
 package com.damon.zookeeper;
 
-import org.apache.zookeeper.*;
-import org.apache.zookeeper.data.Stat;
+import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
+import org.apache.zookeeper.ZooDefs;
+import org.apache.zookeeper.ZooKeeper;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,10 +32,10 @@ public class FirstTest {
             zk = new ZooKeeper("localhost:2181", 30000, new Watcher() {
                 // 监控所有被触发的事件
                 public void process(WatchedEvent event) {
-                    System.out.println("状态:" + event.getState()
-                            + "，type:" + event.getType()
-                            + ",warpper:" + event.getWrapper()
-                            + ",path:" + event.getPath());
+                    System.out.println("状态:[" + event.getState()
+                            + "]，type:[" + event.getType()
+                            + "],warpper:[" + event.getWrapper()
+                            + "],path:[" + event.getPath()+"]");
                 }
             });
         } catch (IOException e) {
@@ -38,10 +43,15 @@ public class FirstTest {
         }
     }
 
+    @After
+    public void close() throws InterruptedException {
+        if (zk != null) {
+            zk.close();
+        }
+    }
+
     @Test
     public void test() {
-        // 创建一个与服务器的连接
-        ZooKeeper zk = null;
         try {
             // 创建一个总的目录ktv，并不控制权限，这里需要用持久化节点，不然下面的节点创建容易出错
             zk.create(ROOT, "root-ktv".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
@@ -54,6 +64,7 @@ public class FirstTest {
             // 我们也可以 来看看 一共监视了多少家的ktv
             List<String> ktvs = zk.getChildren(ROOT, true);
             System.out.println("ktvs===" + Arrays.toString(ktvs.toArray()));
+            //System.out.println("getData='ROOT + \"/北京KTV-分店\"'" + zk.getData(ROOT + "/北京KTV-分店", true));
             for (String node : ktvs) {
                 // 删除节点
                 System.out.println("node is " + node);
@@ -61,10 +72,7 @@ public class FirstTest {
             }
             // 根目录得最后删除的
             zk.delete(ROOT, -1);
-            zk.close();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (KeeperException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -79,12 +87,11 @@ public class FirstTest {
             String[] nodeArray = ktvs.toArray(new String[ktvs.size()]);
             String zNode = Arrays.toString(nodeArray);
             System.out.println("ktvs===" + zNode);
-
+            System.out.println("---------------------分割----------------");
             for (String node : nodeArray) {
-                System.out.println("data="+ new String(zk.getData(root+node, true, null)));
+                System.out.println("data=" + new String(zk.getData(root + node, true, null)));
             }
-
-            zk.close();
+            System.out.println("---------------------分割----------------");
         } catch (KeeperException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

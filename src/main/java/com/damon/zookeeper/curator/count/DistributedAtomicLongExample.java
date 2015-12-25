@@ -1,19 +1,18 @@
-package com.damon.zookeeper.count;
+package com.damon.zookeeper.curator.count;
 
-import com.damon.zookeeper.constan.Constants;
-import com.google.common.collect.Lists;
+import com.damon.zookeeper.curator.constan.Constants;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.atomic.AtomicValue;
 import org.apache.curator.framework.recipes.atomic.DistributedAtomicLong;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.retry.RetryNTimes;
-import org.apache.curator.test.TestingServer;
+import org.apache.zookeeper.data.Stat;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.util.List;
+import java.nio.ByteBuffer;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,7 +27,6 @@ import java.util.concurrent.TimeUnit;
 public class DistributedAtomicLongExample {
     private static final int QTY = 5;
     private static final String PATH = "/examples/counter/long";
-
     private CuratorFramework client;
 
     @Before
@@ -44,14 +42,16 @@ public class DistributedAtomicLongExample {
         }
     }
 
+    @After
+    public void close() {
+        client.close();
+    }
+
     @Test
     public void test() throws Exception {
-        List<DistributedAtomicLong> examples = Lists.newArrayList();
         ExecutorService service = Executors.newFixedThreadPool(QTY);
         for (int i = 0; i < QTY; ++i) {
             final DistributedAtomicLong count = new DistributedAtomicLong(client, PATH, new RetryNTimes(10, 10));
-
-            examples.add(count);
             Callable<Void> task = new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {
@@ -81,7 +81,20 @@ public class DistributedAtomicLongExample {
     public void getLong() {
         try {
             byte[] bytes = client.getData().forPath(PATH);
-            System.out.println(new String(bytes));
+            Stat stat = client.checkExists().forPath(PATH);
+            System.out.println("bytes Exists is " + (bytes != null));
+            System.out.println("bytes=" + bytes[0] + ",length=" + bytes.length);
+            System.out.println("string=" + new String(bytes));
+            System.out.println("---------分割线---------------------");
+            System.out.println("stat = " + stat);
+
+            ByteBuffer wrapper = ByteBuffer.wrap(bytes);
+            System.out.println("long=" + wrapper.getLong());
+
+            /*System.out.println("---------分割线2---------------------");
+            client.getData().forPath(PATH+1);*/
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
