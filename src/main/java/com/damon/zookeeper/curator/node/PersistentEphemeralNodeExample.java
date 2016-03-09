@@ -1,6 +1,6 @@
 package com.damon.zookeeper.curator.node;
 
-import com.damon.zookeeper.curator.constan.Constants;
+import com.damon.zookeeper.Constants;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.nodes.PersistentEphemeralNode;

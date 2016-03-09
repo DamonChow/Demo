@@ -1,13 +1,12 @@
 package com.damon.zookeeper.curator.lock.shared.semaphore;
 
-import com.damon.zookeeper.curator.constan.Constants;
+import com.damon.zookeeper.Constants;
 import com.damon.zookeeper.curator.lock.shared.FakeLimitedResource;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.locks.InterProcessSemaphoreV2;
 import org.apache.curator.framework.recipes.locks.Lease;
 import org.apache.curator.retry.ExponentialBackoffRetry;
-import org.apache.curator.test.TestingServer;
 
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;

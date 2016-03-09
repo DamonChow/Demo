@@ -1,7 +1,7 @@
 package com.damon.zookeeper.curator.cache;
 
 
-import com.damon.zookeeper.curator.constan.Constants;
+import com.damon.zookeeper.Constants;
 import com.google.common.collect.Lists;
 import discovery.ExampleServer;
 import org.apache.curator.framework.CuratorFramework;

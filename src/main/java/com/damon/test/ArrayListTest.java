@@ -38,6 +38,10 @@ public class ArrayListTest {
             System.out.println(s3);
         }
         System.out.println("----------------------------ge2--------------");
+        list3.add("23");
+        list3.add("23d");
+        list3.add("23df");
+        System.out.println(new StringBuilder().append(list3));
         /*List<String> list2 = null;
         for (String s2 : list2) {
             System.out.println(s2);

@@ -1,5 +1,10 @@
 package com.damon.test;
 
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,6 +14,8 @@ import java.util.regex.Pattern;
  * Created by Domon Chow on 2015/3/11 10:44.
  */
 public class StringTest {
+
+    private static final Logger log = LoggerFactory.getLogger(StringTest.class);
 
 	static String msg = "ValidationException: The following exception occured while validating field 'header'" +
 			" of class 'com.construct.jsjjgpt.model.req.ReqPacket';" +
@@ -35,5 +42,11 @@ public class StringTest {
 		/*for(int i=0;i<=mat.groupCount();i++){
 			System.out.println(mat.group(i));
 		}*/
+        log.info("test");
 	}
+
+    @Test
+    public void test() {
+        System.out.println(StringUtils.join(new String[]{"ttt"}, ","));
+    }
 }

@@ -1,8 +1,7 @@
 package com.damon.zookeeper.curator.lock.shared.readwrite;
 
-import com.damon.zookeeper.curator.constan.Constants;
+import com.damon.zookeeper.Constants;
 import com.damon.zookeeper.curator.lock.shared.FakeLimitedResource;
-import com.damon.zookeeper.curator.lock.shared.unreentrant.ExampleClientThatLocks;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;

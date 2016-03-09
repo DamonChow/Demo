@@ -1,6 +1,6 @@
 package com.damon.zookeeper.curator.lock.shared.unreentrant;
 
-import com.damon.zookeeper.curator.constan.Constants;
+import com.damon.zookeeper.Constants;
 import com.damon.zookeeper.curator.lock.shared.FakeLimitedResource;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;

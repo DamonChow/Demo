@@ -1,4 +1,4 @@
-package com.damon.zookeeper.curator.constan;
+package com.damon.zookeeper;
 
 /**
  * 功能：
@@ -9,4 +9,6 @@ package com.damon.zookeeper.curator.constan;
 public class Constants {
 
     public static String HOST_AND_PORT = "127.0.0.1:2181";
+
+    public static String CLUSTER_HOST_AND_PORT = "127.0.0.1:3181,127.0.0.1:4181,127.0.0.1:5181";
 }

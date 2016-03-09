@@ -1,10 +1,8 @@
-package com.damon.zookeeper.curator.simple;
+package com.damon.zookeeper.cluster;
 
 import com.damon.zookeeper.Constants;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.framework.api.transaction.CuratorTransaction;
-import org.apache.curator.framework.api.transaction.CuratorTransactionResult;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -12,13 +10,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Collection;
-
 /**
- * 功能：
+ * 功能：集群测试
  *
  * @author Damon
- * @since 2015/12/1 11:05
+ * @since 2016/3/1 11:07
  */
 public class SimpleTest {
 
@@ -28,7 +24,7 @@ public class SimpleTest {
 
     @Before
     public void init() {
-        client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT, new ExponentialBackoffRetry(1000, 3));
+        client = CuratorFrameworkFactory.newClient(Constants.CLUSTER_HOST_AND_PORT, new ExponentialBackoffRetry(1000, 3));
         client.start();
 
         try {
@@ -46,28 +42,7 @@ public class SimpleTest {
     @Test
     public void testCreate() {
         try {
-            client.create().forPath(PATH, PATH.getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testTransaction() {
-        try {
-            testClient();
-
-            // 开启事务
-            CuratorTransaction transaction = client.inTransaction();
-            Collection<CuratorTransactionResult> results =
-                    transaction.create().forPath("/examples/simple/test", "some data".getBytes())
-                            .and().setData().forPath(PATH, "other data111".getBytes())
-                            //.and().delete().forPath("/yet/another/path")
-                            .and().commit();
-            client.setData().forPath(PATH, "other data122".getBytes());
-            for (CuratorTransactionResult result : results) {
-                System.out.println(result.getForPath() + " - " + result.getType());
-            }
+            client.create().creatingParentsIfNeeded().forPath(PATH, PATH.getBytes());
         } catch (Exception e) {
             e.printStackTrace();
         }
