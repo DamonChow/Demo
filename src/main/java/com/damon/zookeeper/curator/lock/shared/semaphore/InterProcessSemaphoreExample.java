@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * 功能：多锁对象 Multi Shared Lock
  *
  * <p>
- *     一个计数的信号量类似JDK的Semaphore。 JDK中Semaphore维护的一组许可(permits)，而Cubator中称之为租约(Lease)。
+ *     一个计数的信号量类似JDK的Semaphore。 JDK中Semaphore维护的一组许可(permits)，而Curator中称之为租约(Lease)。
  *     有两种方式可以决定semaphore的最大租约数。第一种方式是有用户给定的path决定。第二种方式使用SharedCountReader类。
  *     如果不使用SharedCountReader, 没有内部代码检查进程是否假定有10个租约而进程B假定有20个租约。
  *     所以所有的实例必须使用相同的numberOfLeases值.

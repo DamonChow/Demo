@@ -20,7 +20,8 @@ public class FakeLimitedResource {
             throw new IllegalStateException("Needs to be used by one client at a time");
         }
         try {
-            Thread.sleep((long) (3 * Math.random()));
+            Thread.sleep(1000l);
+            //Thread.sleep((long) (3 * Math.random()));
         } finally {
             inUse.set(false);
         }

@@ -22,7 +22,7 @@ public class DistributedBarrierExample {
     private static final String PATH = "/examples/barrier";
 
     public static void main(String[] args) throws Exception {
-        CuratorFramework client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT,
+        CuratorFramework client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT_2,
                 new ExponentialBackoffRetry(1000, 3));
         client.start();
 

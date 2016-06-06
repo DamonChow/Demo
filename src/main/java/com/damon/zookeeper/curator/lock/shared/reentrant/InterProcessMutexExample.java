@@ -32,19 +32,20 @@ public class InterProcessMutexExample {
                 Callable<Void> task = new Callable<Void>() {
                     @Override
                     public Void call() throws Exception {
-                        CuratorFramework client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT,
+                        CuratorFramework client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT_2,
                                 new ExponentialBackoffRetry(1000, 3));
                         try {
                             client.start();
                             final ExampleClientThatLocks example = new ExampleClientThatLocks(client,
                                     PATH, resource, "Client " + index);
                             for (int j = 0; j < REPETITIONS; ++j) {
-                                example.doWork(10, TimeUnit.SECONDS);
+                                example.doWork(1, TimeUnit.SECONDS);
                             }
                         } catch (Throwable e) {
                             e.printStackTrace();
                         } finally {
-                            CloseableUtils.closeQuietly(client);
+                            client.close();
+                            //CloseableUtils.closeQuietly(client);
                         }
                         return null;
                     }
