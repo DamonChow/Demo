@@ -1,16 +1,11 @@
 package com.damon.mongodb;
 
-import com.alibaba.fastjson.JSON;
 import com.mongodb.BasicDBObject;
 import com.mongodb.Block;
-import com.mongodb.Function;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
-import org.bson.BsonDocument;
 import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.conversions.Bson;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -21,8 +16,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * 功能：
