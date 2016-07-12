@@ -1,11 +1,16 @@
 package com.damon.mongodb;
 
 import com.alibaba.fastjson.JSON;
+import com.mongodb.BasicDBObject;
+import com.mongodb.Block;
 import com.mongodb.Function;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.conversions.Bson;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -16,6 +21,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 功能：
@@ -41,38 +48,68 @@ public class SimpleTest {
         db.getCollection("restaurants").insertOne(
                 new Document("address",
                         new Document()
-                                .append("street", "2 Avenue")
-                                .append("zipcode", "10075")
-                                .append("building", "1480")
-                                .append("coord", Arrays.asList(-73.9557413, 40.7720266)))
-                                .append("borough", "Manhattan")
-                                .append("cuisine", "Italian")
+                                .append("street", "4 Avenue")
+                                .append("zipcode", "15")
+                                .append("building", "80")
+                                .append("coord", Arrays.asList(-11.9557413, 49.7720266)))
+                                .append("borough", "DC.")
+                                .append("cuisine", "USA")
                                 .append("grades", Arrays.asList(
                                         new Document()
                                                 .append("date", format.parse("2014-10-01T00:00:00Z"))
                                                 .append("grade", "A")
-                                                .append("score", 11),
+                                                .append("score", 10),
                                         new Document()
                                                 .append("date", format.parse("2014-01-16T00:00:00Z"))
-                                                .append("grade", "B")
-                                                .append("score", 17)))
-                        .append("name", "Vella")
-                        .append("restaurant_id", "41704620"));
+                                                .append("grade", "A")
+                                                .append("score", 11)))
+                        .append("name", "Damon")
+                        .append("restaurant_id", "4935220"));
     }
 
     @Test
     public void find() {
         FindIterable<Document> restaurants = db.getCollection("restaurants").find();
-        restaurants.map(new Function<Document, Object>() {
-
+        restaurants.forEach(new Block<Document>() {
             @Override
-            public Object apply(Document document) {
-                logger.info("xx{}",document.values());
-                logger.info(document.toJson());
-                return null;
+            public void apply(Document document) {
+                logger.info("单个文档的values为：{}", document.values());
+                logger.info("单个文档的信息json为：{}", document.toJson());
             }
         });
     }
 
+    @Test
+    public void updateByName() {
+        db.getCollection("restaurants")
+                .updateOne(new Document("name", "Damon"),
+                        new Document("$set", new Document("borough", "W DC."))
+                                .append("$currentDate", new Document("lastModified", true)));
+
+        findByName();
+    }
+
+    @Test
+    public void findByName() {
+        BasicDBObject basicDBObject = new BasicDBObject();
+        basicDBObject.put("name", "Damon");
+        FindIterable<Document> restaurants = db.getCollection("restaurants").find(basicDBObject);
+        restaurants.forEach(new Block<Document>() {
+            @Override
+            public void apply(Document document) {
+                logger.info("单个文档的values为：{}", document.values());
+                logger.info("单个文档的信息json为：{}", document.toJson());
+            }
+        });
+    }
+
+    @Test
+    public void deleteOne() {
+        BasicDBObject basicDBObject = new BasicDBObject();
+        basicDBObject.put("name", "Damon");
+        db.getCollection("restaurants").deleteOne(basicDBObject);
+
+        findByName();
+    }
 
 }
