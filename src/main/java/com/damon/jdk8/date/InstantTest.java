@@ -20,7 +20,5 @@ public class InstantTest {
     public void test1() {
         Instant now = Instant.now();
         logger.info("当前时间戳：{}.", now);
-
-
     }
 }

@@ -1,5 +1,7 @@
 package com.damon.test;
 
+import java.util.Arrays;
+
 /**
  * 功能：
  *
@@ -8,6 +10,9 @@ package com.damon.test;
 public class ArrayTest {
 
     public static void main(String[] args) {
+        Long[] longs = {11l,22l,33l};
+        System.out.println(Arrays.asList(longs));
+        System.out.println("-------------------------------");
         //校验string的split方法，当没有可分组时，得到的数组不为空，length=1
         String ss = "sf";
         String[] split = ss.split("#");
