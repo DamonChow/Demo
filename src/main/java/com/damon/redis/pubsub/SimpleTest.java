@@ -58,12 +58,9 @@ public class SimpleTest {
     @Test
     public void testSubscribe() {
 
-        executor.submit(new Runnable() {
-            @Override
-            public void run() {
-                logger.info("subscribe channelA.test channelB.send_message");
-                subscribeJedis.subscribe(listener, "channelA.test", "channelB.send_message");
-            }
+        executor.submit(() -> {
+            logger.info("subscribe channelA.test channelB.send_message");
+            subscribeJedis.subscribe(listener, "channelA.test", "channelB.send_message");
         });
 
         // 测试发送  
@@ -93,12 +90,9 @@ public class SimpleTest {
      */
     @Test
     public void testPsubscribe() {
-        executor.submit(new Runnable() {
-            @Override
-            public void run() {
-                logger.info("psubscribe channel*");
-                subscribeJedis.psubscribe(listener, "channel*");
-            }
+        executor.submit(() -> {
+            logger.info("psubscribe channel*");
+            subscribeJedis.psubscribe(listener, "channel*");
         });
 
         logger.info("publish channelA.test OK: "
