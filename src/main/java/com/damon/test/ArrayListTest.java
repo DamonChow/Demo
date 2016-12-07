@@ -38,9 +38,7 @@ public class ArrayListTest {
 
         System.out.println("----------------------------ge--------------");
         List<String> list3 = new ArrayList<String>();
-        for (String s3 : list3) {
-            System.out.println(s3);
-        }
+        list3.forEach(System.out::println);
         System.out.println("----------------------------ge2--------------");
         list3.add("23");
         list3.add("23d");
@@ -143,11 +141,18 @@ public class ArrayListTest {
 
         Map<Character, Integer> result = list.stream().collect(Collectors.groupingBy(c -> c, Collectors.summingInt(c -> 1)));
         System.out.println(result);
-        //result.forEach(System.out::println);
 
         List<Integer> nums = Lists.newArrayList(1,1,null,2,3,4,null,5,6,7,8,9,10);
         System.out.println("sum is:"+nums.stream().filter(num -> num != null).
                 distinct().mapToInt(num -> num * 2).
                 peek(System.out::print).skip(2).limit(4).sum());
+    }
+
+
+    @Test
+    public void test() {
+        List<Person> test = Lists.newArrayList(new Person("a"), new Person("b"), new Person("c"));
+        test.forEach(person -> person.setName(person.getName()+"b"));
+        test.forEach(System.out::println);
     }
 }

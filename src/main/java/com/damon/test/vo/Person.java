@@ -29,6 +29,10 @@ public class Person implements Serializable{
     public Person() {
     }
 
+    public Person(String name) {
+        this.name = name;
+    }
+
     public Person(int id, String name, int sex, Date birthday, List<Person> childList) {
         this.id = id;
         this.name = name;

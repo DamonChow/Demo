@@ -1,6 +1,10 @@
 package com.damon.test;
 
+import org.junit.Test;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 功能：
@@ -58,5 +62,19 @@ public class ArrayTest {
 		System.out.println("循环2开始：" + start + "ms");
 		System.out.println("循环2结束：" + end + "ms");
 		System.out.println("循环2时间：" + (end-start) + "ms");
+    }
+
+    @Test
+    public void test() {
+        List<String> list = new ArrayList<>();
+        list.add("Java");
+        list.add("python");
+        list.add("c++");
+        list.add("c");
+        list.add("lisp");
+
+        String[] arr = new String[0];
+        list.stream().filter(p -> p.length() > 3).toArray(value -> arr);
+        System.out.println(Arrays.toString(arr));
     }
 }
