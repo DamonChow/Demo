@@ -7,11 +7,29 @@ package com.damon.test.test;
  * @since 2016/3/3 11:27
  */
 public class Person {
+
+    Long id;
     String name;
     int age ;
 
+    boolean isSelected;
+
+    public Person(Long id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 
     public void setName(String name) {
@@ -20,6 +38,14 @@ public class Person {
 
     public int getAge() {
         return age;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setAge(int age) {
@@ -38,8 +64,10 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", age=" + age +
+                ", isSelected=" + isSelected +
                 '}';
     }
 

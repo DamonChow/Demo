@@ -6,16 +6,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 
 /**
@@ -40,11 +37,7 @@ public class RedisClusterTest {
 
 	@Before
 	public void init(){
-		Set<HostAndPort> jedisClusterNodes = new HashSet<HostAndPort>();
-		jedisClusterNodes.add(new HostAndPort("10.1.6.67", 6379));
-		jedisClusterNodes.add(new HostAndPort("10.1.6.68", 6379));
-		jedisClusterNodes.add(new HostAndPort("10.1.6.69", 6379));
-		jc = new JedisCluster(jedisClusterNodes);
+		jc = RedisUtils.getRedisCluster();
 	}
 
 	@Test
@@ -78,5 +71,10 @@ public class RedisClusterTest {
 
 		//jc.eval(SETNX_SCRIPT, Lists.newArrayList("AAA"), Lists.newArrayList("a", "10800"));
 	}
+
+	@Test
+	public void testIncr() {
+        jc.incr("atest");
+    }
 
 }

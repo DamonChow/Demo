@@ -4,6 +4,8 @@ import com.damon.test.vo.Person;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,6 +16,8 @@ import java.util.stream.Collectors;
  * Created by Domon Chow on 2015/1/15 9:37.
  */
 public class ArrayListTest {
+
+    private Logger logger = LoggerFactory.getLogger(ArrayListTest.class);
 
     @Test
     public void test1() {
@@ -154,5 +158,23 @@ public class ArrayListTest {
         List<Person> test = Lists.newArrayList(new Person("a"), new Person("b"), new Person("c"));
         test.forEach(person -> person.setName(person.getName()+"b"));
         test.forEach(System.out::println);
+    }
+
+    @Test
+    public void testSubList() {
+        List<String> list = Lists.newArrayList("a","b","c","d","e","f","h","g");
+
+        logger.info("总长度--------------------------"+list.size());
+        int sheetLength = 3;
+        int sheetSize = list.size() / sheetLength + (list.size() % sheetLength == 0 ? 0 : 1);
+        List<List<String>> result = new ArrayList(sheetSize);
+        for (int sheetIndex = 0; sheetIndex < sheetSize; sheetIndex++) {
+            int fromIndex = sheetIndex * sheetLength;
+            int toIndex = (sheetIndex + 1) * sheetLength;
+            toIndex = toIndex >= list.size() ? list.size() : toIndex;
+            logger.info("from {} to {}.", new Object[]{fromIndex, toIndex});
+            result.add(list.subList(fromIndex, toIndex));
+        }
+        result.stream().forEach(x -> logger.info(x+""));
     }
 }
