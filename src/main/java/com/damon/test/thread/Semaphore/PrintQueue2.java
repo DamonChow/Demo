@@ -1,4 +1,4 @@
-package com.damon.test.thread.Semaphore2;
+package com.damon.test.thread.Semaphore;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
@@ -88,13 +88,13 @@ public class PrintQueue2 {
 }
 
 //8.   创建一个名为Job的类并一定实现Runnable 接口。这个类实现把文档传送到打印机的任务。
-class Job implements Runnable {
+class Job2 implements Runnable {
 
     //9.   声明一个对象为PrintQueue，名为printQueue。
     private PrintQueue2 printQueue;
 
     //10. 实现类的构造函数，初始化这个类里的PrintQueue对象。
-    public Job(PrintQueue2 printQueue) {
+    public Job2(PrintQueue2 printQueue) {
         this.printQueue = printQueue;
     }
 
@@ -114,7 +114,7 @@ class Job implements Runnable {
 }
 
 //15. 实现例子的main类，创建名为 Main的类并实现main()方法。
-class Main {
+class MainTest {
     public static void main(String args[]) {
 
 //16. 创建PrintQueue对象名为printQueue。
@@ -123,7 +123,7 @@ class Main {
 //17. 创建10个threads。每个线程会执行一个发送文档到print queue的Job对象。
         Thread thread[] = new Thread[10];
         for (int i = 0; i < 10; i++) {
-            thread[i] = new Thread(new Job(printQueue), "Thread" + i);
+            thread[i] = new Thread(new Job2(printQueue), "Thread" + i);
         }
 
 //18. 最后，开始这10个线程们。
