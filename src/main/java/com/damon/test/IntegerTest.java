@@ -1,5 +1,7 @@
 package com.damon.test;
 
+import org.junit.Test;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -46,5 +48,30 @@ public class IntegerTest {
         } else {
             System.out.println("nothing");
         }
+    }
+
+    @Test
+    public void test() {
+        Integer newIntegerByString = new Integer("11");
+        Integer initInteger = 11;
+        Integer newIntegerByInt = new Integer(11);
+        Integer parseInt = Integer.parseInt("11");
+        Integer valueByInt = Integer.valueOf(11);
+        Integer valueByString = Integer.valueOf("11");
+
+        System.out.println("newIntegerByString=initInteger ? " + (newIntegerByString==initInteger));
+        System.out.println("newIntegerByString=newIntegerByInt ? " + (newIntegerByString==newIntegerByInt));
+        System.out.println("newIntegerByString=parseInt ? " + (newIntegerByString==parseInt));
+
+        System.out.println("initInteger=newIntegerByInt ? " + (initInteger==newIntegerByInt));
+        System.out.println("initInteger=parseInt ? " + (initInteger==parseInt));
+
+        System.out.println("newIntegerByInt=parseInt ? " + (newIntegerByInt==parseInt));
+
+
+        System.out.println("initInteger=valueByString ? " + (initInteger==valueByString));
+        System.out.println("parseInt=valueByString ? " + (parseInt==valueByString));
+
+
     }
 }
