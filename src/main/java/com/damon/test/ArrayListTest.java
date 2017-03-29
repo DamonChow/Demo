@@ -2,7 +2,10 @@ package com.damon.test;
 
 import com.damon.test.vo.Person;
 import com.google.common.collect.Lists;
-import org.apache.commons.collections.CollectionUtils;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static com.google.common.collect.Sets.newHashSet;
 
 /**
  * 功能：ArrayList  为空，或者添加一个null
@@ -153,7 +158,6 @@ public class ArrayListTest {
                 peek(System.out::print).skip(2).limit(4).sum());
     }
 
-
     @Test
     public void test() {
         List<Person> test = Lists.newArrayList(new Person("a"), new Person("b"), new Person("c"));
@@ -177,5 +181,85 @@ public class ArrayListTest {
             result.add(list.subList(fromIndex, toIndex));
         }
         result.stream().forEach(x -> logger.info(x+""));
+    }
+
+    @Test
+    public void testRetainAll() {
+        List<String> preList = Lists.newArrayList("AA","BB","CC","DD");
+        String[] arrayString = {"AA","FF","SS","CfC"};
+        preList.forEach(System.out::print);
+        System.out.println("\n----------------------------");
+        System.out.println(CollectionUtils.containsAny(preList, Lists.newArrayList(arrayString)));
+        System.out.println("----------------------------");
+        System.out.println(!Collections.disjoint(preList, Lists.newArrayList(arrayString)));
+        System.out.println("----------------------------");
+        List<String> tempList = filterList(preList, arrayString);
+        preList.forEach(System.out::print);
+        System.out.println("\n----------------------------isEmpty=" + tempList.isEmpty());
+        tempList.forEach(System.out::println);
+    }
+
+    private List<String> filterList(List<String> preList, String[] arrayString) {
+        List<String> tempList = Lists.newArrayList(preList);
+        tempList.retainAll(Lists.newArrayList(arrayString));
+        return tempList;
+    }
+
+    @Test
+    public void testList() {
+        List listA = Lists.newArrayList(1, 2, 3, 4, 5);
+        List listB = Lists.newArrayList(4, 5, 6, 7, 8);
+
+        Collection union = CollectionUtils.union(listA, listB);
+        System.out.println("取所有元素:");
+        for (Object integer : union)
+            System.out.println(integer);
+
+        Collection disjunction = CollectionUtils.disjunction(listA, listB);
+        System.out.println("取不相同的元素:");
+        for (Object integer : disjunction)
+            System.out.println(integer);
+
+        Collection intersection = CollectionUtils.intersection(listA, listB);
+        System.out.println("交集:取相同元素");
+        for (Object integer : intersection)
+            System.out.println(integer);
+
+        System.out.println("B是A子集？" + listA.containsAll(listB));
+    }
+
+    @Test
+    public void testMap2List() {
+//        Map<String, List<String>> source = Maps.newHashMap("ID", Lists.newArrayList("name","sex","birthday"));
+    }
+
+    @Test
+    public void testMain() {
+        String[] arrayA = new String[] { "1", "2", "3", "3", "4", "5" };
+        String[] arrayB = new String[] { "3", "4", "4", "5", "6", "7" };
+
+        List<String> a = Arrays.asList(arrayA);
+        List<String> b = Arrays.asList(arrayB);
+        //并集
+        Collection<String> union = CollectionUtils.union(a, b);
+        //交集
+        Collection<String> intersection = CollectionUtils.intersection(a, b);
+        //交集的补集
+        Collection<String> disjunction = CollectionUtils.disjunction(a, b);
+        //集合相减
+        Collection<String> subtract = CollectionUtils.subtract(a, b);
+
+        Collections.sort((List<String>) union);
+        Collections.sort((List<String>) intersection);
+        Collections.sort((List<String>) disjunction);
+        Collections.sort((List<String>) subtract);
+
+        System.out.println("A: " + ArrayUtils.toString(a.toArray()));
+        System.out.println("B: " + ArrayUtils.toString(b.toArray()));
+        System.out.println("--------------------------------------------");
+        System.out.println("并集 Union(A, B): " + ArrayUtils.toString(union.toArray()));
+        System.out.println("交集 Intersection(A, B): " + ArrayUtils.toString(intersection.toArray()));
+        System.out.println("交集的补集 Disjunction(A, B): " + ArrayUtils.toString(disjunction.toArray()));
+        System.out.println("集合相减 Subtract(A, B): " + ArrayUtils.toString(subtract.toArray()));
     }
 }
