@@ -240,6 +240,17 @@
             <version>0.4.8</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.0.0-incubating</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-srvutil</artifactId>
+            <version>4.0.0-incubating</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
