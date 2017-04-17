@@ -25,8 +25,13 @@ public class RedisUtils {
         return new JedisCluster(redisClusterNodes);
     }
 
-    public static Jedis getRedis() {
+    public static Jedis getRedisFromLocal() {
         JedisPool pool = new JedisPool(new JedisPoolConfig(), "127.0.0.1", 6379);
+        return pool.getResource();
+    }
+
+    public static Jedis getRedisFromAAA() {
+        JedisPool pool = new JedisPool(new JedisPoolConfig(), "10.169.12.62", 6379);
         return pool.getResource();
     }
 

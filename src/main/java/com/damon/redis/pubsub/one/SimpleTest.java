@@ -31,7 +31,7 @@ public class SimpleTest {
 
     @Before
     public void init() {
-        redis = RedisUtils.getRedis();
+        redis = RedisUtils.getRedisFromLocal();
     }
 
     @After

@@ -21,7 +21,6 @@ public class LockTest {
         config.useSingleServer().setAddress("10.1.0.208:6379");
         RedissonClient redisson = Redisson.create(config);
 
-
         RKeys keys = redisson.getKeys();
         System.out.println(keys);
         RLock lock = redisson.getLock("anyLock");

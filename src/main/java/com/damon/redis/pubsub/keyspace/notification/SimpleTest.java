@@ -43,8 +43,8 @@ public class SimpleTest {
 
     @Before
     public void init(){
-        subRedis = RedisUtils.getRedis();
-        pubRedis = RedisUtils.getRedis();
+        subRedis = RedisUtils.getRedisFromLocal();
+        pubRedis = RedisUtils.getRedisFromLocal();
     }
 
     @After
