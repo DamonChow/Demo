@@ -19,15 +19,20 @@ package com.damon.rocketmq.example.transaction;
 import org.apache.rocketmq.client.producer.LocalTransactionState;
 import org.apache.rocketmq.client.producer.TransactionCheckListener;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TransactionCheckListenerImpl implements TransactionCheckListener {
+
+    private Logger logger = LoggerFactory.getLogger(TransactionExecuterImpl.class);
+
     private AtomicInteger transactionIndex = new AtomicInteger(0);
 
     @Override
     public LocalTransactionState checkLocalTransactionState(MessageExt msg) {
-        System.out.printf("server checking TrMsg " + msg.toString() + "%n");
+        logger.info("server checking TrMsg = { }.", msg.toString());
 
         int value = transactionIndex.getAndIncrement();
         if ((value % 6) == 0) {
@@ -40,4 +45,5 @@ public class TransactionCheckListenerImpl implements TransactionCheckListener {
 
         return LocalTransactionState.UNKNOW;
     }
+
 }

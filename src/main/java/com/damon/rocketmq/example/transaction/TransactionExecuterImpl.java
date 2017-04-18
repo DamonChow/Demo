@@ -19,16 +19,21 @@ package com.damon.rocketmq.example.transaction;
 import org.apache.rocketmq.client.producer.LocalTransactionExecuter;
 import org.apache.rocketmq.client.producer.LocalTransactionState;
 import org.apache.rocketmq.common.message.Message;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TransactionExecuterImpl implements LocalTransactionExecuter {
-    private AtomicInteger transactionIndex = new AtomicInteger(1);
+
+    private Logger logger = LoggerFactory.getLogger(TransactionExecuterImpl.class);
+
+    private AtomicInteger transactionIndex = new AtomicInteger(0);
 
     @Override
     public LocalTransactionState executeLocalTransactionBranch(final Message msg, final Object arg) {
         int value = transactionIndex.getAndIncrement();
-
+        logger.info("msg={},arg={},transactionIndex={}", msg, arg, transactionIndex);
         if (value == 0) {
             throw new RuntimeException("Could not find db");
         } else if ((value % 5) == 0) {
