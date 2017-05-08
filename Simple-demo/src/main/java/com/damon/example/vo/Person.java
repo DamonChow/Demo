@@ -1,7 +1,5 @@
 package com.damon.example.vo;
 
-import javassist.SerialVersionUID;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

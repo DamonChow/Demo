@@ -13,7 +13,8 @@ import java.util.List;
  */
 public class ArrayTest {
 
-    public static void main(String[] args) {
+    @Test
+    public void main() {
         Long[] longs = {11l,22l,33l};
         System.out.println(Arrays.asList(longs));
         System.out.println("-------------------------------");
@@ -73,8 +74,11 @@ public class ArrayTest {
         list.add("c");
         list.add("lisp");
 
-        String[] arr = new String[0];
+        String[] arr = new String[list.size()];
         list.stream().filter(p -> p.length() > 3).toArray(value -> arr);
         System.out.println(Arrays.toString(arr));
+        System.out.println("-----------分割线----------------");
+        String[] arr2 = list.stream().filter(p -> p.length() > 3).toArray(String[]::new);
+        System.out.println(Arrays.toString(arr2));
     }
 }
