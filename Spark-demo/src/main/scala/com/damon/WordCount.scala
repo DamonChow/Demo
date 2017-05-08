@@ -1,3 +1,5 @@
+package com.damon
+
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -11,9 +13,11 @@ object WordCount {
 
     val rowRdd = sc.textFile(inputPath)
     println(rowRdd.take(1).toString)
+    println("------------分割线-------------")
     val resultRdd = rowRdd.flatMap(line => line.split("\\s+"))
       .map(word => (word, 1)).reduceByKey(_ + _)
     println(resultRdd.take(2).toString)
+    println("------------分割线-------------")
     for (data <- resultRdd) {
       println(data)
     }
