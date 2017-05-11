@@ -31,7 +31,7 @@ public class InterProcessMutexExample {
                 Callable<Void> task = new Callable<Void>() {
                     @Override
                     public Void call() throws Exception {
-                        CuratorFramework client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT_2,
+                        CuratorFramework client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT,
                                 new ExponentialBackoffRetry(1000, 3));
                         try {
                             client.start();

@@ -1,5 +1,6 @@
 package com.damon.zookeeper.cluster;
 
+import com.damon.zookeeper.Constants;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class Client {
     public static void main(String[] args) throws Exception {
-        ZooKeeper zk = new ZooKeeper("127.0.0.1:3181,127.0.0.2:4181,127.0.0.3:5181", 10000,
+        ZooKeeper zk = new ZooKeeper(Constants.CLUSTER_HOST_AND_PORT, 10000,
                 new Watcher() {
                     public void process(WatchedEvent event) {
                         System.out.println("event: " + event.getType());

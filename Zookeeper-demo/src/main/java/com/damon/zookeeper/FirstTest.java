@@ -29,7 +29,7 @@ public class FirstTest {
     @Before
     public void init() {
         try {
-            zk = new ZooKeeper("localhost:2181", 30000, new Watcher() {
+            zk = new ZooKeeper(Constants.HOST_AND_PORT, 30000, new Watcher() {
                 // 监控所有被触发的事件
                 public void process(WatchedEvent event) {
                     System.out.println("状态:[" + event.getState()

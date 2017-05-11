@@ -22,7 +22,7 @@ public class DistributedDoubleBarrierExample {
     private static final String PATH = "/examples/barrier/double";
 
     public static void main(String[] args) throws Exception {
-            CuratorFramework client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT_2,
+            CuratorFramework client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT,
                     new ExponentialBackoffRetry(1000, 3));
             client.start();
 
