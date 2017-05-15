@@ -2,10 +2,7 @@ package com.damon.kafka.quickstart;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
-import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.IntegerSerializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +12,7 @@ public class SimpleProducer {
 
     private static Logger logger = LoggerFactory.getLogger(SimpleProducer.class);
 
-    private final Producer<String, String> producer;
+    private final KafkaProducer<String, String> producer;
 
     public final static String TOPIC = "damon";
 

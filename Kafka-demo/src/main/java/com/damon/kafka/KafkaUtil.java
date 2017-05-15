@@ -17,7 +17,7 @@ public class KafkaUtil {
 
     private static KafkaConsumer<String, String> consumer;
 
-    public static KafkaProducer<String, String> getProducer() {
+    public static KafkaProducer<String, String> getKafkaProducer() {
         if (producer == null) {
             Properties props = new Properties();
             props.put("bootstrap.servers", "localhost:9092");
@@ -32,10 +32,9 @@ public class KafkaUtil {
     }
 
 
-    public static KafkaConsumer<String, String> getConsumer() {
+    public static KafkaConsumer<String, String> getKafkaConsumer() {
         if(consumer == null) {
             Properties props = new Properties();
-
             props.put("bootstrap.servers", "localhost:9092");
             props.put("group.id", "12");
             props.put("enable.auto.commit", "true");

@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Created by zhoujiwei on 2017/5/11.
+ * Created by Damon on 2017/5/11.
  */
 public class MyConsumer {
 
     @Test
     public void main(){
-        KafkaConsumer<String, String> consumer = KafkaUtil.getConsumer();
+        KafkaConsumer<String, String> consumer = KafkaUtil.getKafkaConsumer();
         consumer.subscribe(Arrays.asList(KafkaUtil.TOPIC));
         consumer.seekToBeginning(new ArrayList<TopicPartition>());
 
