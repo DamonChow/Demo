@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertTrue;
 
 /**
- * 官方审批让demo
+ * 官方spring demo
  * Created by Damon on 2017/5/15.
  */
 public class QuickTest {
