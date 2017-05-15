@@ -1,4 +1,4 @@
-package com.damon.kafka;
+package com.damon.kafka.spring;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -26,12 +26,12 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertTrue;
 
 /**
- * 官方demo
- * Created by Damon on 2017/5/10.
+ * 官方审批让demo
+ * Created by Damon on 2017/5/15.
  */
-public class SimpleTest {
+public class QuickTest {
 
-    private Logger logger = LoggerFactory.getLogger(SimpleTest.class);
+    protected final Logger logger = LoggerFactory.getLogger(QuickTest.class);
 
     @Test
     public void testAutoCommit() throws Exception {
@@ -39,14 +39,13 @@ public class SimpleTest {
         ContainerProperties containerProps = new ContainerProperties("topic1", "topic2");
         final CountDownLatch latch = new CountDownLatch(4);
         containerProps.setMessageListener(new MessageListener<Integer, String>() {
-
             @Override
             public void onMessage(ConsumerRecord<Integer, String> message) {
                 logger.info("received: " + message);
                 latch.countDown();
             }
-
         });
+
         KafkaMessageListenerContainer<Integer, String> container = createContainer(containerProps);
         container.setBeanName("testAuto");
         container.start();
@@ -58,15 +57,16 @@ public class SimpleTest {
         template.sendDefault(0, "baz");
         template.sendDefault(2, "qux");
         template.flush();
-        latch.await(60, TimeUnit.SECONDS);
+        assertTrue(latch.await(60, TimeUnit.SECONDS));
         container.stop();
         logger.info("Stop auto");
+
     }
 
     private KafkaMessageListenerContainer<Integer, String> createContainer(ContainerProperties containerProps) {
         Map<String, Object> props = consumerProps();
         DefaultKafkaConsumerFactory<Integer, String> cf = new DefaultKafkaConsumerFactory<Integer, String>(props);
-        KafkaMessageListenerContainer<Integer, String> container = new KafkaMessageListenerContainer<>(cf, containerProps);
+        KafkaMessageListenerContainer<Integer, String> container =  new KafkaMessageListenerContainer<>(cf, containerProps);
         return container;
     }
 
