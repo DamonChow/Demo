@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * http://kafka.apache.org/0100/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html
  *
- * Created by zhoujiwei on 2017/5/15.
+ * Created by Damon on 2017/5/15.
  */
 public class KafkaConsumerExample {
 
