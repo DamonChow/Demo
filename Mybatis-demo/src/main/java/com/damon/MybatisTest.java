@@ -1,6 +1,10 @@
 package com.damon;
 
+import com.damon.dao.IArticleOperation;
+import com.damon.dao.IBlogOperation;
 import com.damon.dao.IUserOperation;
+import com.damon.vo.Article;
+import com.damon.vo.Blog;
 import com.damon.vo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -113,6 +117,42 @@ public class MybatisTest {
         }
     }
 
+    public void getUserArticles(int userid) {
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            IArticleOperation articleOperation = session.getMapper(IArticleOperation.class);
+            List<Article> articles = articleOperation.getUserArticles(userid);
+            for (Article article : articles) {
+                System.out.println(article.getTitle() + ":"
+                        + article.getContent() + ",用户名："
+                        + article.getUser().getUserName() + ",用户地址："
+                        + article.getUser().getUserAddress());
+            }
+        } finally {
+            session.close();
+        }
+    }
+
+    public void getBlogArticles(int blogid) {
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            IBlogOperation blogOperation = session.getMapper(IBlogOperation.class);
+            Blog blog = blogOperation.getBlogByID(blogid);
+            System.out.println(blog.getTitle() + ":");
+            List<Article> articles = blog.getArticles();
+            for (Article article : articles) {
+                System.out.println(article.getTitle() + ":"
+                        + article.getContent() + ",用户名："
+                        + article.getUser().getUserName() + ",用户地址："
+                        + article.getUser().getUserAddress());
+                /*System.out.println(article.getTitle() + ":"
+                        + article.getContent());*/
+            }
+        } finally {
+            session.close();
+        }
+    }
+
     public static void main(String[] args) {
         try {
             MybatisTest test = new MybatisTest();
@@ -120,8 +160,9 @@ public class MybatisTest {
 //             test.getUserList("test1");
 //             test.addUser();
 //             test.updateUser();
-             test.deleteUser(6);
-
+//             test.deleteUser(6);
+//            test.getUserArticles(1);
+            test.getBlogArticles(1);
         } catch (Exception e) {
             e.printStackTrace();
         }

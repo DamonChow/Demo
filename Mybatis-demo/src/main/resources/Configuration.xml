@@ -5,6 +5,8 @@
     <!-- mybatis别名定义 -->
     <typeAliases>
         <typeAlias alias="User" type="com.damon.vo.User"/>
+        <typeAlias alias="Article" type="com.damon.vo.Article"/>
+        <typeAlias alias="Blog" type="com.damon.vo.Blog"/>
     </typeAliases>
 
     <environments default="development">
@@ -21,6 +23,8 @@
 
     <!-- mybatis的mapper文件，每个xml配置文件对应一个接口 -->
     <mappers>
-        <mapper resource="User.xml"/>
+        <mapper resource="sql/User.xml"/>
+        <mapper resource="sql/Article.xml"/>
+        <mapper resource="sql/Blog.xml"/>
     </mappers>
 </configuration>
