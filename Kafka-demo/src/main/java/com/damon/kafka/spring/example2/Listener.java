@@ -13,6 +13,7 @@ public class Listener {
 
     @KafkaListener(id = "foo", topics = "annotated1")
     public void listen1(String foo) {
+        System.out.println(foo+"-----------------");
         this.latch1.countDown();
     }
 

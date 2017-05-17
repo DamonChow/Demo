@@ -6,11 +6,10 @@ import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.annotation.KafkaBootstrapConfiguration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
@@ -20,9 +19,6 @@ import org.springframework.kafka.core.ProducerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Damon on 2017/5/15.
@@ -30,6 +26,11 @@ import static org.junit.Assert.assertTrue;
 @Configuration
 @EnableKafka
 public class Config {
+
+    @Bean
+    public KafkaBootstrapConfiguration kafkaBootstrapConfiguration() {
+        return new KafkaBootstrapConfiguration();
+    }
 
     @Bean
     ConcurrentKafkaListenerContainerFactory<Integer, String> kafkaListenerContainerFactory() {
@@ -84,16 +85,6 @@ public class Config {
         return new KafkaTemplate<Integer, String>(producerFactory());
     }
 
-    @Autowired
-    private Listener listener;
 
-    @Autowired
-    private KafkaTemplate<Integer, String> kafkaTemplate;
 
-    @Test
-    public void testSimple() throws Exception {
-        kafkaTemplate.send("annotated1", 0, "foo");
-        kafkaTemplate.flush();
-        assertTrue(listener.getLatch1().await(10, TimeUnit.SECONDS));
-    }
 }
