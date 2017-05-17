@@ -50,6 +50,7 @@
         <module>Elasticsearch-demo</module>
         <module>Scala-demo</module>
         <module>Mybatis-demo</module>
+        <module>Snowflake-demo</module>
     </modules>
     
     <dependencyManagement>
