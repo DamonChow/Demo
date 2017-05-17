@@ -6,9 +6,8 @@
        default-autowire="byName">
 
     <!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描 -->
-    <context:component-scan base-package="com.damon.kafka.spring">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-    </context:component-scan>
-    <import resource="classpath:producer.xml" />
-    <import resource="classpath:consumer.xml" />
+    <context:component-scan base-package="com.damon.kafka.spring"/>
+    <context:property-placeholder location="classpath:application.properties"/><!-- 加载配置文件 -->
+    <import resource="classpath:kafka-producer.xml" />
+    <import resource="classpath:kafka-consumer.xml" />
 </beans>

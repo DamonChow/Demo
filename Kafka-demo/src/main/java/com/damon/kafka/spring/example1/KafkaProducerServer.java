@@ -2,7 +2,6 @@ package com.damon.kafka.spring.example1;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,41 +26,14 @@ public class KafkaProducerServer{
      * kafka发送消息模板
      * @param topic 主题
      * @param value    messageValue
-     * @param ifPartition 是否使用分区 0是\1不是
-     * @param partitionNum 分区数 如果是否使用分区为0,分区数必须大于0
      * @param role 角色:bbc app erp...
      */
-    public Map<String,Object> sndMesForTemplate(String topic, Object value, String ifPartition, Integer partitionNum, String role){
+    public Map<String,Object> sndMesForTemplate(String topic, Object value, String role){
         String key = role+"-"+value.hashCode();
         String valueString = JSON.toJSONString(value);
-        if(ifPartition.equals("0")){
-            //表示使用分区
-            int partitionIndex = getPartitionIndex(key, partitionNum);
-            ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send(topic, partitionIndex, key, valueString);
-            Map<String,Object> res = checkProRecord(result);
-            return res;
-        }else{
-            ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send(topic, key, valueString);
-            Map<String,Object> res = checkProRecord(result);
-            return res;
-        }
-    }
-
-    /**
-     * 根据key值获取分区索引
-     * @param key
-     * @param partitionNum
-     * @return
-     */
-    private int getPartitionIndex(String key, int partitionNum){
-        if (key == null) {
-            Random random = new Random();
-            return random.nextInt(partitionNum);
-        }
-        else {
-            int result = Math.abs(key.hashCode())%partitionNum;
-            return result;
-        }
+        ListenableFuture<SendResult<String, String>> result = kafkaTemplate.send(topic, key, valueString);
+        Map<String,Object> res = checkProRecord(result);
+        return res;
     }
 
     /**

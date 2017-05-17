@@ -33,8 +33,7 @@ public class Config {
 
     @Bean
     ConcurrentKafkaListenerContainerFactory<Integer, String> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<Integer, String> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<Integer, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
@@ -95,6 +94,6 @@ public class Config {
     public void testSimple() throws Exception {
         kafkaTemplate.send("annotated1", 0, "foo");
         kafkaTemplate.flush();
-        assertTrue(this.listener.getLatch1().await(10, TimeUnit.SECONDS));
+        assertTrue(listener.getLatch1().await(10, TimeUnit.SECONDS));
     }
 }

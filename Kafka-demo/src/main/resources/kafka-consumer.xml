@@ -9,9 +9,9 @@
     <bean id="consumerProperties" class="java.util.HashMap">
         <constructor-arg>
             <map>
-                <entry key="bootstrap.servers" value="127.0.0.1:9092"/>
+                <entry key="bootstrap.servers" value="${bootstrap.servers}"/>
                 <entry key="group.id" value="0"/>
-                <entry key="enable.auto.commit" value="false"/>
+                <entry key="enable.auto.commit" value="true"/>
                 <entry key="auto.commit.interval.ms" value="1000"/>
                 <entry key="session.timeout.ms" value="15000"/>
                 <entry key="key.deserializer" value="org.apache.kafka.common.serialization.StringDeserializer"/>
@@ -31,26 +31,14 @@
     <bean id="messageListenerConsumerService" class="com.damon.kafka.spring.example1.KafkaConsumerServer"/>
 
     <!-- 消费者容器配置信息 -->
-    <bean id="containerProperties_trade" class="org.springframework.kafka.listener.config.ContainerProperties">
-        <constructor-arg value="order_test_topic"/>
-        <property name="messageListener" ref="messageListenerConsumerService"/>
-    </bean>
-    <bean id="containerProperties_other" class="org.springframework.kafka.listener.config.ContainerProperties">
-        <constructor-arg value="other_test_topic"/>
+    <bean id="containerProperties" class="org.springframework.kafka.listener.config.ContainerProperties">
+        <constructor-arg value="order_topic"/>
         <property name="messageListener" ref="messageListenerConsumerService"/>
     </bean>
 
     <!-- 创建messageListenerContainer bean，使用的时候，只需要注入这个bean -->
-    <bean id="messageListenerContainer_trade" class="org.springframework.kafka.listener.KafkaMessageListenerContainer"
-          init-method="doStart">
+    <bean id="messageListenerContainer" class="org.springframework.kafka.listener.KafkaMessageListenerContainer" init-method="doStart">
         <constructor-arg ref="consumerFactory"/>
-        <constructor-arg ref="containerProperties_trade"/>
+        <constructor-arg ref="containerProperties"/>
     </bean>
-
-    <bean id="messageListenerContainer_other" class="org.springframework.kafka.listener.KafkaMessageListenerContainer"
-          init-method="doStart">
-        <constructor-arg ref="consumerFactory"/>
-        <constructor-arg ref="containerProperties_other"/>
-    </bean>
-
 </beans>
