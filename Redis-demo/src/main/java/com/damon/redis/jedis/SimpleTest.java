@@ -20,9 +20,9 @@ public class SimpleTest {
 
     protected static Logger logger = LoggerFactory.getLogger(SimpleTest.class);
 
-    ShardedJedisPool pool;
+    private ShardedJedisPool pool;
 
-    ShardedJedis resource;
+    private ShardedJedis resource;
 
     @Before
     public void init() {
@@ -35,6 +35,12 @@ public class SimpleTest {
     public void test() {
         resource.set("a","1");
         logger.info("get a is {}.", resource.get("a"));
+    }
+
+    @Test
+    public void testRpushEmpty() {
+        byte[][] result = new byte[0][];
+        resource.rpush("list".getBytes(), result);
     }
 
     @After

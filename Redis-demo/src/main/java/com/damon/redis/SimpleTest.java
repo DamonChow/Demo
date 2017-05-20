@@ -16,11 +16,11 @@ public class SimpleTest {
 
     protected static Logger logger = LoggerFactory.getLogger(SimpleTest.class);
 
-    Jedis jedis;
+    private Jedis jedis;
 
     @Before
     public void init() {
-        jedis = RedisUtils.getRedisFromAAA();
+        jedis = RedisUtils.getRedisFromLocal();
     }
 
     @Test

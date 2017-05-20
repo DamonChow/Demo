@@ -15,7 +15,7 @@ B.就是官网上提供的 SimpleConsumer Example low-level
 关于Offset初始值的问题：
 先produce一些数据，然后再用consumer读的话，需要加上一句offset读取设置
 
-props.put("auto.offset.reset", "smallest"); //必须要加，如果要读旧数据  
+props.put("auto.offset.reset", "earliest"); //必须要加，如果要读旧数据  
  
 因为初始的offset默认是非法的，然后这个设置的意思 是，当offset非法时，如何修正offset，默认是largest，即最新，所以不加这个配置，你是读不到你之前produce的数据的，而且这个 时候你再加上smallest配置也没用了，因为此时offset是合法的，不会再被修正了，需要手工或用工具改重置offset
 
