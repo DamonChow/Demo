@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="helloWorldTwoService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8080/demo-app/remote/helloWorldTwoService"/>
+        <property name="serviceInterface" value="com.damon.service.HelloWorldTwoService"/>
+    </bean>
+
+    <bean id="helloWorldService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
+        <property name="serviceUrl" value="http://localhost:8080/demo-app/remote/helloWorldService"/>
+        <property name="serviceInterface" value="com.damon.service.HelloWorldService"/>
+    </bean>
+
+
+</beans>

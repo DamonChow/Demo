@@ -11,6 +11,9 @@
         <scala.version>2.11</scala.version>
         <junit.version>4.11</junit.version>
 
+        <hessian.version>4.0.38</hessian.version>
+        <servlet-api.version>3.0.1</servlet-api.version>
+        <jsp-api.version>2.2</jsp-api.version>
         <guava.version>18.0</guava.version>
         <hystrix.version>1.5.10</hystrix.version>
         <fastjson.version>1.2.7</fastjson.version>
@@ -51,6 +54,7 @@
         <module>Scala-demo</module>
         <module>Mybatis-demo</module>
         <module>Snowflake-demo</module>
+        <module>Hessian-framework</module>
     </modules>
     
     <dependencyManagement>
@@ -366,6 +370,22 @@
                 <version>${spark.version}</version>
             </dependency>
             <!--spark end-->
+
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>jsp-api</artifactId>
+                <version>${jsp-api.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
