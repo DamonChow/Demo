@@ -1,5 +1,6 @@
 package com.damon.hessian.consumer;
 
+import com.damon.hessian.support.TraceHessianProxyFactory;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
@@ -80,6 +81,14 @@ public class HessianClientScanner extends ClassPathBeanDefinitionScanner {
 
             for (BeanDefinitionHolder holder : beanDefinitions) {
                 GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
+                String url = context + "/" + holder.getBeanName();
+                definition.getPropertyValues().add("readTimeout", readTimeout);
+                definition.getPropertyValues().add("serviceUrl", url);
+                definition.getPropertyValues().add("serviceInterface", definition.getBeanClassName());
+                definition.getPropertyValues().add("overloadEnabled", Boolean.TRUE);
+                definition.getPropertyValues().add("proxyFactory", new TraceHessianProxyFactory());
+                definition.setBeanClass(HessianProxyFactoryBean.class);
+                definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 
                 if (logger.isDebugEnabled()) {
                     logger.debug("Creating HessianFactoryBean with name '"
@@ -87,14 +96,6 @@ public class HessianClientScanner extends ClassPathBeanDefinitionScanner {
                             + definition.getBeanClassName()
                             + "' HessianInterface");
                 }
-
-                String url = context + "/" + holder.getBeanName();
-                definition.getPropertyValues().add("readTimeout", readTimeout);
-                definition.getPropertyValues().add("serviceUrl", url);
-                definition.getPropertyValues().add("serviceInterface", definition.getBeanClassName());
-                definition.getPropertyValues().add("overloadEnabled", Boolean.TRUE);
-                definition.setBeanClass(HessianProxyFactoryBean.class);
-                definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
             }
         }
         return beanDefinitions;

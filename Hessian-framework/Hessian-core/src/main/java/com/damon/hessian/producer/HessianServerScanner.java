@@ -1,5 +1,6 @@
 package com.damon.hessian.producer;
 
+import com.damon.hessian.support.TraceHessianServiceExporter;
 import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.config.RuntimeBeanReference;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanNameGenerator;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 import org.springframework.context.annotation.AnnotationScopeMetadataResolver;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
@@ -18,7 +18,6 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
-import org.springframework.remoting.caucho.HessianServiceExporter;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
@@ -92,8 +91,8 @@ public class HessianServerScanner extends ClassPathBeanDefinitionScanner {
                 }
 
                 ScannedGenericBeanDefinition bd = (ScannedGenericBeanDefinition) candidate;
-                bd.setBeanClass(HessianServiceExporter.class);
-                bd.setBeanClassName(HessianServiceExporter.class.getName());
+                bd.setBeanClass(TraceHessianServiceExporter.class);
+                bd.setBeanClassName(TraceHessianServiceExporter.class.getName());
                 bd.getPropertyValues().add("service", new RuntimeBeanReference(beanName));
                 String interfaceName = getInterfaceName(bd);
                 bd.getPropertyValues().add("serviceInterface", interfaceName);
