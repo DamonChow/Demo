@@ -7,4 +7,6 @@ package com.damon.service;
 public interface HelloWorldService {
 
     String sayHello(String hello);
+
+    String sayHello(int number);
 }

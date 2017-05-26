@@ -15,6 +15,7 @@ public class RemoteTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("hessian-annotation.xml");
         HelloWorldService helloWorldService = context.getBean("helloWorldService", HelloWorldService.class);
         System.out.println(helloWorldService.sayHello("damon"));
+        System.out.println(helloWorldService.sayHello(3));
 
         HelloWorldTwoService helloWorldTwoService = context.getBean("helloWorldTwoService", HelloWorldTwoService.class);
         System.out.println(helloWorldTwoService.sayHello("damon"));
