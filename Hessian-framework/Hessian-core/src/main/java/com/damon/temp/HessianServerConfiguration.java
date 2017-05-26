@@ -1,4 +1,4 @@
-package com.damon.hessian.producer;
+package com.damon.temp;
 
 import com.damon.hessian.annotation.HessianInterface;
 import com.damon.hessian.annotation.HessianService;
@@ -12,14 +12,13 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.caucho.HessianServiceExporter;
 
-import java.util.Arrays;
 import java.util.Map;
 
 /**
  * Created by Damon on 2017/5/24.
  */
 @Configuration
-public class HessianServiceConfiguration implements BeanFactoryPostProcessor {
+public class HessianServerConfiguration implements BeanFactoryPostProcessor {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -40,9 +39,7 @@ public class HessianServiceConfiguration implements BeanFactoryPostProcessor {
             String interfaceName = interfaceClass.getName();
             builder.addPropertyValue("serviceInterface", interfaceName);
 
-            HessianInterface annotation = interfaceClass.getAnnotation(HessianInterface.class);
-            ((BeanDefinitionRegistry) beanFactory).registerBeanDefinition(annotation.remote()
-                    + "/" + serviceName.replace("Impl",""), builder.getBeanDefinition());
+            ((BeanDefinitionRegistry) beanFactory).registerBeanDefinition("/remoting/" + serviceName.replace("Impl",""), builder.getBeanDefinition());
             logger.debug("Creating HessianServiceExporter with ref beanName '" + serviceName + "' and '" + interfaceName  + "' serviceInterface");
         }
     }

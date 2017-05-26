@@ -1,23 +1,17 @@
-package com.damon.temp.producer2;
+package com.damon.hessian.producer;
 
-import com.damon.hessian.common.AopTargetUtils;
-import com.damon.hessian.annotation.HessianInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
-import org.springframework.beans.factory.support.BeanNameGenerator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.AnnotationBeanNameGenerator;
-import org.springframework.context.annotation.ScannedGenericBeanDefinition;
-import org.springframework.core.type.AnnotationMetadata;
-
-import java.util.Map;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.util.StringUtils;
 
 import static org.springframework.util.Assert.notNull;
 
@@ -25,7 +19,7 @@ import static org.springframework.util.Assert.notNull;
 /**
  * Created by Damon on 2017/5/24.
  */
-public class HessianServerConfiguration implements BeanDefinitionRegistryPostProcessor, ApplicationContextAware, BeanNameAware{
+public class HessianServerConfiguration implements BeanDefinitionRegistryPostProcessor, ApplicationContextAware, BeanNameAware, InitializingBean {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -37,15 +31,6 @@ public class HessianServerConfiguration implements BeanDefinitionRegistryPostPro
 
     private ApplicationContext applicationContext;
 
-    private BeanNameGenerator nameGenerator = new AnnotationBeanNameGenerator() {
-        @Override
-        protected String buildDefaultBeanName(BeanDefinition definition) {
-            AnnotationMetadata metadata = ((ScannedGenericBeanDefinition) definition).getMetadata();
-            Map<String, Object> annotationAttributes = metadata.getAnnotationAttributes(HessianInterface.class.getName());
-            return (String) annotationAttributes.get("uri");
-        }
-    };
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
@@ -56,30 +41,25 @@ public class HessianServerConfiguration implements BeanDefinitionRegistryPostPro
         this.beanName = name;
     }
 
-    private Class<?>[] getActualInterfaces(Object obj) {
-        try {
-            return AopTargetUtils.getInterfaces(obj);
-        } catch (Exception e) {
-            logger.error(obj + " find Actual Interface error", e);
-        }
-        return new Class[0];
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        notNull(this.basePackage, "Property 'basePackage' is required " + beanName);
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        HessianServiceScanner scan = new HessianServiceScanner((BeanDefinitionRegistry)beanFactory);
-        scan.setResourceLoader(this.applicationContext);
-        scan.setBeanNameGenerator(this.nameGenerator);
-        // 引入注解配置
-        scan.setIncludeAnnotationConfig(this.includeAnnotationConfig);
-        scan.registerFilters();
-
-        scan.scan(basePackage);
+        //nothing...   BeanFactoryPostProcessor是在spring容器加载了bean的定义文件之后，在bean实例化之前执行的。
     }
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
+        HessianServerScanner scan = new HessianServerScanner(registry);
+        scan.setResourceLoader(this.applicationContext);
+        // 引入注解配置
+        scan.setIncludeAnnotationConfig(this.includeAnnotationConfig);
+        scan.registerFilters();
 
+        scan.scan(StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
     }
 
     public String getBeanName() {
@@ -98,14 +78,6 @@ public class HessianServerConfiguration implements BeanDefinitionRegistryPostPro
         return applicationContext;
     }
 
-    public BeanNameGenerator getNameGenerator() {
-        return nameGenerator;
-    }
-
-    public void setNameGenerator(BeanNameGenerator nameGenerator) {
-        this.nameGenerator = nameGenerator;
-    }
-
     public boolean isIncludeAnnotationConfig() {
         return includeAnnotationConfig;
     }
@@ -113,5 +85,4 @@ public class HessianServerConfiguration implements BeanDefinitionRegistryPostPro
     public void setIncludeAnnotationConfig(boolean includeAnnotationConfig) {
         this.includeAnnotationConfig = includeAnnotationConfig;
     }
-
 }

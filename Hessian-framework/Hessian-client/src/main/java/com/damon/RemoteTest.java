@@ -1,5 +1,6 @@
 package com.damon;
 
+import com.damon.hessian.common.ModuleUtil;
 import com.damon.service.HelloWorldService;
 import com.damon.service.HelloWorldTwoService;
 import org.junit.Test;
@@ -12,11 +13,12 @@ public class RemoteTest {
     public void testService() {
         System.out.println("start...");
         ApplicationContext context = new ClassPathXmlApplicationContext("hessian-annotation.xml");
-        HelloWorldTwoService helloWorldTwoService = context.getBean("helloWorldTwoService", HelloWorldTwoService.class);
-        System.out.println(helloWorldTwoService.sayHello("damon"));
-
         HelloWorldService helloWorldService = context.getBean("helloWorldService", HelloWorldService.class);
         System.out.println(helloWorldService.sayHello("damon"));
+
+        HelloWorldTwoService helloWorldTwoService = context.getBean("helloWorldTwoService", HelloWorldTwoService.class);
+        System.out.println(helloWorldTwoService.sayHello("damon"));
+        System.out.println("end.........");
     }
 
 }

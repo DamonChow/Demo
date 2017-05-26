@@ -21,6 +21,11 @@
             <version>${parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.damon</groupId>
+            <artifactId>hessian-api</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.caucho</groupId>
             <artifactId>hessian</artifactId>
         </dependency>

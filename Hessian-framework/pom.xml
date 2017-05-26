@@ -16,6 +16,7 @@
         <module>Hessian-core</module>
         <module>Hessian-client</module>
         <module>Hessian-web</module>
+        <module>Hessian-api</module>
     </modules>
 
 </project>

@@ -1,7 +1,5 @@
 package com.damon.hessian.consumer;
 
-import com.damon.hessian.annotation.HessianInterface;
-import com.damon.hessian.common.ModuleEnum;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
@@ -9,25 +7,25 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
-import org.springframework.context.annotation.ScannedGenericBeanDefinition;
-import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
-import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.remoting.caucho.HessianProxyFactoryBean;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Map;
 import java.util.Set;
 
 /**
  * Created by Damon on 2017/5/24.
  */
-public class HessianInterfaceScanner extends ClassPathBeanDefinitionScanner {
+public class HessianClientScanner extends ClassPathBeanDefinitionScanner {
 
-    public HessianInterfaceScanner(BeanDefinitionRegistry registry) {
+    private String context;
+
+    private String readTimeout;
+
+    public HessianClientScanner(BeanDefinitionRegistry registry) {
         super(registry, false);
     }
 
@@ -53,8 +51,12 @@ public class HessianInterfaceScanner extends ClassPathBeanDefinitionScanner {
     }
 
     public void registerFilters() {
-        // if specified, use the given annotation and / or marker interface
-        addIncludeFilter(new AnnotationTypeFilter(HessianInterface.class));
+        // default include filter that accepts all classes
+        addIncludeFilter(new TypeFilter() {
+            public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException {
+                return true;
+            }
+        });
 
         // exclude package-info.java
         addExcludeFilter(new TypeFilter() {
@@ -73,6 +75,9 @@ public class HessianInterfaceScanner extends ClassPathBeanDefinitionScanner {
                     + Arrays.toString(basePackages)
                     + "' package. Please check your configuration.");
         } else {
+            //项目中特殊处理
+//            context = this.context.replace("/ServiceExporter","");
+
             for (BeanDefinitionHolder holder : beanDefinitions) {
                 GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
 
@@ -83,11 +88,8 @@ public class HessianInterfaceScanner extends ClassPathBeanDefinitionScanner {
                             + "' HessianInterface");
                 }
 
-                AnnotationMetadata metadata = ((ScannedGenericBeanDefinition)definition).getMetadata();
-                Map<String, Object> annotationAttributes = metadata.getAnnotationAttributes(HessianInterface.class.getName());
-                ModuleEnum module = (ModuleEnum)annotationAttributes.get("module");
-                String remote = (String)annotationAttributes.get("remote");
-                String url = module.getContextUrl() + remote + "/" + holder.getBeanName();
+                String url = context + "/" + holder.getBeanName();
+                definition.getPropertyValues().add("readTimeout", readTimeout);
                 definition.getPropertyValues().add("serviceUrl", url);
                 definition.getPropertyValues().add("serviceInterface", definition.getBeanClassName());
                 definition.setBeanClass(HessianProxyFactoryBean.class);
@@ -97,4 +99,19 @@ public class HessianInterfaceScanner extends ClassPathBeanDefinitionScanner {
         return beanDefinitions;
     }
 
+    public String getContext() {
+        return context;
+    }
+
+    public void setContext(String context) {
+        this.context = context;
+    }
+
+    public String getReadTimeout() {
+        return readTimeout;
+    }
+
+    public void setReadTimeout(String readTimeout) {
+        this.readTimeout = readTimeout;
+    }
 }
