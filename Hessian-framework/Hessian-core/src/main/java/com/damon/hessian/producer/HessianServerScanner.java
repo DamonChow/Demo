@@ -1,5 +1,6 @@
 package com.damon.hessian.producer;
 
+import com.damon.hessian.support.HessianLogInterceptor;
 import com.damon.hessian.support.TraceHessianServiceExporter;
 import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -96,6 +97,7 @@ public class HessianServerScanner extends ClassPathBeanDefinitionScanner {
                 bd.getPropertyValues().add("service", new RuntimeBeanReference(beanName));
                 String interfaceName = getInterfaceName(bd);
                 bd.getPropertyValues().add("serviceInterface", interfaceName);
+                bd.getPropertyValues().add("interceptors", new Object[]{new HessianLogInterceptor()});
 
                 String hessianBeanName = "/ServiceExporter/" + beanName.replace("Impl", "");
                 BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(candidate, hessianBeanName);
