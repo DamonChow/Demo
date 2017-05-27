@@ -14,13 +14,19 @@ public class Person implements Serializable{
 
     private static final long serialVersionUID = 6564395168203822697L;
 
+    private Long id;
+
     private boolean rich;
 
     private String name;
 
     private int sex;
 
+    private int age;
+
     private Date birthday;
+
+    boolean isSelected;
 
     private List<Person> ChildList;
 
@@ -34,7 +40,18 @@ public class Person implements Serializable{
         this.rich = rich;
     }
 
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public Person() {
+    }
+
+    public Person(Long id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
     }
 
     public Person(boolean rich, String name, int sex, Date birthday, List<Person> childList, Address address) {
@@ -70,6 +87,14 @@ public class Person implements Serializable{
         this.birthday = birthday;
     }
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
     public List<Person> getChildList() {
         return ChildList;
     }
@@ -86,13 +111,32 @@ public class Person implements Serializable{
         this.address = address;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
-                "rich=" + rich +
+                "id=" + id +
+                ", rich=" + rich +
                 ", name='" + name + '\'' +
                 ", sex=" + sex +
+                ", age=" + age +
                 ", birthday=" + birthday +
+                ", isSelected=" + isSelected +
                 ", ChildList=" + ChildList +
                 ", address=" + address +
                 '}';

@@ -1,6 +1,6 @@
 package com.damon.example;
 
-import com.damon.example.test.Person;
+import com.damon.vo.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
