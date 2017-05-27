@@ -18,14 +18,14 @@ public class HessianLogInterceptor implements MethodInterceptor {
     public Object invoke(MethodInvocation invocation) throws Throwable {
         long start = System.currentTimeMillis();
         String invocationDescription = getInvocationDescription(invocation);
-        logger.info("接口开始：{}", invocationDescription);
+        logger.debug("接口调用开始：{}", invocationDescription);
         try {
             Object result = invocation.proceed();
-            logger.info("接口成功：{}, 用时: {} 毫秒，结果: {}.", invocationDescription, (System.currentTimeMillis()-start), result);
+            logger.debug("接口调用成功：{}, 用时: {} 毫秒，结果: {}.", invocationDescription, (System.currentTimeMillis()-start), result);
             return result;
         }
         catch (Throwable ex) {
-            logger.error("接口失败：{}  ", invocationDescription, ex);
+            logger.error("接口调用失败：", ex);
             throw ex;
         }
     }
