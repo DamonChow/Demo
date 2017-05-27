@@ -48,7 +48,7 @@ public class HessianServerConfiguration implements BeanDefinitionRegistryPostPro
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        //nothing...   BeanFactoryPostProcessor是在spring容器加载了bean的定义文件之后，在bean实例化之前执行的。
+        //nothing...   BeanFactoryPostProcessor是在spring容器加载了bean的定义文件之后，在bean实例化之前执行的。往往在此处可以对bean的属性进行修改
     }
 
     @Override

@@ -12,6 +12,7 @@ import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
 import org.springframework.remoting.caucho.HessianProxyFactoryBean;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -107,7 +108,9 @@ public class HessianClientScanner extends ClassPathBeanDefinitionScanner {
     }
 
     public void setContext(String context) {
-        this.context = context;
+        if (!StringUtils.isEmpty(context)) {
+            this.context = context.replace("/ServiceExporter","");
+        }
     }
 
     public String getReadTimeout() {

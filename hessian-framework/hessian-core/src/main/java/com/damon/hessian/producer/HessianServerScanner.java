@@ -99,7 +99,7 @@ public class HessianServerScanner extends ClassPathBeanDefinitionScanner {
                 bd.getPropertyValues().add("serviceInterface", interfaceName);
                 bd.getPropertyValues().add("interceptors", new Object[]{new HessianLogInterceptor()});
 
-                String hessianBeanName = "/ServiceExporter/" + beanName.replace("Impl", "");
+                String hessianBeanName = "/" + beanName.replace("Impl", "");
                 BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(candidate, hessianBeanName);
                 definitionHolder = applyScopedProxyMode(scopeMetadata, definitionHolder, getRegistry());
                 beanDefinitions.add(definitionHolder);
