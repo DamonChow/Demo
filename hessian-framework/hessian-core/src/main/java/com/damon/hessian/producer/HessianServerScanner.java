@@ -7,8 +7,10 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.config.RuntimeBeanReference;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanNameGenerator;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 import org.springframework.context.annotation.AnnotationScopeMetadataResolver;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
@@ -19,8 +21,10 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
+import org.springframework.remoting.caucho.HessianServiceExporter;
 import org.springframework.util.Assert;
 
+import java.beans.Introspector;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -81,6 +85,8 @@ public class HessianServerScanner extends ClassPathBeanDefinitionScanner {
     protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
         Assert.notEmpty(basePackages, "At least one base package must be specified");
         Set<BeanDefinitionHolder> beanDefinitions = new LinkedHashSet<BeanDefinitionHolder>();
+        HessianLogInterceptor hessianLogInterceptor = generateHessianLogInterceptor();
+
         for (String basePackage : basePackages) {
             Set<BeanDefinition> candidates = findCandidateComponents(basePackage);
             for (BeanDefinition candidate : candidates) {
@@ -97,7 +103,8 @@ public class HessianServerScanner extends ClassPathBeanDefinitionScanner {
                 bd.getPropertyValues().add("service", new RuntimeBeanReference(beanName));
                 String interfaceName = getInterfaceName(bd);
                 bd.getPropertyValues().add("serviceInterface", interfaceName);
-                bd.getPropertyValues().add("interceptors", new Object[]{new HessianLogInterceptor()});
+                bd.getPropertyValues().add("interceptors", new Object[]{hessianLogInterceptor});
+//                bd.getPropertyValues().add("registerTraceInterceptor", true);
 
                 String hessianBeanName = "/" + beanName.replace("Impl", "");
                 BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(candidate, hessianBeanName);
@@ -121,6 +128,11 @@ public class HessianServerScanner extends ClassPathBeanDefinitionScanner {
         return beanDefinitions;
     }
 
+    private HessianLogInterceptor generateHessianLogInterceptor() {
+        BeanDefinitionBuilder builder = BeanDefinitionBuilder.rootBeanDefinition(HessianLogInterceptor.class);
+        getRegistry().registerBeanDefinition(Introspector.decapitalize(HessianLogInterceptor.class.getSimpleName()), builder.getBeanDefinition());
+        return ((ApplicationContext)getResourceLoader()).getBean(HessianLogInterceptor.class);
+    }
 
 
     private BeanDefinitionHolder applyScopedProxyMode(ScopeMetadata metadata, BeanDefinitionHolder definition,
