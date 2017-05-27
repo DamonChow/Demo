@@ -1,15 +1,11 @@
 ##说明
+<br/>
 hessian调用在服务端和客户端需要大量手动配置bean，过于麻烦，简化配置。<br/>
 服务端通过服务端统一扫描接口，暴露服务。<br/>
 客户端通过服务端统一扫描接口，引用服务。<br/>
 
-###服务接口
-参考 hessian-api重定义的接口
-<br/>
-
 ###服务端
-参考 hessian-web项目
-<br/>
+<br/>参考 hessian-web项目<br/>
 配置如下
 ~~~
     <context:component-scan base-package="com.damon.service"/>
@@ -24,8 +20,7 @@ hessian调用在服务端和客户端需要大量手动配置bean，过于麻烦
 <br/>
 
 ###客户端
-参考 hessian-client
-<br/>
+<br/>参考 hessian-client<br/>
 配置如下
 ~~~
     <!--读取属性文件 -->
@@ -48,4 +43,7 @@ hessian调用在服务端和客户端需要大量手动配置bean，过于麻烦
 3、readTimeout hessian客户端读取的超时时间；<br/>
 
 
-
+###服务接口
+<br/>
+参考 hessian-api重定义的接口
+<br/>
