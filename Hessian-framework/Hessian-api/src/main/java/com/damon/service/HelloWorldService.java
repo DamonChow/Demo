@@ -8,5 +8,5 @@ public interface HelloWorldService {
 
     String sayHello(String hello);
 
-    String sayHello(int number);
+    String sayHelloTwo(String firstName, String secondName);
 }

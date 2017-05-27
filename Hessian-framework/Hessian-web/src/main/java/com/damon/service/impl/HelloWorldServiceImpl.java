@@ -18,13 +18,18 @@ public class HelloWorldServiceImpl implements HelloWorldService {
         logger.info("param name is = {}", name);
         String result = "Hello " + name;
         logger.info("result is = {}", result);
+        try {
+            Thread.sleep(10000L);
+        } catch (InterruptedException e) {
+            logger.error("error : ", e);
+        }
         return result;
     }
 
     @Override
-    public String sayHello(int number) {
-        logger.info("param number is = {}", number);
-        String result = "Hello " + number;
+    public String sayHelloTwo(String firstName, String secondName) {
+        logger.info("param name is = {}", firstName, secondName);
+        String result = "Hello " + firstName + " " + secondName;
         logger.info("result is = {}", result);
         return result;
     }

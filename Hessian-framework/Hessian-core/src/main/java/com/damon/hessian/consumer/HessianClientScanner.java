@@ -82,11 +82,12 @@ public class HessianClientScanner extends ClassPathBeanDefinitionScanner {
             for (BeanDefinitionHolder holder : beanDefinitions) {
                 GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
                 String url = context + "/" + holder.getBeanName();
+                definition.getPropertyValues().add("proxyFactory", new TraceHessianProxyFactory());
                 definition.getPropertyValues().add("readTimeout", readTimeout);
+                definition.getPropertyValues().add("overloadEnabled", Boolean.TRUE);
+//                definition.getPropertyValues().add("connectTimeout", readTimeout);
                 definition.getPropertyValues().add("serviceUrl", url);
                 definition.getPropertyValues().add("serviceInterface", definition.getBeanClassName());
-                definition.getPropertyValues().add("overloadEnabled", Boolean.TRUE);
-                definition.getPropertyValues().add("proxyFactory", new TraceHessianProxyFactory());
                 definition.setBeanClass(HessianProxyFactoryBean.class);
                 definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
 

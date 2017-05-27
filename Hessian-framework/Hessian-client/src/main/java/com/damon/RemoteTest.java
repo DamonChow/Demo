@@ -17,16 +17,17 @@ public class RemoteTest {
     public void testService() {
         logger.info("start...");
         ApplicationContext context = new ClassPathXmlApplicationContext("hessian-annotation.xml");
-        NDC.push("333--");
         HelloWorldService helloWorldService = context.getBean("helloWorldService", HelloWorldService.class);
-        logger.info(helloWorldService.sayHello("damon"));
-        NDC.pop();
+
         NDC.push("555--");
-        logger.info(helloWorldService.sayHello(3));
+        logger.info(helloWorldService.sayHelloTwo("damon", "chow"));
         NDC.pop();
         NDC.push("666--");
         HelloWorldTwoService helloWorldTwoService = context.getBean("helloWorldTwoService", HelloWorldTwoService.class);
         logger.info(helloWorldTwoService.sayHello("damon"));
+        NDC.pop();
+        NDC.push("333--");
+        logger.info(helloWorldService.sayHello("damon"));
         logger.info("end.........");
         NDC.pop();
     }
