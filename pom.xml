@@ -41,20 +41,21 @@
     </properties>
 
     <modules>
-        <module>Spark-demo</module>
-        <module>Redis-demo</module>
-        <module>Zookeeper-demo</module>
-        <module>Mongodb-demo</module>
-        <module>Rocketmq-demo</module>
-        <module>Hystrix-demo</module>
-        <module>Memcached-demo</module>
-        <module>Kafka-demo</module>
-        <module>Simple-demo</module>
-        <module>Elasticsearch-demo</module>
-        <module>Scala-demo</module>
-        <module>Mybatis-demo</module>
-        <module>Snowflake-demo</module>
-        <module>Hessian-framework</module>
+        <module>spark-demo</module>
+        <module>redis-demo</module>
+        <module>zookeeper-demo</module>
+        <module>mongodb-demo</module>
+        <module>rocketmq-demo</module>
+        <module>hystrix-demo</module>
+        <module>memcached-demo</module>
+        <module>kafka-demo</module>
+        <module>simple-demo</module>
+        <module>elasticsearch-demo</module>
+        <module>scala-demo</module>
+        <module>mybatis-demo</module>
+        <module>snowflake-demo</module>
+        <module>hessian-framework</module>
+        <module>common</module>
     </modules>
     
     <dependencyManagement>

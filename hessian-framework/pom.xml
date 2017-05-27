@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>demo</artifactId>
+        <groupId>com.damon</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.damon</groupId>
+    <artifactId>hessian-framework</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>hessian-api</module>
+        <module>hessian-client</module>
+        <module>hessian-core</module>
+        <module>hessian-web</module>
+    </modules>
+
+</project>
