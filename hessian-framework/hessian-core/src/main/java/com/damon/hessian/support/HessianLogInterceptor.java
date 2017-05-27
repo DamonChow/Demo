@@ -2,10 +2,8 @@ package com.damon.hessian.support;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
-import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.aop.interceptor.SimpleTraceInterceptor;
 import org.springframework.util.StringUtils;
 
 /**
@@ -38,8 +36,8 @@ public class HessianLogInterceptor implements MethodInterceptor {
      */
     protected String getInvocationDescription(MethodInvocation invocation) {
 
-        return "method '" + invocation.getMethod().getName() + "' of class [" +
-                invocation.getThis().getClass().getName() + "]" + " with args ["
+        return "方法 '" + invocation.getMethod().getName() + "' , 类名 [" +
+                invocation.getThis().getClass().getName() + "]" + "，参数 ["
                 + StringUtils.arrayToCommaDelimitedString(invocation.getArguments()) + "]";
     }
 }
