@@ -1,13 +1,15 @@
 package com.damon.dao;
 
 import com.damon.vo.User;
+import org.mybatis.spring.annotation.MapperScan;
 
 import java.util.List;
 
 /**
  * Created by Damon on 2017/5/15.
  */
-public interface IUserOperation {
+@MapperScan
+public interface UserMapper {
 
     User selectUserByID(int id);
 

@@ -23,8 +23,8 @@
 
     <!-- mybatis的mapper文件，每个xml配置文件对应一个接口 -->
     <mappers>
-        <mapper resource="sql/User.xml"/>
-        <mapper resource="sql/Article.xml"/>
-        <mapper resource="sql/Blog.xml"/>
+        <mapper resource="mapper/BlogMapper.xml"/>
+        <mapper resource="mapper/ArticleMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
     </mappers>
 </configuration>

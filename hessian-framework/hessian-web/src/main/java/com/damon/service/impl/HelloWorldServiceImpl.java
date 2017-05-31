@@ -20,11 +20,11 @@ public class HelloWorldServiceImpl implements HelloWorldService {
         logger.info("param is = {}", name);
         String result = "Hello " + name;
         logger.info("result is = {}", result);
-        try {
+        /*try {
             Thread.sleep(10000L);
         } catch (InterruptedException e) {
             logger.error("error : ", e);
-        }
+        }*/
         return result;
     }
 
@@ -33,6 +33,7 @@ public class HelloWorldServiceImpl implements HelloWorldService {
         logger.info("param is = {}", firstName, secondName);
         String result = "Hello " + firstName + " " + secondName;
         logger.info("result is = {}", result);
+//        throw new RuntimeException("错误.");
         return result;
     }
 

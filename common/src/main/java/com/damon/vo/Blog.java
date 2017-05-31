@@ -1,11 +1,13 @@
 package com.damon.vo;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Damon on 2017/5/16.
  */
-public class Blog {
+public class Blog implements Serializable {
+    private static final long serialVersionUID = 2938225038130815831L;
     private int id;
     private String title;
     private List<Article> articles;
