@@ -18,7 +18,6 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.core.Ordered;
 import org.springframework.util.StringUtils;
 
 import java.util.Map;
@@ -38,7 +37,7 @@ public class HessianClientConfiguration implements BeanDefinitionRegistryPostPro
 
     private String basePackage;
 
-    private String context;
+    private String serviceUrl;
 
     private String readTimeout;
 
@@ -60,7 +59,7 @@ public class HessianClientConfiguration implements BeanDefinitionRegistryPostPro
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        notNull(this.context, "Property 'context' is required " + beanName);
+        notNull(this.serviceUrl, "Property 'serviceUrl' is required " + beanName);
         notNull(this.basePackage, "Property 'basePackage' is required " + beanName);
         notNull(this.readTimeout, "Property 'readTimeout' is required " + beanName);
     }
@@ -82,7 +81,7 @@ public class HessianClientConfiguration implements BeanDefinitionRegistryPostPro
         scan.setIncludeAnnotationConfig(this.includeAnnotationConfig);
         scan.registerFilters();
 
-        scan.setContext(context);
+        scan.setServiceUrl(serviceUrl);
         scan.setReadTimeout(readTimeout);
         scan.scan(StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
     }
@@ -114,7 +113,7 @@ public class HessianClientConfiguration implements BeanDefinitionRegistryPostPro
             PropertyValues values = mapperScannerBean.getPropertyValues();
 
             this.basePackage = updatePropertyValue("basePackage", values);
-            this.context = updatePropertyValue("context", values);
+            this.serviceUrl = updatePropertyValue("serviceUrl", values);
             this.readTimeout = updatePropertyValue("readTimeout", values);
         }
     }
@@ -171,12 +170,12 @@ public class HessianClientConfiguration implements BeanDefinitionRegistryPostPro
         this.includeAnnotationConfig = includeAnnotationConfig;
     }
 
-    public String getContext() {
-        return context;
+    public String getServiceUrl() {
+        return serviceUrl;
     }
 
-    public void setContext(String context) {
-        this.context = context;
+    public void setServiceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
     }
 
     public String getReadTimeout() {

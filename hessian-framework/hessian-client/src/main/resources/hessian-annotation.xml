@@ -14,7 +14,7 @@
 
     <bean id="hessianClientConfiguration" class="com.damon.hessian.consumer.HessianClientConfiguration">
         <property name="basePackage" value="com.damon.service"></property>
-        <property name="context" value='${demo.app.url}'></property>
+        <property name="serviceUrl" value='${demo.app.url}'></property>
         <property name="readTimeout" value='${readTimeout}'></property>
     </bean>
 

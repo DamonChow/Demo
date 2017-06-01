@@ -17,7 +17,7 @@ public class HessianResponse<T> implements Serializable {
 
     private Exception traceException;
 
-    private String txnId;
+    private String traceId;
 
     public String getCode() {
         return code;
@@ -51,11 +51,22 @@ public class HessianResponse<T> implements Serializable {
         this.traceException = traceException;
     }
 
-    public String getTxnId() {
-        return txnId;
+    public String getTraceId() {
+        return traceId;
     }
 
-    public void setTxnId(String txnId) {
-        this.txnId = txnId;
+    public void setTraceId(String traceId) {
+        this.traceId = traceId;
+    }
+
+    @Override
+    public String toString() {
+        return "HessianResponse{" +
+                "code='" + code + '\'' +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                ", traceException=" + traceException +
+                ", traceId='" + traceId + '\'' +
+                '}';
     }
 }

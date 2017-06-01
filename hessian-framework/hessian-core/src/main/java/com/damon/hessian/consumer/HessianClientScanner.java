@@ -23,7 +23,7 @@ import java.util.Set;
  */
 public class HessianClientScanner extends ClassPathBeanDefinitionScanner {
 
-    private String context;
+    private String serviceUrl;
 
     private String readTimeout;
 
@@ -82,7 +82,7 @@ public class HessianClientScanner extends ClassPathBeanDefinitionScanner {
 
             for (BeanDefinitionHolder holder : beanDefinitions) {
                 GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
-                String url = context + "/" + holder.getBeanName();
+                String url = serviceUrl + "/" + holder.getBeanName();
                 definition.getPropertyValues().add("proxyFactory", new TraceHessianProxyFactory());
                 definition.getPropertyValues().add("readTimeout", readTimeout);
                 definition.getPropertyValues().add("overloadEnabled", Boolean.TRUE);
@@ -103,13 +103,13 @@ public class HessianClientScanner extends ClassPathBeanDefinitionScanner {
         return beanDefinitions;
     }
 
-    public String getContext() {
-        return context;
+    public String getServiceUrl() {
+        return serviceUrl;
     }
 
-    public void setContext(String context) {
-        if (!StringUtils.isEmpty(context)) {
-            this.context = context.replace("/ServiceExporter","");
+    public void setServiceUrl(String serviceUrl) {
+        if (!StringUtils.isEmpty(serviceUrl)) {
+            this.serviceUrl = serviceUrl.replace("/ServiceExporter","");
         }
     }
 
