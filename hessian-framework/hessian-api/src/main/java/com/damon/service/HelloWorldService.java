@@ -1,6 +1,7 @@
 package com.damon.service;
 
 
+import com.damon.hessian.common.HessianResponse;
 import com.damon.vo.Address;
 import com.damon.vo.Person;
 
@@ -9,9 +10,9 @@ import com.damon.vo.Person;
  */
 public interface HelloWorldService {
 
-    String sayHello(String hello);
+    HessianResponse<String> sayHello(String hello);
 
-    String sayHelloTwo(String firstName, String secondName);
+    HessianResponse<String> sayHelloTwo(String firstName, String secondName);
 
-    Address insertPerson(Person person);
+    HessianResponse<Address> insertPerson(Person person);
 }

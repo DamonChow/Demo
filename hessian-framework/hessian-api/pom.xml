@@ -24,6 +24,11 @@
             <version>${parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.damon</groupId>
+            <artifactId>hessian-core</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>

@@ -25,25 +25,17 @@ public class RemoteTest {
         HelloWorldService helloWorldService = context.getBean("helloWorldService", HelloWorldService.class);
 
         NDC.push("555sayHelloTwo--");
-        logger.info("sayHelloTwo result=" + helloWorldService.sayHelloTwo("damon", "chow"));
+        logger.info("sayHelloTwo result={}", helloWorldService.sayHelloTwo("damon", "chow"));
         NDC.pop();
         NDC.push("555insertPerson--");
-        logger.info("insertPerson result=", helloWorldService.insertPerson(genPerson()));
+        logger.info("insertPerson result={}", helloWorldService.insertPerson(genPerson()));
         NDC.pop();
         NDC.push("666sayHello--");
         HelloWorldTwoService helloWorldTwoService = context.getBean("helloWorldTwoService", HelloWorldTwoService.class);
-        logger.info("sayHello result=" + helloWorldTwoService.sayHello("damon"));
-        NDC.pop();
-        NDC.push("33344insertDB--");
-        User user = new User();
-        user.setId(44);
-        user.setUserAddress("ddddd");
-        user.setUserName("老王22");
-        user.setUserAge(33);
-        logger.info("insertDB result=" + helloWorldTwoService.insertDB(user));
+        logger.info("sayHello result={}", helloWorldTwoService.sayHello("damon"));
         NDC.pop();
         NDC.push("3433sayHello--");
-        logger.info("sayHello result=" + helloWorldService.sayHello("damon"));
+        logger.info("sayHello result{}", helloWorldService.sayHello("damon"));
         logger.info("end.........");
         NDC.pop();
     }
@@ -59,7 +51,7 @@ public class RemoteTest {
         user.setUserAddress("d");
         user.setUserName("老王");
         user.setUserAge(33);
-        logger.info("insertDB result=" + helloWorldTwoService.insertDB(user));
+        logger.info("insertDB result={}", helloWorldTwoService.insertDB(user));
         NDC.pop();
     }
 

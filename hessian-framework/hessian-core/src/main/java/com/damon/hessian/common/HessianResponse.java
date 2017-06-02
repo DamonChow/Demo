@@ -1,10 +1,14 @@
 package com.damon.hessian.common;
 
+import lombok.Data;
+import org.apache.log4j.NDC;
+
 import java.io.Serializable;
 
 /**
  * Created by Damon on 2017/5/26.
  */
+@Data
 public class HessianResponse<T> implements Serializable {
 
     private static final long serialVersionUID = -8121233496140382091L;
@@ -19,54 +23,19 @@ public class HessianResponse<T> implements Serializable {
 
     private String traceId;
 
-    public String getCode() {
-        return code;
+    public HessianResponse() {
+        setSuccess();
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
+    public HessianResponse(T data) {
+        setSuccess();
         this.data = data;
     }
 
-    public Exception getTraceException() {
-        return traceException;
+    private void setSuccess() {
+        code = "0";
+        message = "操作成功！";
+        setTraceId(NDC.peek());
     }
 
-    public void setTraceException(Exception traceException) {
-        this.traceException = traceException;
-    }
-
-    public String getTraceId() {
-        return traceId;
-    }
-
-    public void setTraceId(String traceId) {
-        this.traceId = traceId;
-    }
-
-    @Override
-    public String toString() {
-        return "HessianResponse{" +
-                "code='" + code + '\'' +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                ", traceException=" + traceException +
-                ", traceId='" + traceId + '\'' +
-                '}';
-    }
 }

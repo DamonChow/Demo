@@ -1,5 +1,6 @@
 package com.damon.service.impl;
 
+import com.damon.hessian.common.HessianResponse;
 import com.damon.service.HelloWorldService;
 import com.damon.vo.Address;
 import com.damon.vo.Person;
@@ -16,7 +17,7 @@ public class HelloWorldServiceImpl implements HelloWorldService {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public String sayHello(String name) {
+    public HessianResponse<String> sayHello(String name) {
         logger.info("param is = {}", name);
         String result = "Hello " + name;
         logger.info("result is = {}", result);
@@ -25,22 +26,22 @@ public class HelloWorldServiceImpl implements HelloWorldService {
         } catch (InterruptedException e) {
             logger.error("error : ", e);
         }*/
-        return result;
+        return new HessianResponse<String>(result);
     }
 
     @Override
-    public String sayHelloTwo(String firstName, String secondName) {
+    public HessianResponse<String> sayHelloTwo(String firstName, String secondName) {
         logger.info("param is = {}", firstName, secondName);
         String result = "Hello " + firstName + " " + secondName;
         logger.info("result is = {}", result);
 //        throw new RuntimeException("错误.");
-        return result;
+        return new HessianResponse<String>(result);
     }
 
     @Override
-    public Address insertPerson(Person person) {
+    public HessianResponse<Address> insertPerson(Person person) {
         logger.info("param person is = {}", person);
         logger.info("result is = {}", person.getAddress());
-        return person.getAddress();
+        return new HessianResponse<Address>(person.getAddress());
     }
 }

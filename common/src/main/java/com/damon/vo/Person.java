@@ -1,5 +1,7 @@
 package com.damon.vo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
  * @author Damon
  * @since 2016/7/26 10:07
  */
+@Data
 public class Person implements Serializable{
 
     private static final long serialVersionUID = 6564395168203822697L;
@@ -63,82 +66,4 @@ public class Person implements Serializable{
         this.address = address;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
-
-    public List<Person> getChildList() {
-        return ChildList;
-    }
-
-    public void setChildList(List<Person> childList) {
-        ChildList = childList;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", rich=" + rich +
-                ", name='" + name + '\'' +
-                ", sex=" + sex +
-                ", age=" + age +
-                ", birthday=" + birthday +
-                ", isSelected=" + isSelected +
-                ", ChildList=" + ChildList +
-                ", address=" + address +
-                '}';
-    }
 }

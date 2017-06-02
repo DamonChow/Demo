@@ -1,7 +1,9 @@
 package com.damon.service.impl;
 
 import com.damon.dao.UserMapper;
+import com.damon.hessian.common.HessianResponse;
 import com.damon.service.HelloWorldTwoService;
+import com.damon.vo.Address;
 import com.damon.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,15 +20,15 @@ public class HelloWorldTwoServiceImpl implements HelloWorldTwoService {
     private UserMapper userMapper;
 
     @Override
-    public String sayHello(String name) {
-        return "Hello two  " + name;
+    public HessianResponse<String> sayHello(String name) {
+        return new HessianResponse<String>("Hello two  " + name);
     }
 
     @Override
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, rollbackFor=RuntimeException.class)
-    public Long insertDB(User user) {
+    public HessianResponse<Long> insertDB(User user) {
         userMapper.addUser(user);
      throw new RuntimeException("收到错误");
-//        return 1L;
+//        return new HessianResponse<Long>(1L);
     }
 }
