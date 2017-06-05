@@ -1,7 +1,5 @@
 package com.damon.hessian.producer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.InitializingBean;
@@ -20,8 +18,6 @@ import static org.springframework.util.Assert.notNull;
  * Created by Damon on 2017/5/24.
  */
 public class HessianServerConfiguration implements BeanDefinitionRegistryPostProcessor, ApplicationContextAware, BeanNameAware, InitializingBean {
-
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     private String beanName;
 
@@ -53,7 +49,7 @@ public class HessianServerConfiguration implements BeanDefinitionRegistryPostPro
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        HessianServerScanner scan = new HessianServerScanner(registry);
+        HessianServerScannerByInterface scan = new HessianServerScannerByInterface(registry);
         scan.setResourceLoader(this.applicationContext);
         // 引入注解配置
         scan.setIncludeAnnotationConfig(this.includeAnnotationConfig);
