@@ -1,47 +1,63 @@
 package com.damon.service.impl;
 
 import com.damon.hessian.common.HessianResponse;
+import com.damon.manager.HelloWorldManager;
 import com.damon.service.HelloWorldService;
 import com.damon.vo.Address;
 import com.damon.vo.Person;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
 
 /**
  * Created by Damon on 2017/5/24.
  */
 @Service
+@Slf4j
 public class HelloWorldServiceImpl implements HelloWorldService {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    @Autowired
+    private HelloWorldManager helloWorldManager;
 
     @Override
     public HessianResponse<String> sayHello(String name) {
-        logger.info("param is = {}", name);
+        log.info("param is = {}", name);
         String result = "Hello " + name;
-        logger.info("result is = {}", result);
+        log.info("result is = {}", result);
         /*try {
             Thread.sleep(10000L);
         } catch (InterruptedException e) {
-            logger.error("error : ", e);
+            log.error("error : ", e);
         }*/
         return new HessianResponse<String>(result);
     }
 
     @Override
     public HessianResponse<String> sayHelloTwo(String firstName, String secondName) {
-        logger.info("param is = {}", firstName, secondName);
+        log.info("param is = {}", firstName, secondName);
         String result = "Hello " + firstName + " " + secondName;
-        logger.info("result is = {}", result);
+        log.info("result is = {}", result);
 //        throw new RuntimeException("错误.");
         return new HessianResponse<String>(result);
     }
 
     @Override
     public HessianResponse<Address> insertPerson(Person person) {
-        logger.info("param person is = {}", person);
-        logger.info("result is = {}", person.getAddress());
+        log.info("param person is = {}", person);
+        log.info("result is = {}", person.getAddress());
         return new HessianResponse<Address>(person.getAddress());
+    }
+
+    @Override
+    public HessianResponse<Timestamp> testTimestamp(Timestamp timestamp) {
+        return new HessianResponse<Timestamp>(timestamp);
+    }
+
+    @Override
+    public HessianResponse<Person> testPerson(Person person) {
+        log.info("响应：{}", person);
+        return new HessianResponse<Person>(person);
     }
 }

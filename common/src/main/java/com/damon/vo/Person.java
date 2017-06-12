@@ -1,8 +1,11 @@
 package com.damon.vo;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +16,7 @@ import java.util.List;
  * @since 2016/7/26 10:07
  */
 @Data
+@NoArgsConstructor
 public class Person implements Serializable{
 
     private static final long serialVersionUID = 6564395168203822697L;
@@ -29,26 +33,21 @@ public class Person implements Serializable{
 
     private Date birthday;
 
+    private java.sql.Date sqlDate;
+
+    private Timestamp time;
+
+    private BigDecimal bigDecimal;
+
     boolean isSelected;
 
     private List<Person> ChildList;
 
     private Address address;
 
-    public boolean isRich() {
-        return rich;
-    }
-
-    public void setRich(boolean rich) {
-        this.rich = rich;
-    }
-
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
-    }
-
-    public Person() {
     }
 
     public Person(Long id, String name, int age) {

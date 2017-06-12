@@ -3,7 +3,6 @@ package com.damon.service.impl;
 import com.damon.dao.UserMapper;
 import com.damon.hessian.common.HessianResponse;
 import com.damon.service.HelloWorldTwoService;
-import com.damon.vo.Address;
 import com.damon.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

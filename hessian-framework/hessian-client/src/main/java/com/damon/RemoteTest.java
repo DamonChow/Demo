@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class RemoteTest {
@@ -66,4 +68,34 @@ public class RemoteTest {
         return person;
     }
 
+    @Test
+    public void test() {
+        logger.info("start...");
+        ApplicationContext context = new ClassPathXmlApplicationContext("hessian-annotation.xml");
+        HelloWorldService helloWorldService = context.getBean("helloWorldService", HelloWorldService.class);
+        logger.info("result = "+helloWorldService.testOtherService("Da"));
+    }
+
+    @Test
+    public void testTime() {
+        logger.info("start...");
+        ApplicationContext context = new ClassPathXmlApplicationContext("hessian-annotation.xml");
+        HelloWorldService helloWorldService = context.getBean("helloWorldService", HelloWorldService.class);
+        logger.info("result = "+helloWorldService.testTimestamp(new Timestamp(System.currentTimeMillis())));
+    }
+
+    @Test
+    public void testPerson() {
+        logger.info("start...");
+        ApplicationContext context = new ClassPathXmlApplicationContext("hessian-annotation.xml");
+        HelloWorldService helloWorldService = context.getBean("helloWorldService", HelloWorldService.class);
+        Person person = new Person();
+        person.setName("DDD");
+//        person.setTime(new Timestamp(System.currentTimeMillis()));
+//        person.setSqlDate(new java.sql.Date(System.currentTimeMillis()));
+        person.setBirthday(new Date());
+        person.setBigDecimal(new BigDecimal("10.01"));
+
+        logger.info("result = "+helloWorldService.testPerson(person));
+    }
 }
