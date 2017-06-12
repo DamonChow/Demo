@@ -69,14 +69,6 @@ public class RemoteTest {
     }
 
     @Test
-    public void test() {
-        logger.info("start...");
-        ApplicationContext context = new ClassPathXmlApplicationContext("hessian-annotation.xml");
-        HelloWorldService helloWorldService = context.getBean("helloWorldService", HelloWorldService.class);
-        logger.info("result = "+helloWorldService.testOtherService("Da"));
-    }
-
-    @Test
     public void testTime() {
         logger.info("start...");
         ApplicationContext context = new ClassPathXmlApplicationContext("hessian-annotation.xml");

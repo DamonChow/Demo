@@ -1,12 +1,10 @@
 package com.damon.service.impl;
 
 import com.damon.hessian.common.HessianResponse;
-import com.damon.manager.HelloWorldManager;
 import com.damon.service.HelloWorldService;
 import com.damon.vo.Address;
 import com.damon.vo.Person;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -17,9 +15,6 @@ import java.sql.Timestamp;
 @Service
 @Slf4j
 public class HelloWorldServiceImpl implements HelloWorldService {
-
-    @Autowired
-    private HelloWorldManager helloWorldManager;
 
     @Override
     public HessianResponse<String> sayHello(String name) {
