@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 /**
- * Created by zhoujiwei on 2017/6/28.
+ * Created by damon on 2017/6/28.
  */
 public class BigDecimalTest {
 
