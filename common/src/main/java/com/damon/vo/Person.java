@@ -31,6 +31,8 @@ public class Person implements Serializable{
 
     private int age;
 
+    private String ageDesc;
+
     private Date birthday;
 
     private java.sql.Date sqlDate;
@@ -54,6 +56,13 @@ public class Person implements Serializable{
         this.id = id;
         this.name = name;
         this.age = age;
+    }
+
+    public Person(Long id, String name, int age, String ageDesc) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.ageDesc = ageDesc;
     }
 
     public Person(boolean rich, String name, int sex, Date birthday, List<Person> childList, Address address) {
