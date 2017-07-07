@@ -74,4 +74,11 @@ public class IntegerTest {
 
 
     }
+
+    @Test
+    public void testIntegerNull() {
+        Integer i = null;
+
+        System.out.println("i == 1  || " + (i == 1));
+    }
 }
