@@ -5,7 +5,7 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 
 /**
- * Created by zhoujiwei on 2017/6/3.
+ * Created by damon on 2017/6/3.
  */
 public class HessianAnnotationBeanNameGenerator extends AnnotationBeanNameGenerator {
 
