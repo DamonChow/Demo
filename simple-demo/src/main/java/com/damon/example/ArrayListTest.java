@@ -1,6 +1,6 @@
 package com.damon.example;
 
-import com.damon.example.vo.Person;
+import com.damon.vo.Person;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.google.common.collect.Sets.newHashSet;
 
 /**
  * 功能：ArrayList  为空，或者添加一个null
@@ -91,20 +90,20 @@ public class ArrayListTest {
         Person person1 = new Person();
         person1.setName("2个son");
         person1.setSex(1);
-        person1.setId(123123);
+        person1.setId(123123L);
         person1.setBirthday(new Date());
 
         List<Person> childList1 = new ArrayList<Person>();
         Person children1 = new Person();
         children1.setName("son1");
         children1.setSex(1);
-        children1.setId(1231);
+        children1.setId(1231L);
         children1.setBirthday(new Date());
 
         Person children2 = new Person();
         children2.setName("son2");
         children2.setSex(2);
-        children2.setId(1231231);
+        children2.setId(1231231L);
         children2.setBirthday(new Date());
         childList1.add(children1);
         childList1.add(children2);
@@ -114,7 +113,7 @@ public class ArrayListTest {
         Person person2 = new Person();
         person2.setName("1个空son");
         person2.setSex(1);
-        person2.setId(123123);
+        person2.setId(123123L);
         person2.setBirthday(new Date());
         List<Person> childList2 = new ArrayList<Person>();
         childList2.add(new Person());

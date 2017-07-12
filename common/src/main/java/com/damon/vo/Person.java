@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-public class Person implements Serializable{
+public class Person implements Serializable {
 
     private static final long serialVersionUID = 6564395168203822697L;
 
@@ -50,6 +50,10 @@ public class Person implements Serializable{
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public Person(String name) {
+        this.name = name;
     }
 
     public Person(Long id, String name, int age) {
