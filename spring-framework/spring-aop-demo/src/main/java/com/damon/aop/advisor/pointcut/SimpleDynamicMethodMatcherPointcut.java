@@ -7,7 +7,7 @@ import org.springframework.aop.support.DynamicMethodMatcherPointcut;
 import java.lang.reflect.Method;
 
 /**
- * Created by zhoujiwei on 2017/7/13.
+ * Created by damon on 2017/7/13.
  */
 @Slf4j
 public class SimpleDynamicMethodMatcherPointcut extends DynamicMethodMatcherPointcut {
