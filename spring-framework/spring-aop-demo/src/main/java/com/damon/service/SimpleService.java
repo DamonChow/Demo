@@ -12,4 +12,6 @@ public interface SimpleService {
     String testAround(String name, int age);
 
     String testThrows(String name, int age);
+
+    String testAround(int index);
 }

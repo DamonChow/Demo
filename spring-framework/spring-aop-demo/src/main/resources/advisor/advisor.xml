@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+    <bean id="nameAroundAdvice" class="com.damon.aop.advisor.advice.NameAroundAdvice"/>
+    <bean id="nameAfterAdvice" class="com.damon.aop.advisor.advice.NameAfterAdvice"/>
+    <bean id="simpleService" class="com.damon.service.impl.SimpleServiceImpl"/>
+
+    <!--1.方法名匹配切面-->
+    <!--只需要方法名，不用加类名：*methodName-->
+    <bean id="matchAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor"
+          p:advice-ref="nameAroundAdvice" p:mappedName="test*"/>
+    <bean id="nameAfterAdvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor"
+          p:advice-ref="nameAfterAdvice" p:mappedName="test*"/>
+    <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:proxyInterfaces="com.damon.service.SimpleService" p:target-ref="simpleService"
+          p:interceptorNames="matchAdvisor,nameAfterAdvisor"/>
+
+    <!--2.正则表达式方法名匹配切面 只有方法名含Around的-->
+    <!--需要加上完整的类名和方法名，例如：com.xyz.clazz.methodName或com.*.methodName或.*methodName-->
+    <bean id="regexpAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"
+          p:advice-ref="nameAroundAdvice" p:pattern=".*Around.*"/>
+    <bean id="regexpProxy" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="regexpAdvisor"
+          p:target-ref="simpleService" p:proxyTargetClass="true"/>
+
+    <!--3.默认情况 -->
+    <!--3.1 JdkRegexpMethodPointcut需要加上完整的类名和方法名，例如：com.xyz.clazz.methodName或com.*.methodName或.*methodName-->
+    <!--正则表达式匹配切入点-->
+    <bean id="jdkRegexpPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut"
+          p:pattern=".*test.*"/>
+    <bean id="jdkRegexpAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+          p:advice-ref="nameAroundAdvice" p:pointcut-ref="jdkRegexpPointcut"/>
+    <bean id="jdkRegexpProxy" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="jdkRegexpAdvisor"
+          p:target-ref="simpleService" p:proxyTargetClass="true"/>
+
+    <!--3.2 NameMatchMethodPointcut参考NameMatchMethodPointcutAdvisor实现-->
+
+    <!--3.3 动态切入点-->
+    <!--DynamicMethodMatcherPointcut-->
+    <bean id="dynamicPointcut" class="com.damon.aop.advisor.pointcut.SimpleDynamicMethodMatcherPointcut"/>
+    <bean id="dynamicAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor"
+          p:pointcut-ref="dynamicPointcut" p:advice-ref="nameAroundAdvice"/>
+    <bean id="dynamicProxy" class="org.springframework.aop.framework.ProxyFactoryBean"
+          p:interceptorNames="dynamicAdvisor"
+          p:target-ref="simpleService"
+          p:proxyTargetClass="true"/>
+
+</beans>

@@ -123,6 +123,15 @@ public class SimpleTest {
         log.info("================================================================");
     }
 
+    @Test
+    public void filter() {
+        List<Integer> list = IntStream.rangeClosed(1, 9).mapToObj(index -> Integer.valueOf(index)).collect(Collectors.toList());
+        log.info("{}|{}", list.size(), list);
+        list = list.stream().filter(index -> index > 5).collect(Collectors.toList());
+        log.info("{}|{}", list.size(), list);
+        list.forEach(index -> log.info("{}", index));
+
+    }
 
     private List<Person> getPerson() {
         List<Person> personList = Lists.newArrayList();

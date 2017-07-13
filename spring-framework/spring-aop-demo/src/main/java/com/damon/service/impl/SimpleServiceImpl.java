@@ -37,4 +37,11 @@ public class SimpleServiceImpl implements SimpleService {
         throw new RuntimeException(message);
     }
 
+    @Override
+    public String testAround(int index) {
+        String result = "testThrows|hello" + index + ".";
+        log.info("结果|{}", result);
+        return result;
+    }
+
 }
