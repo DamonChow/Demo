@@ -27,6 +27,7 @@ public class Person implements Serializable {
 
     private String name;
 
+    //1男，2女
     private int sex;
 
     private int age;
@@ -67,6 +68,14 @@ public class Person implements Serializable {
         this.name = name;
         this.age = age;
         this.ageDesc = ageDesc;
+    }
+
+    public Person(Long id, String name, int age, String ageDesc, int sex) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.ageDesc = ageDesc;
+        this.sex = sex;
     }
 
     public Person(boolean rich, String name, int sex, Date birthday, List<Person> childList, Address address) {

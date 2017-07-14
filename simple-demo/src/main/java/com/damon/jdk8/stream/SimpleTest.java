@@ -8,9 +8,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -76,23 +79,50 @@ public class SimpleTest {
     }
 
     /**
-     * 找相同年龄孩子的个数
+     * 统计子组数据
      */
     @Test
     public void testCollectorsJoining() {
         List<Person> personList = getPerson();
-        Map<Integer, List<Person>> result = personList.stream().collect(Collectors.groupingBy(Person::getAge));
+        Map<String, Long> result = personList.stream()
+                .collect(Collectors.groupingBy(Person::getAgeDesc, LinkedHashMap::new, Collectors.counting()));
+
         String collect = result.entrySet().stream()
                 .sorted(Comparator.comparing(entry -> entry.getKey()))
-                .map(entry -> {
-                    int count = entry.getValue().size();
-                    String ageDesc = entry.getValue().get(0).getAgeDesc();
-                    return "共有" + count + "个" + ageDesc + "的孩子";
-                })
+                .map(entry -> "共有" + entry.getValue() + "个" + entry.getKey() + "的孩子")
                 .collect(Collectors.joining(",", "", "。"));
 
         log.info("{}", collect);
         log.info("================================================================");
+    }
+
+    /**
+     * 找相同年龄孩子的个数
+     */
+    @Test
+    public void testGroupingBy2() {
+        List<Person> personList = getPerson();
+        LinkedHashMap<String, List<Integer>> collect = personList.stream()
+                .collect(Collectors.groupingBy(Person::getAgeDesc, LinkedHashMap::new, Collectors.mapping(person -> person.getSex(), Collectors.toList())));
+
+        Map<String, Integer> sexMap = personList.stream()
+                .collect(Collectors.groupingBy(Person::getAgeDesc, LinkedHashMap::new, Collectors.mapping(person -> person.getSex(),
+                        Collectors.collectingAndThen(Collectors.toList(), item -> getSex(item)))));
+
+        log.info("{}", sexMap);
+        log.info("================================================================");
+    }
+
+    private int getSex(List<Integer> list) {
+        if (CollectionUtils.isEmpty(list)) {
+            return 0;
+        }
+
+        if (list.contains(1)) {
+            return 1;
+        }
+
+        return 2;
     }
 
     /**
@@ -101,25 +131,12 @@ public class SimpleTest {
     @Test
     public void testMax() {
         List<Person> personList = getPerson();
-
         Optional<Person> collect = personList.stream().max(Comparator.comparing(Person::getId));
-//                .collect(Collectors.maxBy(Comparator.comparing(Person::getId)));
-
-        log.info("{}", collect.get());
+        log.info("max={}", collect.get());
         log.info("================================================================");
-    }
 
-    /**
-     * 找最大的2
-     */
-    @Test
-    public void testMax2() {
-        List<Person> personList = getPerson();
-
-        Optional<Person> collect = personList.stream()
-                .collect(Collectors.maxBy(Comparator.comparing(Person::getId)));
-
-        log.info("{}", collect.get());
+        Optional<Person> max2 = personList.stream().collect(Collectors.maxBy(Comparator.comparing(Person::getId)));
+        log.info("max2={}", max2.get());
         log.info("================================================================");
     }
 
@@ -130,19 +147,60 @@ public class SimpleTest {
         list = list.stream().filter(index -> index > 5).collect(Collectors.toList());
         log.info("{}|{}", list.size(), list);
         list.forEach(index -> log.info("{}", index));
+    }
 
+    @Test
+    public void distinct() {
+        List<String> list = Lists.newArrayList("AA", "BB", "CC", "DD", "EE", "FF", "AA", "CC", "BB");
+        List<String> collect = list.stream().distinct().collect(Collectors.toList());
+        log.info("list|{}|{}", list.size(), list);
+        log.info("collect|{}|{}", collect.size(), collect);
     }
 
     private List<Person> getPerson() {
         List<Person> personList = Lists.newArrayList();
-        personList.add(new Person(1L, "AA", 18, "十八岁"));
-        personList.add(new Person(2L, "BB", 3333, "三千三百三十三岁"));
-        personList.add(new Person(22L, "GG", 3333, "三千三百三十三岁"));
-        personList.add(new Person(4L, "DD", 15, "十五岁"));
-        personList.add(new Person(3L, "CC", 15, "十五岁"));
-        personList.add(new Person(5L, "EE", 777, "七百七十七岁"));
-        personList.add(new Person(6L, "FF", 3333, "三千三百三十三岁"));
+        personList.add(new Person(1L, "AA", 18, "十八岁", 1));
+        personList.add(new Person(2L, "BB", 3333, "三千三百三十三岁", 1));
+        personList.add(new Person(22L, "GG", 3333, "三千三百三十三岁", 2));
+        personList.add(new Person(4L, "DD", 15, "十五岁", 1));
+        personList.add(new Person(3L, "CC", 15, "十五岁", 2));
+        personList.add(new Person(5L, "EE", 777, "七百七十七岁", 2));
+        personList.add(new Person(6L, "FF", 3333, "三千三百三十三岁", 2));
         return personList;
+    }
+
+    @Test
+    public void testStream() {
+        List<Person> people = getPerson();
+        // Accumulate names into a List
+        List<String> list = people.stream().map(Person::getName).collect(Collectors.toList());
+        log.info("list={}", list);
+
+        // Accumulate names into a TreeSet
+        Set<String> set = people.stream().map(Person::getName).collect(Collectors.toCollection(TreeSet::new));
+        log.info("set={}", set);
+
+        // Convert elements to strings and concatenate them, separated by commas
+        String joined = people.stream().map(Person::toString).collect(Collectors.joining(", "));
+        log.info("joined={}", joined);
+
+        // Compute sum of id of person
+        long ids = people.stream().collect(Collectors.summingLong(Person::getId));
+        log.info("ids={}", ids);
+
+        // Compute count of person by Age
+        Map<Integer, Long> totalByAge = people.stream().collect(Collectors.groupingBy(Person::getAge, LinkedHashMap::new, Collectors.counting()));
+        log.info("totalByAge={}", totalByAge);
+
+        // Partition students into passing and failing
+        Map<Boolean, List<Person>> passingFailing = people.stream().collect(Collectors.partitioningBy(s -> s.getAge() >= 20));
+        log.info("passingFailing={}", passingFailing);
+
+        String str = Stream.of("a", "b", "c").collect(Collectors.collectingAndThen(Collectors.joining(","), x -> x + "d"));
+        log.info("str={}", str);
+
+        String mapping = Stream.of("a", "b", "c").collect(Collectors.mapping(x -> x.toUpperCase(), Collectors.joining(",")));
+        log.info("mapping={}", mapping);
     }
 
 }
