@@ -19,24 +19,31 @@
                         connectionURL="jdbc:mysql://localhost/mybatis" userId="damon" password="damon">
         </jdbcConnection>
         <javaTypeResolver>
-            <!-- This property is used to specify whether MyBatis Generator should
-                force the use of java.math.BigDecimal for DECIMAL and NUMERIC fields, -->
+            <!-- true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+                false：默认,
+                scale>0;length>18：使用BigDecimal;
+                scale=0;length[10,18]：使用Long；
+                scale=0;length[5,9]：使用Integer；
+                scale=0;length<5：使用Short；
+             -->
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!-- 生成模型的包名和位置 -->
-        <javaModelGenerator targetPackage="com.damon.domain"
-                            targetProject="target">
+        <!-- java模型创建器，是必须要的元素
+        负责：1，key类（见context的defaultModelType）；2，java类；3，查询类
+        targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
+        targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
+        -->
+        <javaModelGenerator targetPackage="com.damon.domain" targetProject="target">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置 -->
-        <sqlMapGenerator targetPackage="com.damon.mapper"
-                         targetProject="target">
+        <sqlMapGenerator targetPackage="com.damon.mapper" targetProject="target">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.damon.dao" implementationPackage="com.damon.dao.impl" targetProject="target">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.damon.dao" implementationPackage="com.damon.dao.impl" targetProject="target">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
@@ -44,6 +51,8 @@
         <table tableName="user" domainObjectName="user"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false"></table>
+               selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="select seq.nextval as id from dual"></generatedKey>
+        </table>
     </context>
 </generatorConfiguration>
