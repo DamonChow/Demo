@@ -10,6 +10,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 功能：
  *
@@ -35,6 +37,18 @@ public class SimpleTest {
     public void test() {
         resource.set("a","1");
         logger.info("get a is {}.", resource.get("a"));
+    }
+
+    @Test
+    public void set() {
+        String result = resource.set("key", "value","nx", "ex" , TimeUnit.SECONDS.toSeconds(30));
+        logger.info("result is {}.", result);
+        logger.info("get key is {}.", resource.get("key"));
+    }
+
+    @Test
+    public void get() {
+        logger.info("get key is {}.", resource.get("key"));
     }
 
     @Test
