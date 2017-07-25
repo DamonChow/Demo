@@ -22,7 +22,7 @@ import java.util.Set;
 /**
  * 功能：Jedis SimpleTest
  *
- * Created by Domon Chow Date: 2015/8/25 Time: 16:30
+ * Created by damon Date: 2015/8/25 Time: 16:30
  */
 public class RedisTest {
 

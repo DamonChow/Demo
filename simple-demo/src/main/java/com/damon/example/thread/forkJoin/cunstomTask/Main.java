@@ -5,7 +5,7 @@ import java.util.concurrent.ForkJoinPool;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/20 15:55.
+ * Created by damon on 2015/5/20 15:55.
  */
 
 //15. 创建例子的主类通过创建一个类，名为 Main 并添加 main()方法。

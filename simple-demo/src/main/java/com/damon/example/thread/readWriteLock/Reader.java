@@ -3,7 +3,7 @@ package com.damon.example.thread.readWriteLock;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/8 15:38.
+ * Created by damon on 2015/5/8 15:38.
  */
 public class Reader implements Runnable {
     //9.声明一个PricesInfo对象，并且实现Reader类的构造器来初始化这个对象。
@@ -12,7 +12,7 @@ public class Reader implements Runnable {
         this.pricesInfo=pricesInfo;
     }
 
-//    10.实现Reader类的run()方法，它读取10次两个价格的值。
+    //10.实现Reader类的run()方法，它读取10次两个价格的值。
     @Override
     public void run() {
         for (int i=0; i<5; i++){

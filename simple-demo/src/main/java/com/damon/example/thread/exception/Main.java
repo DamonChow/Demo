@@ -3,7 +3,7 @@ package com.damon.example.thread.exception;
 /**
  * 功能：线程异常
  *
- * Created by Domon Chow on 2015/5/7 14:49.
+ * Created by damon on 2015/5/7 14:49.
  */
 public class Main {
 

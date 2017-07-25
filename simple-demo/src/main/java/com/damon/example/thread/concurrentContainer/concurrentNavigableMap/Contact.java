@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/15 10:34.
+ * Created by damon on 2015/5/15 10:34.
  */
 
 //1.创建一个Contact类。

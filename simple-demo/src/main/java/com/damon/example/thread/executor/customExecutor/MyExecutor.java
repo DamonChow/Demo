@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 /**
  * 功能：创建MyExecutor类，并指定它继承ThreadPoolExecutor类。
  *
- * Created by Domon Chow on 2015/5/20 9:33.
+ * Created by damon on 2015/5/20 9:33.
  */
 
 public class MyExecutor extends ThreadPoolExecutor {

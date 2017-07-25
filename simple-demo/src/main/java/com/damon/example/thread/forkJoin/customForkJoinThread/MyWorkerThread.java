@@ -5,7 +5,7 @@ import java.util.concurrent.*;
 /**
  * 功能：创建一个继承ForkJoinWorkerThread类的MyWorkerThread类。
  *
- * Created by Domon Chow on 2015/5/20 14:37.
+ * Created by damon on 2015/5/20 14:37.
  */
 public class MyWorkerThread extends ForkJoinWorkerThread {
 

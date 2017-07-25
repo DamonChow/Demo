@@ -3,7 +3,7 @@ package com.damon.example;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/1/23 10:09.
+ * Created by damon on 2015/1/23 10:09.
  */
 public class TestException2 {
 

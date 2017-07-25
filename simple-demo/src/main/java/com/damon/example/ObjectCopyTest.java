@@ -3,7 +3,7 @@ package com.damon.example;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/3/3 14:27.
+ * Created by damon on 2015/3/3 14:27.
  */
 public class ObjectCopyTest {
 

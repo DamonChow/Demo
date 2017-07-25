@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/3/5 11:31.
+ * Created by damon on 2015/3/5 11:31.
  */
 public class IntegerTest {
 

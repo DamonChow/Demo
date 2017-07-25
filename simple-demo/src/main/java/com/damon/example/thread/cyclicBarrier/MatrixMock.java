@@ -9,7 +9,7 @@ import java.util.concurrent.CyclicBarrier;
  * 矩阵会被分成多个子集（使用divide 和 conquer 技术），所以每个线程会在一个子集中查找那个数字。
  * 一旦全部行程运行结束，会有一个最终任务来统一他们的结果。
  *
- * Created by Domon Chow on 2015/5/8 17:37.
+ * Created by damon on 2015/5/8 17:37.
  */
 //1.  我们从实现2个辅助类开始。首先，创建一个类名为 MatrixMock。
 // 此类随机生成一个在1-10之间的 数字矩阵，我们将从中查找数字。

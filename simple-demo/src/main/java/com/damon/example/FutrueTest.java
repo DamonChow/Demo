@@ -11,7 +11,7 @@ import java.util.concurrent.Future;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/4/30 10:59.
+ * Created by damon on 2015/4/30 10:59.
  */
 public class FutrueTest {
 

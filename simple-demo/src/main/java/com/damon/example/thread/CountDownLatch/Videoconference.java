@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：使用 CountDownLatch 类来实现 video- conference 系统
  *
- * Created by Domon Chow on 2015/5/8 16:44.
+ * Created by damon on 2015/5/8 16:44.
  */
 //1.   创建一个类名为 Videoconference 并特别实现 Runnable 接口。这个类将实现 video-conference 系统。
 public class Videoconference implements Runnable {

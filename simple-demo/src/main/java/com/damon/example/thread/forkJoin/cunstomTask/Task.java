@@ -3,7 +3,7 @@ package com.damon.example.thread.forkJoin.cunstomTask;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/20 15:54.
+ * Created by damon on 2015/5/20 15:54.
  */
 
 //9.   创建一个类，名为 Task，延伸 MyWorkerTask 类。

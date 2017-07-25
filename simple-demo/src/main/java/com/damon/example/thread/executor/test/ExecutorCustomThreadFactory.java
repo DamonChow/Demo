@@ -8,7 +8,7 @@ import java.util.concurrent.*;
 /**
  * 功能：创建一个实现ThreadFactory接口的MyThreadFactory类。
  *
- * Created by Domon Chow on 2015/5/20 10:07.
+ * Created by damon on 2015/5/20 10:07.
  */
 public class ExecutorCustomThreadFactory implements ThreadFactory {
 

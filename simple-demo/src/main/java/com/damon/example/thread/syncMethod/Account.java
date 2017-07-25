@@ -3,7 +3,7 @@ package com.damon.example.thread.syncMethod;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/8 15:04.
+ * Created by damon on 2015/5/8 15:04.
  */
 public class Account {
     private double balance;

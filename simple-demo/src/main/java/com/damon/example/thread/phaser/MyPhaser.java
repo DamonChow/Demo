@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/11 10:49.
+ * Created by damon on 2015/5/11 10:49.
  */
 //1.   创建一个类，名为 MyPhaser，并特别的扩展 Phaser 类。
 public class MyPhaser extends Phaser {

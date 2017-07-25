@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/8 16:09.
+ * Created by damon on 2015/5/8 16:09.
  */
 //1.   创建一个会实现print queue的类名为 PrintQueue。
 public class PrintQueue {

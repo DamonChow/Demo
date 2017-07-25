@@ -7,7 +7,7 @@ import java.util.concurrent.Exchanger;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/11 11:07.
+ * Created by damon on 2015/5/11 11:07.
  */
 public class Core {
     public static void main(String[] args) {

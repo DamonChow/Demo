@@ -7,7 +7,7 @@ import java.util.concurrent.*;
  * 功能：创建一个类，名为 MyScheduledTask，使名为 V 的泛型类型参数化。
  * 它扩展 FutureTask 类并实现 RunnableScheduledFuture 接口。
  *
- * Created by Domon Chow on 2015/5/20 11:33.
+ * Created by damon on 2015/5/20 11:33.
  */
 public class MyScheduledTask<V> extends FutureTask<V> implements
         RunnableScheduledFuture<V> {

@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * 功能：
  *
- * Created by Domon Chow Date: 2015/9/1 Time: 15:42
+ * Created by damon Date: 2015/9/1 Time: 15:42
  */
 public class StringTest2 {
 

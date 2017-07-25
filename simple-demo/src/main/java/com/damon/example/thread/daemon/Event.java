@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/7 14:45.
+ * Created by damon on 2015/5/7 14:45.
  */
 public class Event {
 

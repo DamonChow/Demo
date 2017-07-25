@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 /**
  * 功能：
  * <p/>
- * Created by Domon Chow on 2015/3/11 10:44.
+ * Created by damon on 2015/3/11 10:44.
  */
 public class StringTest {
 

@@ -6,7 +6,7 @@ import java.util.Deque;
 /**
  * 功能：
  *
- * Created by Domon Chow on 2015/5/7 14:47.
+ * Created by damon on 2015/5/7 14:47.
  */
 public class CleanerTask extends Thread {
     private Deque<Event> deque;

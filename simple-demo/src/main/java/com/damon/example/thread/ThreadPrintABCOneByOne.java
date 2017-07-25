@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * 功能：
  *
- * Created by Domon Chow Date: 2015/8/7 Time: 10:45
+ * Created by damon Date: 2015/8/7 Time: 10:45
  */
 public class ThreadPrintABCOneByOne {
 

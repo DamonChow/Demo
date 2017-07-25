@@ -26,8 +26,8 @@ public class LockTest {
         RLock lock = redisson.getLock("anyLock");
         try {
             if (!lock.tryLock(100, 10, TimeUnit.SECONDS)) {
-            System.out.println("not get lock.");
-            return;
+                System.out.println("not get lock.");
+                return;
             }
             System.out.println("was lock.");
         } finally {

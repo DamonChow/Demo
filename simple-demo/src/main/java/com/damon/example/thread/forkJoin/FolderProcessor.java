@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：在一个文件夹及其子文件夹内查找确定扩展名的文件
  *
- * Created by Domon Chow on 2015/5/11 16:10.
+ * Created by damon on 2015/5/11 16:10.
  */
 public class FolderProcessor extends RecursiveTask<List<String>> {
     // 2.声明这个类的序列号版本UID。这个元素是必需的，因为RecursiveTask类的父类，
