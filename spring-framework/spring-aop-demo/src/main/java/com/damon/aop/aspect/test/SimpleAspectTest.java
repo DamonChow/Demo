@@ -1,6 +1,7 @@
 package com.damon.aop.aspect.test;
 
 import com.damon.service.SimpleService;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"/aspect/aspect-simple.xml"})
+@Slf4j
 public class SimpleAspectTest {
 
     @Autowired
@@ -24,7 +26,11 @@ public class SimpleAspectTest {
 
     @Test(expected = Exception.class)
     public void testThrows() {
-        simpleService.testThrows("[Throws Damon]", 33);
+        try {
+            simpleService.testThrows("[Throws Damon]", 33);
+        } catch (Exception e) {
+            log.error("错误{}|", "aa", e);
+        }
     }
 
 }
