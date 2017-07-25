@@ -52,9 +52,16 @@ public class StringTest {
     }
 
     @Test
-    public void testString() {
+    public void testNull() {
         System.out.println(null + "123");
         String str = null;
         System.out.println(str + "123");
+    }
+
+    @Test
+    public void testNullPlus() {
+        String source = null;
+        String desc = source + "aaa";
+        System.out.println(desc);
     }
 }
