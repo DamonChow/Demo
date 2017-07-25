@@ -24,14 +24,13 @@ public class LockTest {
         RKeys keys = redisson.getKeys();
         System.out.println(keys);
         RLock lock = redisson.getLock("anyLock");
-        if (!lock.tryLock(100, 10, TimeUnit.SECONDS)) {
+        try {
+            if (!lock.tryLock(100, 10, TimeUnit.SECONDS)) {
             System.out.println("not get lock.");
             return;
-        }
-        try {
+            }
             System.out.println("was lock.");
-        }
-        finally {
+        } finally {
             lock.unlock();
         }
 
