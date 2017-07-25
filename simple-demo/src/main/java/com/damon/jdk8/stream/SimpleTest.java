@@ -8,11 +8,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -201,6 +203,15 @@ public class SimpleTest {
 
         String mapping = Stream.of("a", "b", "c").collect(Collectors.mapping(x -> x.toUpperCase(), Collectors.joining(",")));
         log.info("mapping={}", mapping);
+    }
+
+    @Test
+    public void testSum() {
+        String test = "2016,200;2018,300;2019,200;2017,200;2016,100;2018,600";
+        String[] split = test.split(";");
+        Map<String, Long> collect = Stream.of(split).map(str -> str.split(","))
+                .collect(Collectors.groupingBy(array -> array[0], TreeMap::new, Collectors.summingLong(array -> Long.parseLong(array[1]))));
+        log.info("结果={}", collect);
     }
 
 }
