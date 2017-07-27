@@ -16,7 +16,8 @@ import java.util.concurrent.Future;
 /**
  * 功能：redis cluster test
  *
- * Created by DamonChow Date: 2015/9/17 Time: 15:19
+ * @author damon
+ * @since 2015/9/17 Time: 15:19
  */
 public class RedisClusterTest {
 

@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * 功能：
  *
- * @author Damon Chow
+ * @author damon
  * @since 2015/10/15 15:55
  */
 public class IntegerToLongTest {
