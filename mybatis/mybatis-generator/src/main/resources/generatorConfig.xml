@@ -3,10 +3,16 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <context id="test" targetRuntime="MyBatis3">
-        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+    <properties resource="generator.properties"></properties>
+
+    <context id="test" targetRuntime="MyBatis3" defaultModelType="flat">
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin>
+        <!--<plugin type="com.damon.plugin.LombokPlugin">
+            <property name="targetProject" value="../java"/>
+            <property name="targetPackage" value="com.damon.dao"/>
+            <property name="builder" value="true"/>
+            <property name="allArgsConstructor" value="false"/>
+        </plugin>-->
         <commentGenerator>
             <!-- 这个元素用来去除指定生成的注释中是否包含生成的日期 false:表示保护 -->
             <!-- 如果生成日期，会造成即使修改一个字段，整个实体类所有属性都会发生变化，不利于版本控制，所以设置为true -->
@@ -15,8 +21,8 @@
             <property name="suppressAllComments" value  ="true" />
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost/mybatis" userId="damon" password="damon">
+        <jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}"
+                        userId="${userId}" password="${password}">
         </jdbcConnection>
         <javaTypeResolver>
             <!-- true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
@@ -34,25 +40,28 @@
         targetPackage：生成的类要放的包，真实的包受enableSubPackages属性控制；
         targetProject：目标项目，指定一个存在的目录下，生成的内容会放到指定目录中，如果目录不存在，MBG不会自动建目录
         -->
-        <javaModelGenerator targetPackage="com.damon.domain" targetProject="target">
+        <javaModelGenerator targetPackage="com.damon.domain" targetProject="${targetProject}">
             <property name="enableSubPackages" value="true" />
-            <property name="trimStrings" value="true" />
+            <!--<property name="trimStrings" value="true" />-->
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置 -->
-        <sqlMapGenerator targetPackage="com.damon.mapper" targetProject="target">
+        <sqlMapGenerator targetPackage="com.damon.xml" targetProject="${targetProject}">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.damon.dao" implementationPackage="com.damon.dao.impl" targetProject="target">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.damon.mapper" targetProject="${targetProject}">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!-- 要生成哪些表 -->
-        <table tableName="user" domainObjectName="user"
+        <table tableName="${tableName}" domainObjectName="${domainObjectName}"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="select seq.nextval as id from dual"></generatedKey>
+            <columnOverride column="useraddress" property="userAddress"></columnOverride>
+            <columnOverride column="username" property="userName"></columnOverride>
+            <columnOverride column="userage" property="userAge"></columnOverride>
         </table>
     </context>
 </generatorConfiguration>
