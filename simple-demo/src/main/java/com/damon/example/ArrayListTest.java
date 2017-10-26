@@ -165,6 +165,7 @@ public class ArrayListTest {
     public void testSubList() {
         List<String> list = Lists.newArrayList("a", "b", "c", "d", "e", "f", "h", "g");
 
+        logger.info("list = {} ", list);
         logger.info("总长度--------------------------" + list.size());
         int sheetLength = 3;
         int sheetSize = list.size() / sheetLength + (list.size() % sheetLength == 0 ? 0 : 1);
@@ -174,6 +175,7 @@ public class ArrayListTest {
             int toIndex = (sheetIndex + 1) * sheetLength;
             toIndex = toIndex >= list.size() ? list.size() : toIndex;
             logger.info("from {} to {}.", new Object[]{fromIndex, toIndex});
+            logger.info("result subList = {} ", list.subList(fromIndex, toIndex));
             result.add(list.subList(fromIndex, toIndex));
         }
         result.stream().forEach(x -> logger.info(x + ""));
@@ -181,7 +183,7 @@ public class ArrayListTest {
 
     @Test
     public void testRetainAll() {
-        List<String> preList = Lists.newArrayList("AA", "BB", "CC", "DD");
+        List<String> preList = Lists.newArrayList("AA", "FF", "CC", "DD");
         String[] arrayString = {"AA", "FF", "SS", "CfC"};
         preList.forEach(System.out::print);
         System.out.println("\n----------------------------");
@@ -205,23 +207,36 @@ public class ArrayListTest {
     public void testList() {
         List listA = Lists.newArrayList(1, 2, 3, 4, 5);
         List listB = Lists.newArrayList(4, 5, 6, 7, 8);
+        printCollection(listA, "A");
+        printCollection(listB, "B");
 
         Collection union = CollectionUtils.union(listA, listB);
-        System.out.println("取所有元素:");
+        System.out.print("\n取所有元素:");
         for (Object integer : union)
-            System.out.println(integer);
+            System.out.print(integer);
 
         Collection disjunction = CollectionUtils.disjunction(listA, listB);
-        System.out.println("取不相同的元素:");
+        System.out.print("\n取不相同的元素:");
         for (Object integer : disjunction)
-            System.out.println(integer);
+            System.out.print(integer);
 
         Collection intersection = CollectionUtils.intersection(listA, listB);
-        System.out.println("交集:取相同元素");
+        System.out.print("\n交集:取相同元素");
         for (Object integer : intersection)
-            System.out.println(integer);
+            System.out.print(integer);
 
-        System.out.println("B是A子集？" + listA.containsAll(listB));
+        System.out.println("\nB是A子集？" + listA.containsAll(listB));
+
+        boolean b = listA.retainAll(listB);
+        System.out.print("\nA集和B集是否有相同元素：" + b);
+        printCollection(listA, "A");
+        printCollection(listB, "B");
+    }
+
+    private void printCollection(List<String> list, String listName) {
+        System.out.print("\n集合" + listName + ":的元素");
+        for (Object integer : list)
+            System.out.print(integer);
     }
 
     @Test
@@ -282,4 +297,30 @@ public class ArrayListTest {
         a4All.addAll(b);
         System.out.println("result = " + a4All);
     }
+
+    @Test
+    public void testSumMoreList() {
+        List<String> list1 = Lists.newArrayList("1", "5", "9", "13", "17");
+        List<String> list2 = Lists.newArrayList("2", "6", "10", "14", "18");
+        List<String> list3 = Lists.newArrayList("3", "7", "11", "15", "19");
+        List<String> list4 = Lists.newArrayList("4", "8", "12", "16", "19");
+
+        List<List<String>> list = Lists.newArrayList(list1, list2, list3, list4);
+
+        list.stream().collect(Collectors.toList());
+
+
+        System.out.println("result = " + list);
+    }
+
+    @Test
+    public void testRemoveAllList() {
+        List<String> list1 = Lists.newArrayList("1", "2", "3", "13", "19");
+        List<String> list4 = Lists.newArrayList("13", "19");
+
+        list1.removeAll(list4);
+        System.out.println("result = " + list1);
+    }
+
+
 }

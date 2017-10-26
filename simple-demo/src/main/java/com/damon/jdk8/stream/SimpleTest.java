@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -64,6 +65,9 @@ public class SimpleTest {
         }).filter(person -> person != null)
                 .collect(Collectors.toMap(p -> p, p -> null));
         System.out.println(map + ",," + map.size());
+
+        List<Long> longList = Stream.of(new String[]{"1", "2", "3", "4"}).map(id -> Long.valueOf(id)).collect(Collectors.toList());
+        System.out.println(longList);
     }
 
     /**
@@ -104,10 +108,12 @@ public class SimpleTest {
     @Test
     public void testGroupingBy2() {
         List<Person> personList = getPerson();
+        log.info("personList={}", personList);
         LinkedHashMap<String, List<Integer>> collect = personList.stream()
                 .collect(Collectors.groupingBy(Person::getAgeDesc, LinkedHashMap::new, Collectors.mapping(person -> person.getSex(), Collectors.toList())));
 
-        log.info("{}", collect);
+        log.info("================================================================");
+        log.info("collect={}", collect);
         log.info("================================================================");
         Map<String, Integer> sexMap = personList.stream()
                 .collect(Collectors.groupingBy(Person::getAgeDesc, LinkedHashMap::new, Collectors.mapping(person -> person.getSex(),
