@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2017/10/23 19:11
  */
 public class RedisLockTest {

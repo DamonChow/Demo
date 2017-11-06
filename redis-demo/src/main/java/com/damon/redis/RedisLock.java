@@ -11,7 +11,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 /**
  * 功能：
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2017/10/25 17:35
  */
 public class RedisLock {

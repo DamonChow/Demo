@@ -5,7 +5,7 @@ import redis.clients.jedis.Jedis;
 /**
  * 功能：
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2017/10/25 17:33
  */
 public class Lock {

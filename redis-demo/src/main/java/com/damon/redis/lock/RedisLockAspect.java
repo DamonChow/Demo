@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2017/10/26 11:00
  */
 @Aspect

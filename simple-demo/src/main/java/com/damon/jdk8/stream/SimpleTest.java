@@ -110,7 +110,8 @@ public class SimpleTest {
         List<Person> personList = getPerson();
         log.info("personList={}", personList);
         LinkedHashMap<String, List<Integer>> collect = personList.stream()
-                .collect(Collectors.groupingBy(Person::getAgeDesc, LinkedHashMap::new, Collectors.mapping(person -> person.getSex(), Collectors.toList())));
+                .collect(Collectors.groupingBy(Person::getAgeDesc, LinkedHashMap::new,
+                        Collectors.mapping(person -> person.getSex(), Collectors.toList())));
 
         log.info("================================================================");
         log.info("collect={}", collect);

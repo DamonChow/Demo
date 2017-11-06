@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 功能：
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2017/10/23 15:31
  */
 public interface BingApi {
