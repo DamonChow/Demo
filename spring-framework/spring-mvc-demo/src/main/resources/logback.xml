@@ -11,7 +11,7 @@
     <jmxConfigurator />
      
     <!-- 定义日志文件 输出位置 -->
-    <property name="log_dir" value="/data/logs/idvertdata_open_log" />
+    <property name="log_dir" value="/data/logs/mvc_log" />
      
     <!-- 日志最大的历史 3天 -->
     <property name="maxHistory" value="3" /> 
@@ -133,35 +133,7 @@
         </encoder>
     </appender>
     
-    <appender name="http_error_mail" class="ch.qos.logback.classic.net.SMTPAppender">
-        <SMTPHost>smtp.exmail.qq.com</SMTPHost>
-        <SMTPPort>465</SMTPPort>
-        <SSL>true</SSL>
-        <Username>exception@idvert.com</Username>
-        <Password>D1212123d</Password>
-        <From>exception@idvert.com</From>
-        
-        <To>zengji&lt;zengji@idvert.com&gt;</To>
-        <To>lisongqiu&lt;lisongqiu@idvert.com&gt;</To>
-        <To>xiaoao&lt;xiaoao@idvert.com&gt;</To>
-        <To>sunzhiqiang&lt;sunzhiqiang@idvert.com&gt;</To>
-        <To>pengyangqiu&lt;pengyangqiu@idvert.com&gt;</To>
-
-        <Subject>系统异常邮件通知</Subject>
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>${ALARM_PATTERN}</pattern>
-        </layout>
-    </appender>
-     
-    <logger name="com.advertchina.idvertdata.util.email.ExceptionEmail" level="error" additivity="false">
-        <!-- <appender-ref ref="log_file" /> -->
-        <!-- 本机测试不需要发邮件，要注释掉此行 -->
-        <appender-ref ref="http_error_mail"/>
-        <!--   部署时无需输出到控制台，要注释掉此行-->
-        <!-- <appender-ref ref="console_normal"/>  -->
-    </logger>
-
-    <logger name="com.advertchina.idvertdata.dao" level="DEBUG"/>
+    <logger name="com.damon.dao" level="DEBUG"/>
      
     <!-- root级别   DEBUG -->
     <root>
