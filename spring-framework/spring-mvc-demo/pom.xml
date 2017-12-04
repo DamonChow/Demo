@@ -139,7 +139,7 @@
 
     </dependencies>
     <build>
-        <finalName>idvertdata-open</finalName>
+        <finalName>demo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
