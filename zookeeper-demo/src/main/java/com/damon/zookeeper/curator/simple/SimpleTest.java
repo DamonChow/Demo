@@ -28,7 +28,7 @@ public class SimpleTest {
 
     @Before
     public void init() {
-        client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT, new ExponentialBackoffRetry(1000, 3));
+        client = CuratorFrameworkFactory.newClient(Constants.HOST_AND_PORT_, new ExponentialBackoffRetry(1000, 3));
         client.start();
 
         try {

@@ -1,6 +1,8 @@
 package com.damon.jdk8.stream;
 
 import com.damon.jdk8.date.LocalDateTest;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -57,4 +60,27 @@ public class SimpleTenTest {
         logger.info("anyMatch = {}", anyMatch);
         logger.info("reduce = {}", reduce);
     }
+
+    @Test
+    public void testFlat() {
+        List<String> a = Lists.newArrayList("aa","bb","cc");
+        List<String> b = Lists.newArrayList("aa2","bb2","cc2");
+        List<String> c = Lists.newArrayList("aa3","bb3","cc3");
+        List<String> d = Lists.newArrayList("aa4","bb4","cc4");
+
+        Map<String, List<String>> map = Maps.newHashMap();
+        map.put("a", a);
+        map.put("b", b);
+        map.put("c", c);
+        map.put("d", d);
+
+        List<String> list = map.entrySet().stream().flatMap(entry -> entry.getValue().stream()).collect(Collectors.toList());
+        System.out.println(list);
+
+        List<String> list2 = map.values().stream().flatMap(item -> item.stream()).collect(Collectors.toList());
+        System.out.println(list2);
+
+
+    }
+
 }
