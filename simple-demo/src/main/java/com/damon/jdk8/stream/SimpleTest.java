@@ -183,6 +183,8 @@ public class SimpleTest {
     @Test
     public void testStream() {
         List<Person> people = getPerson();
+        log.info("people={}", people);
+
         // Accumulate names into a List
         List<String> list = people.stream().map(Person::getName).collect(Collectors.toList());
         log.info("list={}", list);
@@ -202,6 +204,10 @@ public class SimpleTest {
         // Compute count of person by Age
         Map<Integer, Long> totalByAge = people.stream().collect(Collectors.groupingBy(Person::getAge, LinkedHashMap::new, Collectors.counting()));
         log.info("totalByAge={}", totalByAge);
+
+        // Compute count of person by Age
+        Map<Integer, Long> idMap = people.stream().collect(Collectors.groupingBy(Person::getAge, Collectors.summingLong(person->person.getId())));
+        log.info("idMap={}", idMap);
 
         // Partition students into passing and failing
         Map<Boolean, List<Person>> passingFailing = people.stream().collect(Collectors.partitioningBy(s -> s.getAge() >= 20));
