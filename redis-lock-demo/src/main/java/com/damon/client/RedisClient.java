@@ -1,6 +1,7 @@
-package com.damon.redis.lock;
+package com.damon.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author Damon
  * @since 2017/10/26 10:47
  */
+@Component
 public class RedisClient {
 
 	@Autowired

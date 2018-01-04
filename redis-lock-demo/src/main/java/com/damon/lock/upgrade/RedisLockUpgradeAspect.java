@@ -1,5 +1,8 @@
-package com.damon.redis.lock;
+package com.damon.lock.upgrade;
 
+import com.damon.client.RedisClient;
+import com.damon.lock.RedisLockAspect;
+import com.damon.utli.AspectUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -10,13 +13,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.BridgeMethodResolver;
+import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.text.MessageFormat;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -27,37 +33,24 @@ import java.util.concurrent.TimeUnit;
  */
 @Aspect
 @Component
-public class RedisLockAspect {
+public class RedisLockUpgradeAspect{
 
     @Autowired
     private RedisClient redisClient;
 
-    Logger logger = LoggerFactory.getLogger(RedisLockAspect.class);
+    protected Logger logger = LoggerFactory.getLogger(RedisLockUpgradeAspect.class);
 
-    @Around(value = " @annotation(com.damon.redis.lock.RedisLock)")
+    @Around(value = " @annotation(com.damon.lock.upgrade.RedisLock)")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
-        // 1.校验
-        Object[] args = pjp.getArgs();
-        String[] param = null;
-        try {
-            param = (String[]) Optional.ofNullable(args).map(arg -> arg[0]).orElse(null);
-        } catch (Exception e) {
-            logger.error("切面失败，使用RedisLock注解，第一个参数为String数组");
-            return pjp.proceed();
-        }
         Object target = pjp.getTarget();
-        Class<?> cls = getTargetClass(target);
-        Method specificMethod = getSpecificMethod(pjp, cls);
-        if (!Modifier.isPublic(specificMethod.getModifiers())) {
-            logger.error("切面失败，使用RedisLock注解，必须使用接口层方法。");
-            return pjp.proceed();
-        }
+        Class<?> cls = AspectUtil.getTargetClass(target);
+        Method specificMethod = AspectUtil.getSpecificMethod(pjp, cls);
 
         // 2.锁
         RedisLock lock = specificMethod.getAnnotation(RedisLock.class);
         String key = lock.key();
         int expireSeconds = lock.expireSeconds();
-        String lockKey = MessageFormat.format(key, param);
+        String lockKey = getLockKey(specificMethod, key, pjp.getArgs());
         boolean retry = lock.retry();
         int retryTimes = lock.retryTimes();
         long delay = lock.delay();
@@ -86,34 +79,19 @@ public class RedisLockAspect {
         }
     }
 
-    /**
-     * 获取目标Class
-     *
-     * @param target
-     * @return
-     */
-    public static Class<?> getTargetClass(Object target) {
-        Class<?> targetClass = AopProxyUtils.ultimateTargetClass(target);
-        if (targetClass == null) {
-            targetClass = target.getClass();
+    public String getLockKey(Method method, String key, Object[] arguments) {
+        LocalVariableTableParameterNameDiscoverer discoverer = new LocalVariableTableParameterNameDiscoverer();
+        String[] parameters = discoverer.getParameterNames(method);
+        ExpressionParser parser = new SpelExpressionParser();
+        Expression expression = parser.parseExpression(key);
+        EvaluationContext context = new StandardEvaluationContext();
+        int length = parameters.length;
+        if (length > 0) {
+            for (int i = 0; i < length; i++) {
+                context.setVariable(parameters[i], arguments[i]);
+            }
         }
-        return targetClass;
-    }
-
-    /**
-     * 获取指定方法
-     *
-     * @param pjp
-     * @param targetClass
-     * @return
-     */
-    public static Method getSpecificMethod(ProceedingJoinPoint pjp, Class<?> targetClass) {
-        Signature signature = pjp.getSignature();
-        MethodSignature methodSignature = (MethodSignature) signature;
-        Method method = methodSignature.getMethod();
-        Method specificMethod = ClassUtils.getMostSpecificMethod(method, targetClass);
-        specificMethod = BridgeMethodResolver.findBridgedMethod(specificMethod);
-        return specificMethod;
+        return expression.getValue(context, String.class);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.damon.redis.lock;
+package com.damon.lock.upgrade;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RedisLock {
 
-    /**锁名 例：AA:BB{0}:{1}*/
+    /**锁名(采用spring表达式) 例："'AA:BB'+#arg"*/
     String key() default "";
 
     /**锁过期时间 默认60秒*/

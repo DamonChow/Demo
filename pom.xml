@@ -64,6 +64,8 @@
         <module>spring-framework</module>
         <module>facebook-demo</module>
         <module>network-demo</module>
+        <module>excel-demo</module>
+        <module>redis-lock-demo</module>
     </modules>
     
     <dependencyManagement>
