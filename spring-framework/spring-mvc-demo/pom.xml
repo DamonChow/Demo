@@ -9,7 +9,7 @@
 
     <artifactId>spring-mvc-demo</artifactId>
     <packaging>war</packaging>
-    <name>spring-mvc-demo Maven Webapp</name>
+    <name>spring-mvc-demo</name>
     <url>http://maven.apache.org</url>
 
     <properties>

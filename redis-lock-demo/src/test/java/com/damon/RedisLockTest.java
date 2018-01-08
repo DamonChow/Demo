@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2018/1/4 11:25
  */
 @RunWith(SpringJUnit4ClassRunner.class)

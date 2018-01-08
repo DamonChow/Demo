@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 功能：
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2018/1/4 11:03
  */
 public class Apple implements Serializable {

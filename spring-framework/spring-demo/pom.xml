@@ -9,7 +9,7 @@
 
     <artifactId>spring-demo</artifactId>
     <packaging>jar</packaging>
-    <name>spring-mvc-demo Maven Webapp</name>
+    <name>spring-demo</name>
     <url>http://maven.apache.org</url>
 
     <properties>

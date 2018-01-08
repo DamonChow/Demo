@@ -30,7 +30,7 @@
         <spark.version>2.1.0</spark.version>
 
         <zookeeper.version>3.4.6</zookeeper.version>
-        <curator.version>2.9.1</curator.version>
+        <curator.version>2.12.0</curator.version>
 
         <xmemcached.version>2.0.0</xmemcached.version>
         <spymemcached.version>2.11.7</spymemcached.version>
@@ -66,6 +66,7 @@
         <module>network-demo</module>
         <module>excel-demo</module>
         <module>redis-lock-demo</module>
+        <module>zookeeper-config-demo</module>
     </modules>
     
     <dependencyManagement>
