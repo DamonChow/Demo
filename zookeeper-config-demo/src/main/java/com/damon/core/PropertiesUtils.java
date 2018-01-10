@@ -19,8 +19,6 @@ public class PropertiesUtils {
 
     private static Map<String, Object> properties = new ConcurrentHashMap<>();
 
-    private static Logger logger = LoggerFactory.getLogger(PropertiesUtils.class);
-
     protected static void putProperties(Properties props) {
         for (Map.Entry entry : props.entrySet()) {
             String key = entry.getKey().toString();
@@ -40,10 +38,10 @@ public class PropertiesUtils {
     }
 
     public static void handleProperties(String configValue, Properties properties) throws IllegalArgumentException {
+        configValue = StringUtils.replace(configValue, "\r", "");
         String[] lines = StringUtils.split(configValue, "\n");
         for (String config : lines) {
-            logger.info("文件：{}", config);
-            if (StringUtils.isBlank(config) || StringUtils.startsWith(config, "#")) {
+            if (StringUtils.isBlank(config) || StringUtils.startsWith(config.trim(), "#")) {
                 continue;
             }
 
@@ -53,14 +51,15 @@ public class PropertiesUtils {
             }
             String key = StringUtils.substring(config, 0, index);
             String value = StringUtils.substring(config, index + 1, config.length());
+            if (StringUtils.isEmpty(value)) {
+                throw new IllegalArgumentException("错误配置:" + config);
+            }
             properties.put(key, value);
         }
     }
 
     private static Object getProperties(String key) {
-        Object value = properties.get(key);
-        logger.info("取属性key={}，其值={}", key, value);
-        return value;
+        return properties.get(key);
     }
 
     public static String getString(String key) {

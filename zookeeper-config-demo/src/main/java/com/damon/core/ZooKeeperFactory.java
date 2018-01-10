@@ -29,11 +29,11 @@ public class ZooKeeperFactory {
         return client;
     }
 
-    public static void main(String[] args) throws Exception {
+    /*public static void main(String[] args) throws Exception {
         CuratorFramework curatorFramework = ZooKeeperFactory.get("192.168.0.23:2181");
         String path = "/config/dev/kjb.product/dubbo.properties";
         List<String> list = curatorFramework.getChildren().forPath(path);
         System.out.println(list);
-    }
+    }*/
 
 }

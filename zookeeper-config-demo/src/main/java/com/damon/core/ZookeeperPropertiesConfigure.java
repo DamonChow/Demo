@@ -57,15 +57,14 @@ public class ZookeeperPropertiesConfigure extends PropertyPlaceholderConfigurer 
     }
 
     private Properties loadZookeeperConfig() {
-        logger.info("解析zookeeper配置.");
         Properties properties = new Properties();
         String zkHost = System.getProperty("zkHost");
         if (StringUtils.isEmpty(zkHost)) {
             throw new IllegalArgumentException("请配置vm中的[zkHost]属性.");
         }
-        logger.info("connect zookeeper|{}|开始读取zookeeper中的配置文件。", zkHost);
+        logger.info("开始读取zookeeper|{}|中的配置文件。", zkHost);
         if (ArrayUtils.isEmpty(locationList)) {
-            throw new IllegalArgumentException("ZookeeperPropertiesConfigure必须配置location属性.");
+            throw new IllegalArgumentException("ZookeeperPropertiesConfigure必须配置locationList属性.");
         }
 
         try {
@@ -77,7 +76,7 @@ public class ZookeeperPropertiesConfigure extends PropertyPlaceholderConfigurer 
                 PropertiesUtils.handleProperties(configValue, properties);
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("解析zookeeper中的属性出错。");
+            throw new IllegalArgumentException("解析zookeeper中的属性出错。", e);
         }
         return properties;
     }
