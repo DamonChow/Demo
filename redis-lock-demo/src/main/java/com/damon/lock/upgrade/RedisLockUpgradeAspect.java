@@ -1,18 +1,13 @@
 package com.damon.lock.upgrade;
 
 import com.damon.client.RedisClient;
-import com.damon.lock.RedisLockAspect;
 import com.damon.utli.AspectUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.BridgeMethodResolver;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
@@ -20,10 +15,10 @@ import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ClassUtils;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 /**
  * 功能：
@@ -33,7 +28,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Aspect
 @Component
-public class RedisLockUpgradeAspect{
+public class RedisLockUpgradeAspect {
 
     @Autowired
     private RedisClient redisClient;
@@ -60,9 +55,9 @@ public class RedisLockUpgradeAspect{
 
         boolean locked = false;
         if (retry) {
-            locked  = redisClient.tryAcquire(lockKey, expireSeconds, retryTimes, delay, unit);
+            locked = redisClient.tryAcquire(lockKey, expireSeconds, retryTimes, delay, unit);
         } else {
-            locked  = redisClient.acquire(lockKey, expireSeconds);
+            locked = redisClient.acquire(lockKey, expireSeconds);
         }
 
         if (!locked) {
@@ -87,9 +82,7 @@ public class RedisLockUpgradeAspect{
         EvaluationContext context = new StandardEvaluationContext();
         int length = parameters.length;
         if (length > 0) {
-            for (int i = 0; i < length; i++) {
-                context.setVariable(parameters[i], arguments[i]);
-            }
+            IntStream.range(0, length).forEach(index -> context.setVariable(parameters[index], arguments[index]));
         }
         return expression.getValue(context, String.class);
     }
