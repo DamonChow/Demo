@@ -153,6 +153,10 @@ public class SimpleTest {
 
     @Test
     public void filter() {
+        List<Integer> list1 = IntStream.range(0, 9).mapToObj(index -> Integer.valueOf(index)).collect(Collectors.toList());
+        log.info("{}|{}", list1.size(), list1);
+        list1 = IntStream.range(1, 9).mapToObj(index -> Integer.valueOf(index)).collect(Collectors.toList());
+        log.info("{}|{}", list1.size(), list1);
         List<Integer> list = IntStream.rangeClosed(1, 9).mapToObj(index -> Integer.valueOf(index)).collect(Collectors.toList());
         log.info("{}|{}", list.size(), list);
         list = list.stream().filter(index -> index > 5).collect(Collectors.toList());
