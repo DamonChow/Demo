@@ -67,6 +67,7 @@
         <module>excel-demo</module>
         <module>redis-lock-demo</module>
         <module>zookeeper-config-demo</module>
+        <module>damon-framework</module>
     </modules>
     
     <dependencyManagement>
