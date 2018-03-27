@@ -40,6 +40,7 @@ public class MySQLLimitPlugin extends PluginAdapter {
         Field limit = new Field();
         limit.setName("limit");
         limit.setVisibility(JavaVisibility.PRIVATE);
+        limit.setInitializationString("-1");
         limit.setType(integerWrapper);
         topLevelClass.addField(limit);
 
@@ -61,6 +62,7 @@ public class MySQLLimitPlugin extends PluginAdapter {
         offset.setName("offset");
         offset.setVisibility(JavaVisibility.PRIVATE);
         offset.setType(integerWrapper);
+        offset.setInitializationString("-1");
         topLevelClass.addField(offset);
 
         Method setOffset = new Method();
