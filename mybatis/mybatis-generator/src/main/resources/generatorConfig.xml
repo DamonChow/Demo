@@ -7,15 +7,17 @@
 
     <context id="test" targetRuntime="MyBatis3" defaultModelType="flat">
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <plugin type="com.damon.plugin.MySQLLimitPlugin"></plugin>
         <!--<plugin type="com.damon.plugin.LombokPlugin">
             <property name="targetProject" value="../java"/>
             <property name="targetPackage" value="com.damon.dao"/>
             <property name="builder" value="true"/>
             <property name="allArgsConstructor" value="false"/>
         </plugin>-->
-        <commentGenerator>
+        <commentGenerator type="com.damon.plugin.RemarkCommentGenerator">
             <!-- 这个元素用来去除指定生成的注释中是否包含生成的日期 false:表示保护 -->
             <!-- 如果生成日期，会造成即使修改一个字段，整个实体类所有属性都会发生变化，不利于版本控制，所以设置为true -->
+            <property name="author" value="${author}" />
             <property name="suppressDate" value="true" />
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value  ="true" />
@@ -49,19 +51,18 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.damon.mapper" targetProject="${targetProject}">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.damon.mapper"
+                             targetProject="${targetProject}">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
         <!-- 要生成哪些表 -->
         <table tableName="${tableName}" domainObjectName="${domainObjectName}"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
             <generatedKey column="id" sqlStatement="select seq.nextval as id from dual"></generatedKey>
-            <columnOverride column="useraddress" property="userAddress"></columnOverride>
-            <columnOverride column="username" property="userName"></columnOverride>
-            <columnOverride column="userage" property="userAge"></columnOverride>
+            <!--<columnOverride column="userage" property="userAge"></columnOverride>-->
         </table>
     </context>
 </generatorConfiguration>
