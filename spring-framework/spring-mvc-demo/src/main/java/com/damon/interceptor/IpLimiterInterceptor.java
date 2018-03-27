@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * 功能：IP限流拦截器  每秒100个请求
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2017/11/6 15:33
  */
 @Component

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 功能：二元
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2018/3/7 15:49
  */
 public class Pair<A, B>  implements Serializable{

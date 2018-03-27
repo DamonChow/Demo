@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * 功能：mysql分页插件
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2018/3/27 上午10:44
  */
 public class MySQLLimitPlugin extends PluginAdapter {

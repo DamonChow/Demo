@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 功能：流控拦截器抽象类
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2018/1/19 11:46
  */
 public abstract class AbstractInterceptor extends HandlerInterceptorAdapter implements InitializingBean {

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 功能：三元
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2018/3/7 15:51
  */
 public class Tuple<A, B, C> implements Serializable{

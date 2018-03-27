@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * 功能：限流拦截器  每秒3000个请求
  *
- * @author zhoujiwei@idvert.com
+ * @author Damon
  * @since 2017/11/6 15:33
  */
 @Component
