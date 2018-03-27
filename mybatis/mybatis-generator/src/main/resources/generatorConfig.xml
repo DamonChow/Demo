@@ -25,6 +25,10 @@
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}"
                         userId="${userId}" password="${password}">
+            <!-- 针对oracle数据库 -->
+            <property name="remarksReporting" value="true"></property>
+            <!-- 针对mysql数据库 -->
+            <property name="useInformationSchema" value="true"></property>
         </jdbcConnection>
         <javaTypeResolver>
             <!-- true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
