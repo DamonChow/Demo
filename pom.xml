@@ -68,6 +68,7 @@
         <module>redis-lock-demo</module>
         <module>zookeeper-config-demo</module>
         <module>damon-framework</module>
+        <module>qrcode-demo</module>
     </modules>
     
     <dependencyManagement>

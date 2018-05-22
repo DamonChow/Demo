@@ -246,8 +246,8 @@ public class ArrayListTest {
 
     @Test
     public void testMain() {
-        String[] arrayA = new String[]{"1", "2", "3", "3", "4", "5"};
-        String[] arrayB = new String[]{"3", "4", "4", "5", "6", "7"};
+        String[] arrayA = new String[]{"1", "2", "3", "4", "5"};
+        String[] arrayB = new String[]{"3", "4", "5", "6", "7"};
 
         List<String> a = Arrays.asList(arrayA);
         List<String> b = Arrays.asList(arrayB);
@@ -259,11 +259,14 @@ public class ArrayListTest {
         Collection<String> disjunction = CollectionUtils.disjunction(a, b);
         //集合相减
         Collection<String> subtract = CollectionUtils.subtract(a, b);
+        //集合相减
+        Collection<String> ba_subtract = CollectionUtils.subtract(b, a);
 
         Collections.sort((List<String>) union);
         Collections.sort((List<String>) intersection);
         Collections.sort((List<String>) disjunction);
         Collections.sort((List<String>) subtract);
+        Collections.sort((List<String>) ba_subtract);
 
         System.out.println("A: " + ArrayUtils.toString(a.toArray()));
         System.out.println("B: " + ArrayUtils.toString(b.toArray()));
@@ -272,6 +275,7 @@ public class ArrayListTest {
         System.out.println("交集 Intersection(A, B): " + ArrayUtils.toString(intersection.toArray()));
         System.out.println("交集的补集 Disjunction(A, B): " + ArrayUtils.toString(disjunction.toArray()));
         System.out.println("A集合减B集合 Subtract(A, B): " + ArrayUtils.toString(subtract.toArray()));
+        System.out.println("B集合减A集合 Subtract(B, A): " + ArrayUtils.toString(ba_subtract.toArray()));
     }
 
     @Test
