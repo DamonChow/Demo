@@ -166,6 +166,22 @@ public class SimpleTest {
     }
 
     /**
+     * 当天开始时间和结束时间
+     */
+    @Test
+    public void todayStart() {
+        //当天零点
+        LocalDateTime todayStart = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
+        LocalDateTime start = LocalDate.now().atTime(LocalTime.MIN);
+        log.info("当天0点 is {} ", todayStart);
+        log.info("当天0点 is {} ", start);
+        LocalDateTime todayEnd = LocalDateTime.of(LocalDate.now(), LocalTime.MAX);
+        LocalDateTime end = LocalDate.now().atTime(LocalTime.MAX);
+        log.info("当天24点 is {} ", todayEnd);
+        log.info("当天24点 is {} ", end);
+    }
+
+    /**
      * 本天剩余多少秒
      */
     @Test
