@@ -10,12 +10,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 /**
  * 功能：
@@ -86,6 +88,10 @@ public class SimpleTest {
     public void findByName() {
         BasicDBObject basicDBObject = new BasicDBObject();
         basicDBObject.put("name", "Damon");
+        Pattern pattern;//用在模糊查询得时候，对字段进行匹配
+        pattern = Pattern.compile("^.*Avenue.*$", Pattern.CASE_INSENSITIVE);
+        basicDBObject.put("address.street",pattern);
+
         FindIterable<Document> restaurants = db.getCollection("restaurants").find(basicDBObject);
         restaurants.forEach(new Block<Document>() {
             @Override

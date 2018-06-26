@@ -69,6 +69,7 @@
         <module>zookeeper-config-demo</module>
         <module>damon-framework</module>
         <module>qrcode-demo</module>
+        <module>third-demo</module>
     </modules>
     
     <dependencyManagement>
