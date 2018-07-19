@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 /**
  * 功能：登录凭证校验
  *
- * @author zhoujiwei
+ * @author Damon Chow
  * @since 2018/3/28 下午8:24
  */
 @Data

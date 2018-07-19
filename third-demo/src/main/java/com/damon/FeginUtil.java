@@ -7,7 +7,7 @@ import feign.gson.GsonEncoder;
 /**
  * 功能：
  *
- * @author zhoujiwei
+ * @author Damon Chow
  * @since 2018/6/1 15:07
  */
 public class FeginUtil {

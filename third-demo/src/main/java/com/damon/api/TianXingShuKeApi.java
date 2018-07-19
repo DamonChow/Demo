@@ -9,7 +9,7 @@ import feign.RequestLine;
 /**
  * 功能：天行数科接口
  *
- * @author zhoujiwei
+ * @author Damon Chow
  * @since 2018/6/1 11:49
  */
 public interface TianXingShuKeApi {
