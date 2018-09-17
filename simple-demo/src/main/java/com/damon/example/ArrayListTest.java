@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 /**
@@ -178,6 +179,26 @@ public class ArrayListTest {
             logger.info("result subList = {} ", list.subList(fromIndex, toIndex));
             result.add(list.subList(fromIndex, toIndex));
         }
+        result.stream().forEach(x -> logger.info(x + ""));
+    }
+
+    @Test
+    public void testSubList2() {
+        List<String> list = Lists.newArrayList("a", "b", "c", "d", "e", "f", "h", "g");
+
+        logger.info("list2 = {} ", list);
+        logger.info("总长度2--------------------------" + list.size());
+        int sheetLength = 3;
+        int sheetSize = list.size() / sheetLength + (list.size() % sheetLength == 0 ? 0 : 1);
+        List<List<String>> result = new ArrayList(sheetSize);
+        IntStream.range(0, sheetSize).forEach(index ->{
+            int fromIndex = index * sheetLength;
+            int toIndex = (index + 1) * sheetLength;
+            toIndex = toIndex >= list.size() ? list.size() : toIndex;
+            List<String> sub = list.stream().skip(fromIndex).limit(sheetLength).collect(Collectors.toList());
+            logger.info("from {} to {}, subList = {} ", fromIndex, toIndex, sub);
+            result.add(sub);
+        });
         result.stream().forEach(x -> logger.info(x + ""));
     }
 
