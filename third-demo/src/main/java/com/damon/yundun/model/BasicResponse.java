@@ -1,6 +1,5 @@
 package com.damon.yundun.model;
 
-import com.ywxk.bitell.third.common.YunDunCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,6 @@ public class BasicResponse implements Serializable{
 
     /**
      * 接口调用状态，200:正常，其他值：调用出错，
-     * @see YunDunCodeEnum
      */
     private int code;
 

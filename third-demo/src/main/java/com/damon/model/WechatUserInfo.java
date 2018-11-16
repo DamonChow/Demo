@@ -1,7 +1,6 @@
 package com.damon.model;
 
 import com.google.gson.annotations.SerializedName;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,25 +32,18 @@ public class WechatUserInfo implements Serializable {
      * watermark : {"appid":"APPID","timestamp":"TIMESTAMP"}
      */
 
-    @ApiModelProperty("用户openId")
     private String openId;
 
-    @ApiModelProperty("昵称")
     private String nickName;
 
-    @ApiModelProperty("性别，值为1时是男性，值为2时是女性，值为0时是未知")
     private String gender;
 
-    @ApiModelProperty("用户所在城市")
     private String city;
 
-    @ApiModelProperty("用户所在省份")
     private String province;
 
-    @ApiModelProperty("用户所在国家")
     private String country;
 
-    @ApiModelProperty("用户头像")
     private String avatarUrl;
 
     private String unionId;
