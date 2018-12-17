@@ -16,6 +16,7 @@
         <module>spring-aop-demo</module>
         <module>spring-mvc-demo</module>
         <module>spring-demo</module>
+        <module>spring-boot</module>
     </modules>
 
     <properties>
