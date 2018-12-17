@@ -5,6 +5,9 @@ import com.damon.vo.Car;
 import com.damon.vo.Phone;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.redisson.Redisson;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +57,12 @@ public class RedisLockTest {
         }
         TimeUnit.SECONDS.sleep(100L);
         executor.shutdown();
+    }
 
+    public static void main(String[] args) {
+        RedissonClient redissonClient = Redisson.create();
+        RLock sdf = redissonClient.getLock("sdf");
+        sdf.lock();
     }
 
 
