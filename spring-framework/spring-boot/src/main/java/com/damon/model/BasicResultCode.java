@@ -1,9 +1,11 @@
 package com.damon.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 
 @Getter
+@AllArgsConstructor
 public enum BasicResultCode {
 
     SUCCESS(0, "success"),
@@ -53,12 +55,7 @@ public enum BasicResultCode {
     SIGN_EMPTY_ERROR(30205, "请求非法");
 
     private int code;
+
     private String msg;
-
-    BasicResultCode(int code, String msg) {
-        code = code;
-        msg = msg;
-    }
-
 
 }

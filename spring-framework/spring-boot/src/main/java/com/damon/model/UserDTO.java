@@ -19,10 +19,10 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UserDTO {
 
     @NotNull(message = "id不能为空")
-    private Integer id;
+    private Integer userId;
 
     @NotBlank(message = "名称不能为空")
     private String name;

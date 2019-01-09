@@ -1,10 +1,10 @@
-/**
- * 2015-2016 龙果学院 (www.roncoo.com)
- */
 package com.damon.controller;
 
+import com.damon.mapper.UserBeanMapper;
 import com.damon.model.User;
+import com.damon.model.UserDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +26,9 @@ import java.util.HashMap;
 @Validated
 public class IndexController {
 
+    @Autowired
+    private UserBeanMapper userBeanMapper;
+
     @RequestMapping
     public String index() {
         return "hello world";
@@ -43,6 +46,7 @@ public class IndexController {
     // @PathVariable 获得请求url中的动态参数
     @RequestMapping(value = "/get/{id}/{name}")
     public User getUser(@PathVariable int id, @PathVariable String name) {
+
         User user = new User();
         user.setId(id);
         user.setName(name);
@@ -81,6 +85,18 @@ public class IndexController {
     @GetMapping(value = "/user")
     public User user(@ModelAttribute @Valid User user) {
         return user;
+    }
+
+    // @PathVariable 获得请求url中的动态参数
+    @RequestMapping(value = "/user/{id}")
+    public UserDTO getUser(@PathVariable int id) {
+
+        User user = new User();
+        user.setId(id);
+        user.setName("mz"+id);
+        user.setDate(new Date());
+        UserDTO userDTO = userBeanMapper.fromUser(user);
+        return userDTO;
     }
 
 }
